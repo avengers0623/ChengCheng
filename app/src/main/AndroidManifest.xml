@@ -23,6 +23,7 @@
         <activity android:name=".list_details"/>
         <activity android:name=".add_item"/>
         <activity android:name=".plus"/>
+        <activity android:name=".logo"/>
 
 
 
