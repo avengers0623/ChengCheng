@@ -1,0 +1,48 @@
+Index: app/src/main/java/kr/ac/ansan/chengcheng/self_signup.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/kr/ac/ansan/chengcheng/self_signup.kt	(date 1625498587240)
++++ app/src/main/java/kr/ac/ansan/chengcheng/self_signup.kt	(date 1625498587240)
+@@ -0,0 +1,6 @@
++package kr.ac.ansan.chengcheng
++
++import androidx.appcompat.app.AppCompatActivity
++
++class self_signup : AppCompatActivity(){
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/self_signup.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/self_signup.xml	(date 1625498587307)
++++ app/src/main/res/layout/self_signup.xml	(date 1625498587307)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/kr/ac/ansan/chengcheng/login_signup.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.ac.ansan.chengcheng\r\n\r\nclass login_signup {\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/kr/ac/ansan/chengcheng/login_signup.kt	(revision 0f8986e6aa6bb596ca6b973ad8783b1148f950fa)
++++ app/src/main/java/kr/ac/ansan/chengcheng/login_signup.kt	(date 1625498599902)
+@@ -1,4 +1,6 @@
+ package kr.ac.ansan.chengcheng
+ 
+-class login_signup {
++import androidx.appcompat.app.AppCompatActivity
++
++class login_signup : AppCompatActivity() {
+ }
+\ No newline at end of file
