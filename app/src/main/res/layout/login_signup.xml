@@ -7,7 +7,7 @@
     android:background="#f4f9ff">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/logo"
         android:layout_width="274dp"
         android:layout_height="176dp"
         android:layout_marginTop="50dp"
@@ -18,19 +18,20 @@
         app:srcCompat="@drawable/pizza_cute_logo_80802_504" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/edittext_ID"
         android:layout_width="245dp"
         android:layout_height="35dp"
         android:layout_marginTop="96dp"
+      android:paddingLeft="35dp"
+        android:background="@drawable/style_edittext"
         android:hint="아이디"
-
         android:inputType="textPersonName"
         android:textSize="12sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.415"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <Button
         android:id="@+id/login_button"
@@ -40,29 +41,49 @@
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:text="로그인"
-        android:background="@drawable/btn_login"
+        android:background="@drawable/style_btn_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/edittext_Password"
         android:layout_width="245dp"
         android:layout_height="35dp"
 
-
+        android:paddingLeft="35dp"
         android:hint="비밀번호"
         android:inputType="textPersonName"
         android:textSize="12sp"
+
+        android:background="@drawable/style_edittext"
 
         android:layout_marginTop="16dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.415"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_ID"
       />
+
+    <ImageView
+        android:id="@+id/icon_ID"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/name"
+        app:layout_constraintBottom_toBottomOf="@+id/edittext_ID"
+        app:layout_constraintStart_toStartOf="@+id/edittext_ID"
+        app:layout_constraintTop_toTopOf="@+id/edittext_ID" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/password"
+
+        app:layout_constraintBottom_toBottomOf="@+id/edittext_Password"
+        app:layout_constraintStart_toStartOf="@+id/edittext_Password"
+        app:layout_constraintTop_toTopOf="@+id/edittext_Password" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
