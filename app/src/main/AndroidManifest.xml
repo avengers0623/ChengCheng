@@ -22,7 +22,7 @@
         <activity android:name=".my_page"/>
         <activity android:name=".list_details"/>
         <activity android:name=".add_item"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".plus"/>
 
 
 
