@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".logo">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,7 @@
         <activity android:name=".list_details"/>
         <activity android:name=".add_item"/>
         <activity android:name=".plus"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".logo"/>
 
 
 
