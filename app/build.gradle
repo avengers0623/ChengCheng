@@ -3,6 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    compileOptions {
+
+        sourceCompatibility JavaVersion.VERSION_1_9
+
+        targetCompatibility JavaVersion.VERSION_1_9
+
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 

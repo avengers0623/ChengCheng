@@ -1,0 +1,30 @@
+Index: app/src/main/res/layout/my_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/my_page.xml	(date 1625499005874)
++++ app/src/main/res/layout/my_page.xml	(date 1625499005874)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/kr/ac/ansan/chengcheng/my_page.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/kr/ac/ansan/chengcheng/my_page.kt	(date 1625499006008)
++++ app/src/main/java/kr/ac/ansan/chengcheng/my_page.kt	(date 1625499006008)
+@@ -0,0 +1,6 @@
++package kr.ac.ansan.chengcheng
++
++import androidx.appcompat.app.AppCompatActivity
++
++class my_page : AppCompatActivity() {
++}
+\ No newline at end of file
