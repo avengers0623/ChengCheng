@@ -19,9 +19,9 @@
         <activity android:name=".login_signup"/>
         <activity android:name=".self_signup"/>
         <activity android:name=".social_signup"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".my_page"/>
+        <activity android:name=".list_details"/>
+        <activity android:name=".add_item"/>
         <activity android:name=".MainActivity"/>
 
 
