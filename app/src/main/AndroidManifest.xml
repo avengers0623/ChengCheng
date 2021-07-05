@@ -17,13 +17,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".login_signup"/>
-        <activity android:name=".self_signup"/>
-        <activity android:name=".social_signup"/>
-        <activity android:name=".my_page"/>
-        <activity android:name=".list_details"/>
-        <activity android:name=".add_item"/>
-        <activity android:name=".plus"/>
-        <activity android:name=".logo"/>
+        <activity android:name=".self_signup"></activity>
+        <activity android:name=".social_signup"></activity>
+        <activity android:name=".my_page"></activity>
+        <activity android:name=".list_details"></activity>
+        <activity android:name=".add_item"></activity>
+        <activity android:name=".plus"></activity>
+        <activity android:name=".logo">
+            </activity>
+
 
 
 
