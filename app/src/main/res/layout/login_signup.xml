@@ -16,55 +16,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pizza_cute_logo_80802_504" />
-
+    <!-- 태블릿에서 레이아웃 깨지는데 태블릿까지 생각하면 id,pw Linear로 묶어서 match_parent -->
     <EditText
         android:id="@+id/edittext_ID"
         android:layout_width="245dp"
         android:layout_height="35dp"
-        android:layout_marginTop="96dp"
-      android:paddingLeft="35dp"
         android:background="@drawable/style_edittext"
         android:hint="아이디"
         android:inputType="textPersonName"
+        android:maxLength="29"
+        android:paddingLeft="35dp"
         android:textSize="12sp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.415"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
+    <Space
+        android:id="@+id/space"
+        android:layout_width="245dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_ID"/>
+
     <Button
         android:id="@+id/login_button"
-        android:layout_width="60dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="320dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:text="로그인"
+        android:layout_width="65dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/style_btn_login"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="로그인"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/space"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
         android:id="@+id/edittext_Password"
         android:layout_width="245dp"
         android:layout_height="35dp"
-
-        android:layout_marginTop="16dp"
         android:background="@drawable/style_edittext"
         android:hint="비밀번호"
         android:inputType="textPersonName|textPassword"
-
         android:paddingLeft="35dp"
-
         android:textSize="12sp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.415"
+        android:layout_marginLeft="45dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_ID" />
+        app:layout_constraintTop_toBottomOf="@+id/space" />
 
     <ImageView
         android:id="@+id/icon_ID"
@@ -85,72 +83,71 @@
         app:layout_constraintStart_toStartOf="@+id/edittext_Password"
         app:layout_constraintTop_toTopOf="@+id/edittext_Password" />
 
-    <TextView
-        android:id="@+id/textView_id_password"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:text="아이디/비밀번호 찾기"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintTop_toBottomOf="@+id/edittext_Password">
 
-    <TextView
-        android:id="@+id/textView_signup"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이디/비밀번호 찾기" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="회원가입" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:textStyle="bold"
-        android:text="회원가입"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_id_password"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_Password"
-        app:layout_constraintVertical_bias="0.082" />
-
-    <Button
-        android:id="@+id/button_kakao_login"
-        android:layout_width="274dp"
-        android:layout_height="32.25dp"
-        android:layout_marginTop="112dp"
-        android:background="@drawable/style_kakao_login"
-        android:text="카카오 로그인"
-        android:textSize="15sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_Password" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/button_facebook_login"
-        android:layout_width="274dp"
-        android:layout_height="32.25dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/style_facebook_login"
-        android:text="페이스북 로그인"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_kakao_login" />
+        <Button
+            android:id="@+id/button_kakao_login"
+            android:layout_width="274dp"
+            android:layout_height="32.25dp"
+            android:background="@drawable/style_kakao_login"
+            android:text="카카오 로그인"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button_google_login"
-        android:layout_width="274dp"
-        android:layout_height="32.25dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/style_google_login"
-        android:text="구글 로그인"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_facebook_login" />
+        <Button
+            android:id="@+id/button_facebook_login"
+            android:layout_width="274dp"
+            android:layout_height="32.25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/style_facebook_login"
+            android:text="페이스북 로그인"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/button_kakao_login" />
 
+        <Button
+            android:id="@+id/button_google_login"
+            android:layout_width="274dp"
+            android:layout_height="32.25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/style_google_login"
+            android:text="구글 로그인"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/button_facebook_login" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
