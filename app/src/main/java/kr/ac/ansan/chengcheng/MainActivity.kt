@@ -38,11 +38,12 @@ class MainActivity : AppCompatActivity() {
         myRecyclerAdapter.submitList(this.modelList)
         // 리사이클러뷰 설정
         recycler_list.apply{
-            // 리사이클러뷰 방향 등 설정
+            // 리사이클러뷰 방향 설정
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL,false)
-
             // 어답터 장착
             adapter = myRecyclerAdapter
+
+
         }
 
 
