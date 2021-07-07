@@ -16,82 +16,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pizza_cute_logo_80802_504" />
-    <!-- 태블릿에서 레이아웃 깨지는데 태블릿까지 생각하면 id,pw Linear로 묶어서 match_parent -->
-    <EditText
-        android:id="@+id/edittext_ID"
-        android:layout_width="245dp"
-        android:layout_height="35dp"
-        android:background="@drawable/style_edittext"
-        android:hint="아이디"
-        android:inputType="textPersonName"
-        android:maxLength="29"
-        android:paddingLeft="35dp"
-        android:textSize="12sp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-    <Space
-        android:id="@+id/space"
-        android:layout_width="245dp"
-        android:layout_height="16dp"
-        android:layout_marginLeft="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_ID"/>
-
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="65dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/style_btn_login"
-        android:text="로그인"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/space"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
-
-    <EditText
-        android:id="@+id/edittext_Password"
-        android:layout_width="245dp"
-        android:layout_height="35dp"
-        android:background="@drawable/style_edittext"
-        android:hint="비밀번호"
-        android:inputType="textPersonName|textPassword"
-        android:paddingLeft="35dp"
-        android:textSize="12sp"
-        android:layout_marginLeft="45dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
-
-    <ImageView
-        android:id="@+id/icon_ID"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/name"
-        app:layout_constraintBottom_toBottomOf="@+id/edittext_ID"
-        app:layout_constraintStart_toStartOf="@+id/edittext_ID"
-        app:layout_constraintTop_toTopOf="@+id/edittext_ID" />
-
-    <ImageView
-        android:id="@+id/imageView"
+    <LinearLayout
+        android:id="@+id/idpw_Form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo">
 
-        android:src="@drawable/password"
-        app:layout_constraintBottom_toBottomOf="@+id/edittext_Password"
-        app:layout_constraintStart_toStartOf="@+id/edittext_Password"
-        app:layout_constraintTop_toTopOf="@+id/edittext_Password" />
+        <LinearLayout
+            android:id="@+id/editText_idpw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo">
+
+            <EditText
+                android:id="@+id/edittext_ID"
+                android:layout_width="245dp"
+                android:layout_height="40dp"
+                android:background="@drawable/style_edittext"
+                android:hint="아이디"
+                android:inputType="textPersonName"
+                android:maxLength="29"
+                android:paddingLeft="10dp"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/edittext_Password"
+                android:layout_width="245dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/style_edittext"
+                android:hint="비밀번호"
+                android:inputType="textPersonName|textPassword"
+                android:paddingLeft="10dp"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="65dp"
+            android:layout_height="86dp"
+            android:background="@drawable/style_btn_login"
+            android:text="로그인"
+            app:layout_constraintStart_toEndOf="@+id/editText_idpw"
+            app:layout_constraintTop_toBottomOf="@id/logo" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_Password">
+        app:layout_constraintTop_toBottomOf="@+id/idpw_Form">
 
         <TextView
             android:id="@+id/textView"
