@@ -1,7 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f4f9ff">
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:textColor="#202020"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.108" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:background="#454545" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/social_name_text"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="58dp"
+        android:background="@drawable/style_edittext"
+        android:hint="별명"
+        android:paddingLeft="50dp"
+        android:paddingTop="5dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.344" />
+
+    <View
+        android:id="@+id/social_name_view"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="66dp"
+        android:background="#D86161"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.344" />
+
+    <Button
+        android:id="@+id/social_name_btn"
+        android:layout_width="53dp"
+        android:layout_height="42dp"
+        android:background="@drawable/style_same_ch"
+        android:text="  중복   확인"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.796"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.342" />
+
+    <TextView
+        android:id="@+id/social_age_text"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="58dp"
+        android:background="@drawable/style_edittext"
+        android:hint="나이"
+        android:paddingLeft="50dp"
+        android:paddingTop="5dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.435" />
+
+    <View
+        android:id="@+id/social_age_view"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="66dp"
+        android:background="#D86161"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.436" />
+
+    <TextView
+        android:id="@+id/social_no_text"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="58dp"
+        android:background="@drawable/style_edittext"
+        android:hint="추천인 별명"
+        android:paddingLeft="50dp"
+        android:paddingTop="5dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526" />
+
+    <View
+        android:id="@+id/social_no_view"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="66dp"
+        android:background="#D86161"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525" />
+
+
+    <CheckBox
+        android:id="@+id/agreeCb"
+        android:layout_width="334dp"
+        android:layout_height="30dp"
+        android:background="@drawable/style_edittext"
+        android:buttonTint="#000000"
+        android:text="[필수] 서비스 이용 약관"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.707"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/agreeCb2"
+        android:layout_width="334dp"
+        android:layout_height="30dp"
+        android:background="@drawable/style_edittext"
+        android:buttonTint="#000000"
+        android:text="[필수] 개인정보 취급방침"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.776"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:background="@drawable/style_btn_login"
+        android:text="챙챙 시작하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.89" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
