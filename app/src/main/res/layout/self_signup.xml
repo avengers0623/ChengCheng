@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#f4f9ff">
     <TextView
         android:id="@+id/textview"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.108" />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,6 +34,7 @@
             android:background="#454545" />
 
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/social_name_text"
@@ -48,7 +51,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.344" />
+        app:layout_constraintVertical_bias="0.301" />
 
     <View
         android:id="@+id/social_name_view"
@@ -61,7 +64,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.344" />
+        app:layout_constraintVertical_bias="0.306" />
+
 
     <Button
         android:id="@+id/social_name_btn"
@@ -74,15 +78,15 @@
         app:layout_constraintHorizontal_bias="0.796"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintVertical_bias="0.301" />
 
     <TextView
-        android:id="@+id/social_age_text"
+        android:id="@+id/social_pass_text"
         android:layout_width="280dp"
         android:layout_height="40dp"
         android:layout_marginLeft="58dp"
         android:background="@drawable/style_edittext"
-        android:hint="나이"
+        android:hint="비밀번호"
         android:paddingLeft="50dp"
         android:paddingTop="5dp"
         android:textSize="24sp"
@@ -91,10 +95,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435" />
+        app:layout_constraintVertical_bias="0.374" />
 
     <View
-        android:id="@+id/social_age_view"
+        android:id="@+id/social_pass_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginLeft="66dp"
@@ -104,7 +108,39 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.436" />
+        app:layout_constraintVertical_bias="0.372" />
+
+
+    <TextView
+        android:id="@+id/social_passch_text"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="58dp"
+        android:background="@drawable/style_edittext"
+        android:hint="비밀번호 확인"
+        android:paddingLeft="50dp"
+        android:paddingTop="5dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
+
+    <View
+        android:id="@+id/social_passch_view"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="66dp"
+        android:background="#D86161"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.449" />
+
 
     <TextView
         android:id="@+id/social_no_text"
@@ -121,7 +157,37 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintVertical_bias="0.61" />
+
+    <TextView
+        android:id="@+id/social_age_text"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="58dp"
+        android:background="@drawable/style_edittext"
+        android:hint="나이"
+        android:paddingLeft="50dp"
+        android:paddingTop="5dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.531" />
+
+    <View
+        android:id="@+id/social_age_view"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="66dp"
+        android:background="#D86161"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.531" />
 
     <View
         android:id="@+id/social_no_view"
@@ -134,7 +200,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.525" />
+        app:layout_constraintVertical_bias="0.607" />
 
 
     <CheckBox
