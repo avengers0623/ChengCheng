@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "kr.ac.ansan.chengcheng"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
