@@ -1,13 +1,11 @@
 package kr.ac.ansan.chengcheng
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
-class list_details : AppCompatActivity() {
+class custom_dialog : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.list_details)
-        val dialog = popup(this)
-        dialog.myDig()
+        setContentView(R.layout.activity_custom_dialog)
     }
 }
