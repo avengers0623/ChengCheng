@@ -1,35 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item1"
+        android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/ic_add"
-        android:title="item1"/>
-
-
-    <item
-        android:id="@+id/item2"
-        android:enabled="true"
-        android:icon="@drawable/ic_add"
-        android:title="item2"/>
+        android:title="홈" />
 
     <item
-        android:id="@+id/item3"
+        android:id="@+id/add"
         android:enabled="true"
         android:icon="@drawable/ic_add"
-        android:title="item3"/>
+        android:title="추가" />
 
     <item
-        android:id="@+id/item4"
+        android:id="@+id/mypage"
         android:enabled="true"
         android:icon="@drawable/ic_add"
-        android:title="item4"/>
-
-    <item
-        android:id="@+id/item5"
-        android:enabled="true"
-        android:icon="@drawable/ic_add"
-        android:title="item5"/>
+        android:title="마이페이지" />
 
 
 </menu>

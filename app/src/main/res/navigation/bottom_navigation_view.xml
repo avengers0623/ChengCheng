@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation_view"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="kr.ac.ansan.chengcheng.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/activity_main"/>
+    <fragment
+        android:id="@+id/add"
+        android:name="kr.ac.ansan.chengcheng.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add"/>
+    <fragment
+        android:id="@+id/mypage"
+        android:name="kr.ac.ansan.chengcheng.MyPageFragment"
+        android:label="fragment_mypage"
+        tools:layout="@layout/my_page"/>
+
+</navigation>

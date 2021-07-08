@@ -3,10 +3,12 @@ package kr.ac.ansan.chengcheng
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
-
 class MainActivity : AppCompatActivity() {
 
     val TAG: String = "로그"
@@ -14,9 +16,8 @@ class MainActivity : AppCompatActivity() {
 
     //데이터를 담을 그릇 즉 배열
     var modelList = ArrayList<MyModel>()
-
     private lateinit var myRecyclerAdapter: MyRecyclerAdapter
-
+    
     //뷰가 화면에 그려질때에
    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,5 +48,10 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+
     }
+
+
 }
+
