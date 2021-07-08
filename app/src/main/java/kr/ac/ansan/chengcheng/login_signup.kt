@@ -10,8 +10,9 @@ class login_signup : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_signup)
 
+        val selfsignup = Intent(this,self_signup::class.java)
         TextView_signup.setOnClickListener {
-         //지석 여기서 부터
+            startActivity(selfsignup)
         }
 
     }
