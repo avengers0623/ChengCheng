@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ex2 extends AppCompatActivity {
 
     Button myButton;
-    Button myButton2;
+    ImageButton myButton2;
     View myView;
     View myView2;
     boolean isUp;
@@ -37,7 +38,7 @@ public class ex2 extends AppCompatActivity {
 
     }
 
-    // slide the view from below itself to the current position
+    // 슬라이드 열기
     public void slideUp(View view){
         view.setVisibility(View.VISIBLE);
         TranslateAnimation animate = new TranslateAnimation(
@@ -50,7 +51,7 @@ public class ex2 extends AppCompatActivity {
         view.startAnimation(animate);
     }
 
-    // slide the view from its current position to below itself
+    //슬라이드 닫기
     public void slideDown(View view){
         TranslateAnimation animate = new TranslateAnimation(
                 0,                 // fromXDelta
@@ -62,6 +63,7 @@ public class ex2 extends AppCompatActivity {
         view.startAnimation(animate);
     }
 
+    //1번째 슬라이드 실행
     public void onSlideViewButtonClick(View view) {
         if (isUp) {
             slideDown(myView);
@@ -73,14 +75,14 @@ public class ex2 extends AppCompatActivity {
         isUp = !isUp;
     }
 
-
+    //2번째 슬라이드 실행
     public void onSlideViewButtonClick2(View view) {
         if (isUp2) {
             slideDown(myView2);
-            myButton2.setText("Slide up");
+            //myButton2.setText("Slide up");
         } else {
             slideUp(myView2);
-            myButton2.setText("Slide down");
+            //myButton2.setText("Slide down");
         }
         isUp2 = !isUp2;
     }

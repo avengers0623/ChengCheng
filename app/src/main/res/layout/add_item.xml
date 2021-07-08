@@ -1,47 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f4f9ff  ">
 
     <Button
         android:id="@+id/my_button"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:onClick="onSlideViewButtonClick" />
+        android:onClick="onSlideViewButtonClick"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-
+    <!-- 첫번째 슬라이드 -->
     <LinearLayout
         android:id="@+id/my_view"
         android:layout_width="match_parent"
         android:layout_height="700dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/style_slide"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
-        <Button
-            android:id="@+id/my_button2"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:onClick="onSlideViewButtonClick2" />
+        <!-- 첫번째 슬라이드 펼쳐졌을때 버튼-->
 
-        <RelativeLayout
+
+
+        <!-- 두번째 슬라이드 구역-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/top_line"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/search_im"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:srcCompat="@android:drawable/ic_menu_search" />
+
+                <MultiAutoCompleteTextView
+                    android:id="@+id/title"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="가평여행" />
+
+                <ImageView
+                    android:id="@+id/alarm_im"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/my_button2"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:onClick="onSlideViewButtonClick2"
+                android:src="@android:drawable/arrow_down_float"
+                tools:layout_editor_absoluteX="362dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_line"/>
 
             <LinearLayout
                 android:id="@+id/my_view2"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_alignParentBottom="true"
-                android:background="#FF0000"
-                android:orientation="vertical">
+                android:background="@drawable/style_slide_2"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_line">
 
 
             </LinearLayout>
-        </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
