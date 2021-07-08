@@ -7,7 +7,6 @@ class list_details : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_details)
-        val dialog = popup(this)
-        dialog.myDig()
+
     }
 }
