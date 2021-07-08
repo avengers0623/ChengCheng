@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     val TAG: String = "로그"
 
 
+
+
     //데이터를 담을 그릇 즉 배열
     var modelList = ArrayList<MyModel>()
     private lateinit var myRecyclerAdapter: MyRecyclerAdapter

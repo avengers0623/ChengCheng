@@ -33,4 +33,6 @@ return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycle
      this.modelList = modelList
     }
 
+    fun setData(){}
+
 }
