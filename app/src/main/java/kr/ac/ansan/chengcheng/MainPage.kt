@@ -28,9 +28,7 @@ class MainPage : AppCompatActivity(){
 //            HomeFragment()
 //        )
 //        transaction.commit()
-
     }
-
 
     private fun initNavigation() {
         val navController = findNavController(R.id.navController)

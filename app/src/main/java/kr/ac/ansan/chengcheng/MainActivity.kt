@@ -20,13 +20,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "메인액티비티 실행", Toast.LENGTH_SHORT).show()
 
 
-
-
     }
-    
-    fun test() {
-        Toast.makeText(this, "불러옴", Toast.LENGTH_SHORT).show()
-    }
-
 }
 

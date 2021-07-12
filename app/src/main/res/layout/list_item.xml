@@ -34,7 +34,6 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <!--버튼-->
     <ImageView
         android:id="@+id/bt_search"
         android:layout_gravity="center"
@@ -46,7 +45,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!--구분선-->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

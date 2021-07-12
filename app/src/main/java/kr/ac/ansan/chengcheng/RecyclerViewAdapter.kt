@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.list_item.view.*
 
 
+
 class RecyclerViewAdapter(context: Context, persons: ArrayList<item>) :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
     private var mPersons: ArrayList<item>? = persons

@@ -7,7 +7,6 @@
     android:background="#f4f9ff  "
     tools:context=".my_page">
 
-
     <TextView
         android:id="@+id/register"
         android:layout_width="wrap_content"

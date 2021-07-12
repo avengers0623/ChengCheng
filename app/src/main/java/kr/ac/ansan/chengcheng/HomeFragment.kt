@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 class HomeFragment : Fragment() {
     private val items: ArrayList<item> = ArrayList()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

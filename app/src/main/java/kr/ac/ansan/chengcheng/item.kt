@@ -9,7 +9,6 @@ class item {
     //var photo: String? = null
     var summary: String? = null
 
-
     constructor(name: String?, photo: String?, summary: String?) {
         this.name = name
         //this.photo = photo
