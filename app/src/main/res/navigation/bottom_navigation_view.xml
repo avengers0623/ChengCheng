@@ -9,13 +9,14 @@
         android:id="@+id/home"
         android:name="kr.ac.ansan.chengcheng.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/activity_main"
-        />
+        tools:layout="@layout/fragment_home"/>
+
     <fragment
         android:id="@+id/add"
         android:name="kr.ac.ansan.chengcheng.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add"/>
+
     <fragment
         android:id="@+id/mypage"
         android:name="kr.ac.ansan.chengcheng.MyPageFragment"
