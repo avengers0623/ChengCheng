@@ -56,5 +56,4 @@ class HomeFragment : Fragment() {
         items.add(item("가평여행2", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
         items.add(item("가평여행3", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
     }
-
 }
