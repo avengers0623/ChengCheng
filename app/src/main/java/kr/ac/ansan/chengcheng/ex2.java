@@ -31,15 +31,15 @@ public class ex2 extends AppCompatActivity {
 
         // initialize as invisible (could also do in xml)
         myView.setVisibility(View.INVISIBLE);
-        myView2.setVisibility(View.INVISIBLE);
-
         myButton.setText("Slide up");
         isUp = false;
+        isUp2 = true;
+
 
     }
 
     // 슬라이드 열기
-    public void slideUp(View view){
+    public void slideUp(View view) {
         view.setVisibility(View.VISIBLE);
         TranslateAnimation animate = new TranslateAnimation(
                 0,                 // fromXDelta
@@ -52,7 +52,7 @@ public class ex2 extends AppCompatActivity {
     }
 
     //슬라이드 닫기
-    public void slideDown(View view){
+    public void slideDown(View view) {
         TranslateAnimation animate = new TranslateAnimation(
                 0,                 // fromXDelta
                 0,                 // toXDelta
@@ -75,14 +75,48 @@ public class ex2 extends AppCompatActivity {
         isUp = !isUp;
     }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // 슬라이드 열기
+    public void slideUp2(View view) {
+        view.setVisibility(View.VISIBLE);
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                view.getHeight() / 2,  // fromYDelta
+                0);                // toYDelta
+        animate.setDuration(500);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
+    }
+
+    //슬라이드 닫기
+    public void slideDown2(View view) {
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                0,                 // fromYDelta
+                view.getHeight() / 2); // toYDelta
+        animate.setDuration(500);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
+
+
+    }
+
+//
+
     //2번째 슬라이드 실행
     public void onSlideViewButtonClick2(View view) {
         if (isUp2) {
-            slideDown(myView2);
-            //myButton2.setText("Slide up");
+            slideDown2(myView2);
+            myButton2.setY(myView2.getHeight());
+
+            myButton2.setImageResource(R.drawable.up);
         } else {
-            slideUp(myView2);
-            //myButton2.setText("Slide down");
+            slideUp2(myView2);
+            myButton2.setY(myView2.getHeight()/2);
+            myButton2.setImageResource(R.drawable.down);
         }
         isUp2 = !isUp2;
     }

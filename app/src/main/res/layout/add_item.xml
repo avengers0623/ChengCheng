@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f4f9ff  ">
+    android:background="#f4f9ff">
 
     <Button
         android:id="@+id/my_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onSlideViewButtonClick"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/bottom_navigation_style"
+        android:onClick="onSlideViewButtonClick"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="저장하기" />
 
     <!-- 첫번째 슬라이드 -->
     <LinearLayout
@@ -24,13 +26,11 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/style_slide"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <!-- 첫번째 슬라이드 펼쳐졌을때 버튼-->
-
 
 
         <!-- 두번째 슬라이드 구역-->
@@ -76,30 +76,29 @@
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/my_button2"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:onClick="onSlideViewButtonClick2"
-                android:src="@android:drawable/arrow_down_float"
-                tools:layout_editor_absoluteX="362dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/top_line"/>
-
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/my_view2"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:background="@drawable/style_slide_2"
                 android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/top_line">
+                app:layout_constraintStart_toStartOf="parent">
 
+    <com.google.android.material.circularreveal.CircularRevealFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/my_button2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:onClick="onSlideViewButtonClick2"
+                    android:layout_weight="4"
+                    android:src="@drawable/down" />
+    </com.google.android.material.circularreveal.CircularRevealFrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
