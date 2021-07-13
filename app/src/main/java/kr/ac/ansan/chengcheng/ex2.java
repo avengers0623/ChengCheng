@@ -7,27 +7,29 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ex2 extends AppCompatActivity {
 
+
     Button myButton;
-    ImageButton myButton2;
     View myView;
-    View myView2;
     boolean isUp;
     boolean isUp2;
 
 
+    RecyclerVierAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_item);
-
+        setContentView(R.layout.activity_main);
+        init();
+        getData();
         myView = findViewById(R.id.my_view);
-        myView2 = findViewById(R.id.my_view2);
 
         myButton = findViewById(R.id.my_button);
-        myButton2 = findViewById(R.id.my_button2);
+
 
         // initialize as invisible (could also do in xml)
         myView.setVisibility(View.INVISIBLE);
@@ -75,49 +77,29 @@ public class ex2 extends AppCompatActivity {
         isUp = !isUp;
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // 슬라이드 열기
-    public void slideUp2(View view) {
-        view.setVisibility(View.VISIBLE);
-        TranslateAnimation animate = new TranslateAnimation(
-                0,                 // fromXDelta
-                0,                 // toXDelta
-                view.getHeight() / 2,  // fromYDelta
-                0);                // toYDelta
-        animate.setDuration(500);
-        animate.setFillAfter(true);
-        view.startAnimation(animate);
+    private void init(){
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        adapter = new RecyclerVierAdapter();
+        recyclerView.setAdapter(adapter);
     }
 
-    //슬라이드 닫기
-    public void slideDown2(View view) {
-        TranslateAnimation animate = new TranslateAnimation(
-                0,                 // fromXDelta
-                0,                 // toXDelta
-                0,                 // fromYDelta
-                view.getHeight() / 2); // toYDelta
-        animate.setDuration(500);
-        animate.setFillAfter(true);
-        view.startAnimation(animate);
-
-
-    }
-
-//
-
-    //2번째 슬라이드 실행
-    public void onSlideViewButtonClick2(View view) {
-        if (isUp2) {
-            slideDown2(myView2);
-            myButton2.setY(myView2.getHeight());
-
-            myButton2.setImageResource(R.drawable.up);
-        } else {
-            slideUp2(myView2);
-            myButton2.setY(myView2.getHeight()/2);
-            myButton2.setImageResource(R.drawable.down);
-        }
-        isUp2 = !isUp2;
+    private void getData(){
+        DataMovie data = new DataMovie(R.drawable.iron_man, "의류");
+        adapter.addItem(data);
+        data = new DataMovie(R.drawable.spider_man, "세면도구");
+        adapter.addItem(data);
+        data = new DataMovie(R.drawable.black_panther, "예시1");
+        adapter.addItem(data);
+        data = new DataMovie(R.drawable.doctor, "예시2");
+        adapter.addItem(data);
+        data = new DataMovie(R.drawable.hulk, "예시3");
+        adapter.addItem(data);
+        data = new DataMovie(R.drawable.thor, "예시4");
+        adapter.addItem(data);
     }
 }

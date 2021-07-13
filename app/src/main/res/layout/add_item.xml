@@ -76,28 +76,15 @@
 
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/my_view2"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:background="@drawable/style_slide_2"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
 
-    <com.google.android.material.circularreveal.CircularRevealFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-                <ImageButton
-                    android:id="@+id/my_button2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:onClick="onSlideViewButtonClick2"
-                    android:layout_weight="4"
-                    android:src="@drawable/down" />
-    </com.google.android.material.circularreveal.CircularRevealFrameLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_line"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
