@@ -1,0 +1,100 @@
+Index: app/src/main/res/layout/activity_custom_dialog.xml
+===================================================================
+--- app/src/main/res/layout/activity_custom_dialog.xml	(revision d4b1458bcf370d338733628b0666dfb996de1e64)
++++ app/src/main/res/layout/activity_custom_dialog.xml	(revision d4b1458bcf370d338733628b0666dfb996de1e64)
+@@ -1,19 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".custom_dialog">
+-
+-
+-    <ImageView
+-        android:id="@+id/imageView"
+-        android:layout_width="297dp"
+-        android:layout_height="293dp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:srcCompat="@drawable/pizza_cute_logo_80802_504" />
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/kr/ac/ansan/chengcheng/popup.kt
+===================================================================
+--- app/src/main/java/kr/ac/ansan/chengcheng/popup.kt	(revision d4b1458bcf370d338733628b0666dfb996de1e64)
++++ app/src/main/java/kr/ac/ansan/chengcheng/popup.kt	(revision d4b1458bcf370d338733628b0666dfb996de1e64)
+@@ -1,28 +0,0 @@
+-package kr.ac.ansan.chengcheng
+-
+-import android.app.Dialog
+-import android.content.Context
+-import android.view.WindowManager
+-import java.security.AccessControlContext
+-
+-class popup (context: Context) {
+-    private val dialog = Dialog(context)
+-
+-    fun myDig() {
+-        dialog.show()
+-
+-    }
+-
+-    fun MyDig() {
+-        dialog.setContentView(R.layout.custom_dialog)
+-
+-        //Dialog 크기 설정
+-        dialog.window!!.setLayout(
+-            WindowManager.LayoutParams.MATCH_PARENT,
+-            WindowManager.LayoutParams.WRAP_CONTENT
+-        )
+-        //다이얼로그 영역 밖을 터치했을때 사라지도록 하는 부분
+-        dialog.setCanceledOnTouchOutside(true)
+-        dialog.setCancelable(true)
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/java/kr/ac/ansan/chengcheng/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.ac.ansan.chengcheng\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport kotlinx.android.synthetic.main.activity_main.*\r\nimport java.util.ArrayList\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n\r\n    val TAG: String = \"로그\"\r\n\r\n\r\n    //데이터를 담을 그릇 즉 배열\r\n    var modelList = ArrayList<MyModel>()\r\n\r\n    private lateinit var myRecyclerAdapter: MyRecyclerAdapter\r\n\r\n    //뷰가 화면에 그려질때에\r\n   override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_main)\r\n\r\n        Log.d(TAG,\"MainActivity - onCreate() called\")\r\n        Log.d(TAG,\"MainActivity - 반복문 돌리기 전 this.modelList.size : ${this.modelList.size}\")\r\n\r\n        for(i in 1..10)\r\n        {\r\n            val myModel = MyModel(title = \"가평여행 $i\",profileImage = \"@drawable/ic_person\")\r\n            this.modelList.add(myModel)\r\n        }\r\n\r\n        Log.d(TAG,\"MainActivity - 반복문 돌리고 난후 this.modelList.size : ${this.modelList.size}\")\r\n        // 어답터 인스턴스 생성\r\n        myRecyclerAdapter = MyRecyclerAdapter()\r\n\r\n        myRecyclerAdapter.submitList(this.modelList)\r\n        // 리사이클러뷰 설정\r\n        recycler_list.apply{\r\n            // 리사이클러뷰 방향 설정\r\n            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL,false)\r\n            // 어답터 장착\r\n            adapter = myRecyclerAdapter\r\n\r\n\r\n        }\r\n\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/kr/ac/ansan/chengcheng/MainActivity.kt	(revision d4b1458bcf370d338733628b0666dfb996de1e64)
++++ app/src/main/java/kr/ac/ansan/chengcheng/MainActivity.kt	(date 1625756167059)
+@@ -46,6 +46,11 @@
+ 
+         }
+ 
++        more.setOnClickListener {
++            val dialog = popup(this)
++            dialog.myDig()
++        }
++
+ 
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/kr/ac/ansan/chengcheng/list_details.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package kr.ac.ansan.chengcheng\r\n\r\nimport android.os.Bundle\r\nimport androidx.appcompat.app.AppCompatActivity\r\n\r\nclass list_details : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.list_details)\r\n        val dialog = popup(this)\r\n        dialog.myDig()\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/kr/ac/ansan/chengcheng/list_details.kt	(revision d4b1458bcf370d338733628b0666dfb996de1e64)
++++ app/src/main/java/kr/ac/ansan/chengcheng/list_details.kt	(date 1625756734121)
+@@ -7,7 +7,6 @@
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.list_details)
+-        val dialog = popup(this)
+-        dialog.myDig()
++
+     }
+ }
+\ No newline at end of file
