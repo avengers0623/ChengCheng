@@ -18,7 +18,8 @@
         <activity android:name=".MainActivity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
-        <activity android:name=".MainPage"  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".MainPage"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan"> <!-- 화면 안가림 헤헿 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
