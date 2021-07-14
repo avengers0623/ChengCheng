@@ -1,10 +1,10 @@
 package kr.ac.ansan.chengcheng;
 
-public class DataMovie {
+public class Data_addItem {
     int image;
     String title;
 
-    public DataMovie(int image, String title){
+    public Data_addItem(int image, String title){
         this.image = image;
         this.title = title;
     }

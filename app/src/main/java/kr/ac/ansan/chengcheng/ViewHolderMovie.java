@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +25,7 @@ public class ViewHolderMovie extends  RecyclerView.ViewHolder {
         iv_movie = itemView.findViewById(R.id.iv_movie);
         tv_movie_title = itemView.findViewById(R.id.tv_movie_title);
         iv_movie2 = itemView.findViewById(R.id.iv_movie2);
-        linearlayout = itemView.findViewById(R.id.linearlayout);
+        linearlayout = itemView.findViewById(R.id.linearlayout_add);
 
         linearlayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +35,7 @@ public class ViewHolderMovie extends  RecyclerView.ViewHolder {
         });
     }
 
-    public void onBind(DataMovie data,int position, SparseBooleanArray selectedItems){
+    public void onBind(Data_addItem data, int position, SparseBooleanArray selectedItems){
         tv_movie_title.setText(data.getTitle());
         iv_movie.setImageResource(data.getImage());
         iv_movie2.setImageResource(data.getImage());
