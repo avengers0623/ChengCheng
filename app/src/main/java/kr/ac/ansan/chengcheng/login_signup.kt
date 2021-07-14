@@ -55,5 +55,4 @@ class login_signup : AppCompatActivity() {
     }
 
 
-
 }

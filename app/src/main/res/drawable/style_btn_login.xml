@@ -5,18 +5,18 @@
             <solid android:color="#80bafa"></solid>
             <corners android:radius="8dp"></corners>
             <size
-                android:width="90dp"
-                android:height="121dp"
+                android:width="334dp"
+                android:height="40dp"
                 />
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="#2D55C3"></solid>
-            <corners android:radius="20dp"></corners>
+            <solid android:color="#8080BAFA"></solid>
+            <corners android:radius="8dp"></corners>
             <size
-                android:width="87dp"
-                android:height="118dp"
+                android:width="334dp"
+                android:height="40dp"
                 />
         </shape>
     </item>
