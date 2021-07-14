@@ -20,7 +20,6 @@ class login_signup : AppCompatActivity() {
 
         val intent = Intent(context, social_signup::class.java)
 
-
         val selfsignup = Intent(this,self_signup::class.java)
         val activitymain = Intent(this,MainActivity::class.java)
         val socialSignup = Intent(this,social_signup::class.java)
