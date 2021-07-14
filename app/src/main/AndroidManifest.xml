@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.ac.ansan.chengcheng">
-    <!-- 카카오 로그인을 위한 인터넷 사용 권한 설정-->
-    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,16 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
+                <data android:host="oauth"
+                    android:scheme="kakao33ec8453c4320ad8871dad69d36cd570" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
         <activity android:name=".MainPage"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan"> <!-- 화면 안가림 헤헿 -->
+            android:windowSoftInputMode="adjustPan"> <!-- 화면 안가림 헿 -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity android:name=".login_signup"  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
@@ -31,6 +41,12 @@
         <activity android:name=".add_item"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".plus"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".logo" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+
+
+
+
+
 
     </application>
 

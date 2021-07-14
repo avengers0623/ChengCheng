@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId "kr.ac.ansan.chengcheng"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -70,5 +70,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     // 카카오 로그인
-   // implementation "com.kakao.sdk:v2-user:2.5.2"
+    implementation "com.kakao.sdk:v2-user:2.5.2"
 }
