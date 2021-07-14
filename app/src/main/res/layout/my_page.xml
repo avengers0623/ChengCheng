@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f4f9ff  "
-    tools:context=".my_page">
+    tools:context = ".MyPageFragment">
 
     <TextView
         android:id="@+id/register"
@@ -91,7 +91,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/logout"
         android:layout_width="320dp"
         android:layout_height="40dp"
         android:background="@drawable/style_btn_login"
