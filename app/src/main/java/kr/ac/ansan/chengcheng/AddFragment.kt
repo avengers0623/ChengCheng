@@ -56,8 +56,6 @@ class AddFragment : Fragment() {
             Toast.makeText(context, "버튼클릭", Toast.LENGTH_SHORT).show()
             onSlideViewButtonClick(view)
         }
-
-
         return view
     }
 
