@@ -35,4 +35,7 @@ return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycle
 
     fun setData(){}
 
+
+
+
 }

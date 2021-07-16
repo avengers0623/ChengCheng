@@ -180,7 +180,7 @@
             android:textColor="#000000" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_self_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/style_btn_login"

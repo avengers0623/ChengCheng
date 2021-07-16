@@ -3,7 +3,9 @@
     <item android:state_enabled="false">
         <shape>
             <solid android:color="#80bafa"></solid>
-            <corners android:radius="8dp"></corners>
+            <corners
+                android:topLeftRadius="13dp"
+                android:topRightRadius="13dp" />
             <size
                 android:width="90dp"
                 android:height="121dp"
@@ -13,7 +15,9 @@
     <item android:state_pressed="true">
         <shape>
             <solid android:color="#2D55C3"></solid>
-            <corners android:radius="20dp"></corners>
+            <corners
+                android:topLeftRadius="13dp"
+                android:topRightRadius="13dp" />
             <size
                 android:width="87dp"
                 android:height="118dp"

@@ -9,5 +9,6 @@ class add_item :  AppCompatActivity() {
         setContentView(R.layout.add_item)
 
 
+
     }
 }

@@ -63,6 +63,7 @@
 
         <Button
             android:id="@+id/login_button"
+            android:layout_marginLeft="13dp"
             android:layout_width="65dp"
             android:layout_height="86dp"
             android:background="@drawable/style_btn_login"

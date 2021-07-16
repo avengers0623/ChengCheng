@@ -87,8 +87,8 @@ class RecyclerViewAdapter_addItem(context: Context, persons: ArrayList<Data_addI
         init {
             iv_movie = itemView.iv_movie
             tv_movie_title = itemView.tv_movie_title
-            iv_movie2 = itemView.findViewById(R.id.iv_movie2)
-            linearlayout = itemView.findViewById(R.id.linearlayout_add)
+            iv_movie2 = itemView.iv_movie2
+            linearlayout = itemView.linearlayout_add
 
             linearlayout!!.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
@@ -108,7 +108,7 @@ class RecyclerViewAdapter_addItem(context: Context, persons: ArrayList<Data_addI
         private fun changeVisibility(isExpanded: Boolean){
             val va = if (isExpanded) ValueAnimator.ofInt(0, 600) else ValueAnimator.ofInt(600, 0)
             // Animation이 실행되는 시간, n/1000초
-            va.duration = 500
+            va.duration = 300
             va.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener{
                 override fun onAnimationUpdate(animation: ValueAnimator) {
                     // imageView의 높이 변경

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_add"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f4f9ff">
@@ -17,21 +18,38 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="저장하기" />
 
+    <!--    <translate xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--        android:visibility="visible"-->
+    <!--        android:duration="500"-->
+    <!--        android:fromXDelta="0"-->
+    <!--        android:fromYDelta="0"-->
+    <!--        android:interpolator="@android:anim/linear_interpolator"-->
+    <!--        android:toXDelta="0"-->
+    <!--        android:toYDelta="100%"-->
+    <!--        android:fillAfter="true"-->
+    <!--        tools:ignore="MissingConstraints">-->
+
+    <Space
+        android:id="@+id/view_height"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!-- 첫번째 슬라이드 -->
     <LinearLayout
         android:id="@+id/my_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
+
         android:background="@drawable/style_slide"
         android:orientation="vertical"
-        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <!-- 첫번째 슬라이드 펼쳐졌을때 버튼-->
-
 
         <!-- 두번째 슬라이드 구역-->
 
@@ -81,12 +99,14 @@
                 android:id="@+id/recycler_list_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/top_line"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_line" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
+    <!--    </translate>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

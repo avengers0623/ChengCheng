@@ -7,6 +7,8 @@
     android:background="#f4f9ff"
     tools:context=".MainActivity">
 
+
+
     <ImageView
         android:id="@+id/more"
         android:layout_width="25dp"
@@ -29,9 +31,14 @@
             android:background="#454545"
             />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            tools:ignore="MissingConstraints"></androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
