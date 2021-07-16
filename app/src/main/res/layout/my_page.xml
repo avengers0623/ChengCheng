@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f4f9ff  "
-    tools:context = ".MyPageFragment">
+    android:background="#f4f9ff"
+    tools:context=".My_page">
 
     <TextView
         android:id="@+id/register"
