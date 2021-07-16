@@ -13,7 +13,7 @@ class social_signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.social_signup)
-        val mainPage = Intent(this, kr.ac.ansan.chengcheng.MainPage::class.java)
+        val mainPage = Intent(this, kr.ac.ansan.chengcheng.MainActivity::class.java)
 
 
         exit.setOnClickListener {

@@ -13,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
+
 import java.util.*
-import kotlinx.android.synthetic.main.fragment_home.recycler_list as recycler_list1
+
 
 class MainActivity : AppCompatActivity() {
     private val items: ArrayList<item> = ArrayList()
@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val addItem = Intent(this,add_item::class.java)
+        val myPage = Intent(this,My_page::class.java)
+
         Toast.makeText(this, "메인액티비티 실행", Toast.LENGTH_SHORT).show()
 
         initDataset()
@@ -40,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         button.setOnClickListener {
             startActivity(addItem)
+        }
+
+        button2.setOnClickListener {
+            startActivity(myPage)
         }
     }
 

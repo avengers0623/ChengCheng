@@ -9,12 +9,12 @@ class self_signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.self_signup)
-        val mainPage = Intent(this, MainPage::class.java)
+        val MainActivity = Intent(this, MainActivity::class.java)
 
         var name : String = social_name_text.text.toString()
 
         button_self_signup.setOnClickListener {
-            startActivity(mainPage)
+            startActivity(MainActivity)
         }
 
     }
