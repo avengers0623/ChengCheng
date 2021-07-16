@@ -34,6 +34,7 @@ class MainPage : AppCompatActivity(){
         val navController = findNavController(R.id.navController)
         bottomNavigationView = findViewById(R.id.main_nav)
         bottomNavigationView.setupWithNavController(navController)
+
     }
 
     private fun initBinding() {
