@@ -36,6 +36,7 @@ class login_signup : AppCompatActivity() {
                     Log.i(TAG, "로그인 성공 ${token.accessToken}")
                     //intent = Intent(Intent.ACTION_VIEW,  Uri.parse(KakaoTalkLinkProtocol.TALK_MARKET_URL_PREFIX_2 + makeReferrer()))
                     startActivity(intent)
+
                 }
             }
 
@@ -46,26 +47,16 @@ class login_signup : AppCompatActivity() {
                 UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
 
-            // 사용자 정보 요청 (기본)
-            UserApiClient.instance.me { user, error ->
-                if (error != null) {
-                    Log.e(TAG, "사용자 정보 요청 실패", error)
-                }
-                else if (user != null) {
-                    Log.i(TAG, "사용자 정보 요청 성공" +
-                            "\n회원번호: ${user.id}" +
-                            "\n이메일: ${user.kakaoAccount?.email}" +
-                            "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
-                            "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}"+
-                          "\n성별: ${user.kakaoAccount?.gender}")
 
-                }
-            }
         }
         //회원가입 창
         TextView_signup.setOnClickListener {
             startActivity(selfsignup)
+
+
         }
+
+
 
         // 임시로 로그인 버튼 눌렸을때 메인 화면으로
         login_button.setOnClickListener {

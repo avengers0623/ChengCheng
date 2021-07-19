@@ -25,6 +25,11 @@ class add_item :  AppCompatActivity() {
         val adapter = RecyclerViewAdapter_addItem(this, items)
 
         recyclerView.setAdapter(adapter)
+
+
+        save_button.setOnClickListener {
+
+        }
     }
 
     private fun initDataset() {
@@ -37,6 +42,7 @@ class add_item :  AppCompatActivity() {
         items.add(Data_addItem(R.drawable.thor, "예시4"))
         items.add(Data_addItem(R.drawable.thor, "예시5"))
         items.add(Data_addItem(R.drawable.thor, "예시6"))
+        items.add(Data_addItem(R.drawable.thor, "예시7"))
 
     }
 }

@@ -6,47 +6,74 @@
     android:layout_height="match_parent"
     android:background="#f4f9ff"
     tools:context=".MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/search_box"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="추가창으로 넘어감"
+        android:layout_marginTop="113dp"
+        android:layout_marginRight="60dp"
+        android:inputType="textPersonName"
+        android:background="@null"
+        android:hint="검색"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/search"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginLeft="358dp"
+        android:layout_marginRight="30dp"
+        android:src="@drawable/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="마이페이지로 넘어감"
+    <ImageView
+        android:id="@+id/add_button"
+        android:layout_width="30dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="365dp"
+        android:src="@drawable/addbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/more"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/more"
+        android:id="@+id/my_page"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="365dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="650dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_button" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <View
             android:id="@+id/viewBar"
             android:layout_width="380dp"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="140dp"
-            android:background="#454545"
-            />
+            android:background="#454545" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_list"
@@ -56,6 +83,8 @@
             tools:ignore="MissingConstraints"></androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
