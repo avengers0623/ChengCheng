@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "메인액티비티 실행", Toast.LENGTH_SHORT).show()
 
 
+
         initDataset()
         val recyclerView: RecyclerView = recycler_list
         recyclerView.setHasFixedSize(true)
