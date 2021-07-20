@@ -42,6 +42,7 @@ class login_signup : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 if (error != null) {
                     Log.e(TAG, "로그인 실패", error)
+                    Toast.makeText(context, "실패", Toast.LENGTH_SHORT).show()
                 }
                 else if (token != null) {
                     Log.i(TAG, "로그인 성공 ${token.accessToken}")

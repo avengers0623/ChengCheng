@@ -21,17 +21,16 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    private val items: ArrayList<item> = ArrayList()
+    private val items: ArrayList<items> = ArrayList()
     var ProfileImg:String? = null
     //뷰가 화면에 그려질때에
    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val addItem = Intent(this,add_item::class.java)
-        val myPage = Intent(this,My_page::class.java)
+        val mypage = Intent(this,My_page::class.java)
 
         Toast.makeText(this, "메인액티비티 실행", Toast.LENGTH_SHORT).show()
-
 
 
         initDataset()
@@ -45,7 +44,13 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = RecyclerViewAdapter(this, items)
 
-        recyclerView.adapter = adapter
+        recyclerView.setAdapter(adapter)
+
+
+
+
+
+
 
 
         add_button.setOnClickListener {
@@ -53,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         my_page.setOnClickListener {
-            startActivity(myPage)
+            startActivity(mypage)
         }
 
         // 사용자 정보 요청 (기본)
@@ -96,18 +101,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun initDataset() {
         items.clear()
-        items.add(item("가평여행1", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행2", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행5", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행1", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행2", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행3", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행1", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행2", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행3", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행1", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행2", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
-        items.add(item("가평여행3", "http://images.khan.co.kr/article/2021/03/19/l_2021031902001158300196291.jpg", "하..."))
+        items.add(items(R.drawable.iron_man, "가평여행1"))
+        items.add(items(R.drawable.iron_man, "가평여행2"))
+        items.add(items(R.drawable.iron_man, "가평여행3"))
+        items.add(items(R.drawable.iron_man, "가평여행4"))
+        items.add(items(R.drawable.iron_man, "가평여행5"))
+        items.add(items(R.drawable.iron_man, "가평여행6"))
+        items.add(items(R.drawable.iron_man, "가평여행7"))
+        items.add(items(R.drawable.iron_man, "가평여행8"))
+        items.add(items(R.drawable.iron_man, "가평여행9"))
+        items.add(items(R.drawable.iron_man, "가평여행10"))
+
     }
 
 }

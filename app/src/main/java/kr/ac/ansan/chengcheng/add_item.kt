@@ -27,9 +27,6 @@ class add_item :  AppCompatActivity() {
         recyclerView.setAdapter(adapter)
 
 
-        save_button.setOnClickListener {
-
-        }
     }
 
     private fun initDataset() {
