@@ -82,6 +82,8 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
         return listData!!.size
     }
 
+
+
     fun addItem(data: items) {
         // 외부에서 item을 추가시킬 함수입니다.
         listData!!.add(data)
