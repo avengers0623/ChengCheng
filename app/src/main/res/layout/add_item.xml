@@ -97,7 +97,7 @@
 
             <Button
                 android:id="@+id/save_button"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +105,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="저장하기"
                 android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:background="@drawable/style_btn_login"/>
+
+            <ImageView
+                android:id="@+id/custom_button"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="80dp"
+                android:src="@drawable/ic_add_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/save_button" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
