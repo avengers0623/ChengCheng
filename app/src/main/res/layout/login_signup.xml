@@ -128,8 +128,8 @@
 
         <Button
             android:id="@+id/button_google_login"
-            android:layout_width="274dp"
-            android:layout_height="32.25dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/style_google_login"
             android:text="구글 로그인"

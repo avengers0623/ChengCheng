@@ -8,7 +8,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.model.OAuthToken
@@ -17,22 +22,21 @@ import kotlinx.android.synthetic.main.login_signup.*
 
 class login_signup : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
-// ...
-// Initialize Firebase Auth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_signup)
         val context: Context = applicationContext
 
-        auth = Firebase.auth
         val intent = Intent(context, social_signup::class.java)
 
         val selfsignup = Intent(this,self_signup::class.java)
         val activitymain = Intent(this,MainActivity::class.java)
         val socialSignup = Intent(this,social_signup::class.java)
-      
+
+
+
 
 
 
@@ -77,8 +81,8 @@ class login_signup : AppCompatActivity() {
 
 
 
-    }
 
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package kr.ac.ansan.chengcheng
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_item.*
 
 class add_item :  AppCompatActivity() {
+
     private val items: ArrayList<Data_addItem> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,7 @@ class add_item :  AppCompatActivity() {
 
     private fun initDataset() {
         items.clear()
-        items.add(Data_addItem(R.drawable.iron_man, "의류"))
+        items.add(Data_addItem(R.drawable.ic_clothing, "의류"))
         items.add(Data_addItem(R.drawable.spider_man, "세면도구"))
         items.add(Data_addItem(R.drawable.black_panther, "예시1"))
         items.add(Data_addItem(R.drawable.doctor, "예시2"))
@@ -43,3 +45,4 @@ class add_item :  AppCompatActivity() {
 
     }
 }
+
