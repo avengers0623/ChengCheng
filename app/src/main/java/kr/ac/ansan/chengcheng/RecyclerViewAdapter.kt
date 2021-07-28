@@ -1,7 +1,5 @@
 package kr.ac.ansan.chengcheng
 
-import android.animation.ValueAnimator
-import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
@@ -9,6 +7,8 @@ import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.item_add.view.linearlayout_add
 import kotlinx.android.synthetic.main.item_add.view.tv_movie_title
 import kotlinx.android.synthetic.main.list_item.view.*
 import kotlinx.android.synthetic.main.recycler_list_item.view.*
+import kotlinx.coroutines.NonCancellable.start
 
 
 class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
@@ -31,8 +32,6 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
 
     // Item의 클릭 상태를 저장할 array 객체
     private val selectedItems = SparseBooleanArray()
-    // 직전에 클릭됐던 Item의 position
-    private var prePosition = -1
 
 
 
@@ -58,20 +57,8 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
         myViewHolder.setOnViewHolderItemClickListener(object : OnViewHolderItemClickListener{
             //람다 가능?
             override fun onViewHolderItemClick() {
-                if(selectedItems[position]) {
-                    // 펼쳐진 Item을 클릭 시
-                    selectedItems.delete(position)
-                } else {
-                    // 직전의 클릭됐던 Item의 클릭상태를 지움
-                    selectedItems.delete(prePosition)
-                    // 클릭한 Item의 position을 저장
-                    selectedItems.put(position, true)
-                }
                 // 해당 포지션의 변화를 알림
-                if (prePosition != -1) notifyItemChanged(prePosition)
                 notifyItemChanged(position)
-                // 클릭된 position 저장
-                prePosition = position
             }
 
         })
@@ -81,6 +68,7 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
     override fun getItemCount(): Int {
         return listData!!.size
     }
+
 
 
 
@@ -94,7 +82,7 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
         var two: TextView? = null
         var linearlayout: LinearLayout? = null
         var onViewHolderItemClickListener: OnViewHolderItemClickListener? = null
-
+        val dig = Dialog(itemView.context)
         init {
             one = itemView.one
             two = itemView.two
@@ -102,9 +90,11 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
 
             linearlayout!!.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
+                    dig.start("ff")
                     onViewHolderItemClickListener!!.onViewHolderItemClick()
-                    
                 }
+
+
             }
             )
         }
@@ -119,4 +109,10 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
             this.onViewHolderItemClickListener = onViewHolderItemClickListener
         }
     }
+
+
+
+
+
+
 }

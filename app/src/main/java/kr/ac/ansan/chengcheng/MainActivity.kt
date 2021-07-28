@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val addItem = Intent(this,add_item::class.java)
         val mypage = Intent(this,My_page::class.java)
-
         Toast.makeText(this, "메인액티비티 실행", Toast.LENGTH_SHORT).show()
 
 
@@ -43,17 +43,14 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setLayoutManager(layoutManager)
 
         val adapter = RecyclerViewAdapter(this, items)
-
         recyclerView.setAdapter(adapter)
 
+        recyclerView.setOnClickListener{
 
+                    val dlg = Dialog(this)
 
-
-
-
-
-
-
+                    dlg.start("메인의 내용을 변경할까요?")
+        }
 
         add_button.setOnClickListener {
             startActivity(addItem)
@@ -101,6 +98,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
+
     private fun initDataset() {
         items.clear()
         items.add(items(R.drawable.iron_man, "가평여행1"))
@@ -115,6 +115,10 @@ class MainActivity : AppCompatActivity() {
         items.add(items(R.drawable.iron_man, "가평여행10"))
 
     }
+
+
+
+
 
 }
 
