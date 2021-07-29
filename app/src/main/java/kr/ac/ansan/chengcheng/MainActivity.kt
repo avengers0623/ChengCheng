@@ -4,6 +4,7 @@ package kr.ac.ansan.chengcheng
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) // 화면 세로로 고정 시키기
         val addItem = Intent(this,add_item::class.java)
         val mypage = Intent(this,My_page::class.java)
         Toast.makeText(this, "메인액티비티 실행", Toast.LENGTH_SHORT).show()

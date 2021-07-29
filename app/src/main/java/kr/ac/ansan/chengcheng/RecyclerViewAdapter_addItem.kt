@@ -104,7 +104,8 @@ class RecyclerViewAdapter_addItem(context: Context, persons: ArrayList<Data_addI
         fun onBind(data: Data_addItem, position: Int, selectedItems: SparseBooleanArray){
             tv_movie_title!!.text = data.getTitle()
             iv_movie!!.setImageResource(data.getImage())
-            iv_movie2!!.setImageResource(R.drawable.ic_hat)
+
+            iv_movie2!!.setImageResource(R.drawable.ic_cap)
             iv_movie3!!.setImageResource(R.drawable.ic_add)
             changeVisibility(selectedItems.get(position))
         }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.android.synthetic.main.activity_privacy_policy.*
 import kotlinx.android.synthetic.main.social_signup.*
 
 class social_signup : AppCompatActivity() {
@@ -14,8 +15,10 @@ class social_signup : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.social_signup)
         val mainPage = Intent(this, kr.ac.ansan.chengcheng.MainActivity::class.java)
-
-
+        val pP = Intent(this,Privacy_Policy::class.java)
+        agreeCb2.setOnClickListener {
+            startActivity(pP)
+        }
         exit.setOnClickListener {
             // 연결 끊기
             UserApiClient.instance.unlink { error ->

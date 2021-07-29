@@ -11,11 +11,10 @@
         android:layout_width="274dp"
         android:layout_height="176dp"
         android:layout_marginTop="50dp"
-        android:background="#98F09C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pizza_cute_logo_80802_504" />
+       />
 
     <LinearLayout
         android:id="@+id/idpw_Form"

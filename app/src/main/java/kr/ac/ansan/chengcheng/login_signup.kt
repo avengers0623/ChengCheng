@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -18,6 +19,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.login_signup.*
 
 class login_signup : AppCompatActivity() {
@@ -35,7 +37,9 @@ class login_signup : AppCompatActivity() {
         val activitymain = Intent(this,MainActivity::class.java)
         val socialSignup = Intent(this,social_signup::class.java)
 
-
+        Glide.with(this)
+            .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnCZj8tODbi4JNvIG4p4OJ3uH4wQthqjqOBw&usqp=CAU")
+            .into(logo)
 
 
 

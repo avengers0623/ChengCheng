@@ -15,9 +15,9 @@
 
         <ImageView
             android:id="@+id/iv_movie"
-            android:scaleType="centerCrop"
             android:layout_width="100dp"
-            android:layout_height="80dp"/>
+            android:layout_height="80dp"
+            android:scaleType="fitCenter" />
 
         <TextView
             android:padding="20dp"
@@ -43,8 +43,13 @@
             android:id="@+id/iv_movie3"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:visibility="gone">
+            android:visibility="gone"/>
 
+        <ImageView
+            android:id="@+id/iv_movie4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone">
         </ImageView>
 
     </LinearLayout>
