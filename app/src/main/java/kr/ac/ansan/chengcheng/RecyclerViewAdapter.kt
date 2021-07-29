@@ -2,7 +2,9 @@ package kr.ac.ansan.chengcheng
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
@@ -90,7 +92,8 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
 
             linearlayout!!.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
-                    dig.start("ff")
+                    dig.start("${two!!.text}")
+
                     onViewHolderItemClickListener!!.onViewHolderItemClick()
                 }
 

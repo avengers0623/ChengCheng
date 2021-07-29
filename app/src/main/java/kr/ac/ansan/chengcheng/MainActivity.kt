@@ -47,12 +47,6 @@ class MainActivity : AppCompatActivity() {
         val adapter = RecyclerViewAdapter(this, items)
         recyclerView.setAdapter(adapter)
 
-        recyclerView.setOnClickListener{
-
-                    val dlg = Dialog(this)
-
-                    dlg.start("메인의 내용을 변경할까요?")
-        }
 
         add_button.setOnClickListener {
             startActivity(addItem)
