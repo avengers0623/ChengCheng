@@ -45,19 +45,18 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-           android:layout_marginLeft="333dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             app:cardCornerRadius="150dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/my_page"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:src="@drawable/ic_person"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -86,16 +85,20 @@
                 android:scrollbars="vertical"
                 tools:ignore="MissingConstraints"></androidx.recyclerview.widget.RecyclerView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_list_fail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-
             <!--        <FrameLayout-->
             <!--            android:layout_width="match_parent"-->
             <!--            android:layout_height="match_parent"></FrameLayout>-->
         </LinearLayout>
 
+        <Button
+            android:id="@+id/main_btn_add"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/style_btn_add"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="50dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

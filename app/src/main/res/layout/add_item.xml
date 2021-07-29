@@ -24,15 +24,6 @@
     <!--        android:fillAfter="true"-->
     <!--        tools:ignore="MissingConstraints">-->
 
-    <Space
-        android:id="@+id/view_height"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <!-- 첫번째 슬라이드 -->
     <LinearLayout
         android:id="@+id/my_view"
