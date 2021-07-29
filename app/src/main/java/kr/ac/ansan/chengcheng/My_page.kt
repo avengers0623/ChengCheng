@@ -31,6 +31,18 @@ class My_page : AppCompatActivity(){
                 }
             }
         }
+        exit.setOnClickListener {
+            // 연결 끊기
+            UserApiClient.instance.unlink { error ->
+                if (error != null) {
+                    Log.e(ContentValues.TAG, "연결 끊기 실패", error)
+                }
+                else {
+                    Log.i(ContentValues.TAG, "연결 끊기 성공. SDK에서 토큰 삭제 됨")
+                    startActivity(loginSignup)
+                }
+            }
+        }
     }
 
 

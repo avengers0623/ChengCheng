@@ -103,7 +103,4 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
 
 
 
-
-
-
 }

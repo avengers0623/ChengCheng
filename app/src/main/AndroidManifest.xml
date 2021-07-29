@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kr.ac.ansan.chengcheng">
-    <!--인터넷 사용 권한 설정 -->
+    <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".KakaoApplication"
         android:allowBackup="true"
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Privacy_Policy"></activity>
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -27,15 +28,13 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:configChanges="orientation|screenSize"> <!-- 회전시 리사이클러뷰 유지 -->
 
         </activity>
-
         <activity
             android:name=".My_page"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-
 
         </activity>
         <activity
@@ -44,8 +43,6 @@
         <activity
             android:name=".social_signup"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-
         <activity
             android:name=".list_details"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -61,14 +58,13 @@
         <activity
             android:name=".login_signup"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
+        </activity>
     </application>
 
 </manifest>
