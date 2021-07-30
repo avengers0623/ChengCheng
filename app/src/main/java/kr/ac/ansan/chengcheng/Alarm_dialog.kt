@@ -13,6 +13,7 @@ class Alarm_dialog (context : Context){
     private lateinit var btnCancel : Button
 //    private lateinit var listeners : MyDialogOKClickedListeners
 
+
     fun start(content : String) {
 //        dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dia.setContentView(R.layout.alarm_dialog)     //다이얼로그에 사용할 xml 파일을 불러옴

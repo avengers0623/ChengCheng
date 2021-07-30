@@ -21,6 +21,7 @@ class add_item :  AppCompatActivity(){
 
 
 
+
         initDataset()
         val recyclerView: RecyclerView = recycler_list_add
         recyclerView.setHasFixedSize(true)
@@ -50,6 +51,7 @@ class add_item :  AppCompatActivity(){
         custom_button.setOnClickListener {
             dig.start("사용자 아이템 추가 창")
         }
+
 
 
 

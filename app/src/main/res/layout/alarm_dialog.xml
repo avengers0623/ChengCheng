@@ -36,6 +36,7 @@
                 tools:text="text" />
         </LinearLayout>
 
+
         <TimePicker
             android:id="@+id/timePicker"
             android:layout_width="match_parent"
