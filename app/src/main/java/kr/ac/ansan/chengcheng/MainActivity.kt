@@ -110,7 +110,8 @@ class MainActivity : AppCompatActivity() {
                             "\n이메일: ${user.kakaoAccount?.email}" +
                             "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
                             "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}" +
-                            "\n성별: ${user.kakaoAccount?.gender}"
+                            "\n성별: ${user.kakaoAccount?.gender}" +
+                            "\n나이 :${user.kakaoAccount?.ageRange}"
                 )
                 // 프로필사진 변수로 받아오기
                 ProfileImg = user.kakaoAccount?.profile?.thumbnailImageUrl
@@ -126,12 +127,12 @@ class MainActivity : AppCompatActivity() {
         // 검색버튼 눌렀을때 리스트에서 검색하게 해야함
         search.setOnClickListener {
             var search2 = search_box.text
+            var title = title
 
-
-            Log.i("dkad", search2.toString())
-            if (search2 == Items) {
-                Toast.makeText(this, "찾았다", Toast.LENGTH_LONG).show()
-            }
+            Toast.makeText(this, "찾은건 $title", Toast.LENGTH_LONG).show()
+//            if (search2 == title) {
+//                Toast.makeText(this, "찾았다", Toast.LENGTH_LONG).show()
+//            }
 
 
         }
