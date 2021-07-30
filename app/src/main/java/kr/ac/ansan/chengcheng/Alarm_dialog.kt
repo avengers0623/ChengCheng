@@ -9,7 +9,6 @@ class Alarm_dialog (context : Context){
     private val dia = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var lblDesc : TextView
     private lateinit var btnOK : Button
-    private lateinit var btnChange : Button
     private lateinit var btnCancel : Button
 //    private lateinit var listeners : MyDialogOKClickedListeners
 
@@ -29,10 +28,7 @@ class Alarm_dialog (context : Context){
             dia.dismiss()
         }
 
-        btnChange = dia.findViewById(R.id.change)
-        btnChange.setOnClickListener {
-            dia.dismiss()
-        }
+
 
         btnCancel = dia.findViewById(R.id.cancel)
         btnCancel.setOnClickListener {
