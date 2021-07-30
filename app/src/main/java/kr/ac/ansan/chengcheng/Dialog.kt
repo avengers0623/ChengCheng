@@ -18,6 +18,7 @@ class Dialog(context : Context) {
     private lateinit var lblDesc : TextView
     private lateinit var btnOK : Button
     private lateinit var btnCancel : Button
+    private lateinit var btnChange : Button
     private lateinit var listener : MyDialogOKClickedListener
 
     fun start(content : String) {
@@ -34,6 +35,10 @@ class Dialog(context : Context) {
             dlg.dismiss()
         }
 
+        btnChange = dlg.findViewById(R.id.change)
+        btnChange.setOnClickListener {
+            dlg.dismiss()
+        }
 
 
         btnCancel = dlg.findViewById(R.id.cancel)

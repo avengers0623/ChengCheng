@@ -1,34 +1,22 @@
 package kr.ac.ansan.chengcheng
 
 import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.drawable.ColorDrawable
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_add.view.*
-import kotlinx.android.synthetic.main.item_add.view.iv_movie
-import kotlinx.android.synthetic.main.item_add.view.iv_movie2
 import kotlinx.android.synthetic.main.item_add.view.linearlayout_add
-import kotlinx.android.synthetic.main.item_add.view.tv_movie_title
-import kotlinx.android.synthetic.main.list_item.view.*
 import kotlinx.android.synthetic.main.recycler_list_item.view.*
-import kotlinx.coroutines.NonCancellable.start
 
 
-class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
+class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var listData: ArrayList<items>? = persons
+    private var listData: ArrayList<Data_items>? = persons
     private var mInflate: LayoutInflater? = null
     private var mContext: Context = context
 
@@ -74,10 +62,10 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
 
 
 
-    fun addItem(data: items) {
-        // 외부에서 item을 추가시킬 함수입니다.
-        listData!!.add(data)
-    }
+//    fun addItem(data: items) {
+//        // 외부에서 item을 추가시킬 함수입니다.
+//        listData!!.add(data)
+//    }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var one: ImageView? = null
@@ -102,7 +90,7 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<items>) :
             )
         }
 
-        fun onBind(data: items, position: Int, selectedItems: SparseBooleanArray){
+        fun onBind(data: Data_items, position: Int, selectedItems: SparseBooleanArray){
             two!!.text = data.getTitle()
             one!!.setImageResource(data.getImage())
         }

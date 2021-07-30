@@ -1,6 +1,7 @@
 package kr.ac.ansan.chengcheng
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,12 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_item.*
 
-class add_item :  AppCompatActivity() {
+class add_item :  AppCompatActivity(){
+
 
     private val items: ArrayList<Data_addItem> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_item)
+
+
+
+
 
         initDataset()
         val recyclerView: RecyclerView = recycler_list_add
@@ -28,8 +34,17 @@ class add_item :  AppCompatActivity() {
 
         recyclerView.setAdapter(adapter)
 
+        val dig = User_dialog(this)
+
+        custom_button.setOnClickListener {
+            dig.start("사용자 아이템 추가 창")
+
+        }
+
 
     }
+
+
 
     private fun initDataset() {
         items.clear()
