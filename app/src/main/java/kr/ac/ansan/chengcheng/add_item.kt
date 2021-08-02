@@ -1,25 +1,22 @@
 package kr.ac.ansan.chengcheng
 
+import android.app.TimePickerDialog
 import android.os.Bundle
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_item.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class add_item :  AppCompatActivity(){
 
 
     private val items: ArrayList<Data_addItem> = ArrayList()
-    /*private var item2 :ArrayList<String> = ArrayList()
-    private lateinit var spinner : Spinner*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_item)
+
 
 
 
@@ -39,11 +36,23 @@ class add_item :  AppCompatActivity(){
         recyclerView.setAdapter(adapter)
 
         val dig = User_dialog(this)
+        val alarm = Alarm_dialog(this)
+
+
+
+
+        alarm_im.setOnClickListener{
+            alarm.start("알람")
+        }
+
+
+
 
         custom_button.setOnClickListener {
             dig.start("사용자 아이템 추가 창")
+        }
 
-         }
+
 
 
 
