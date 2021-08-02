@@ -10,7 +10,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_privacy_policy.*
+import kotlinx.android.synthetic.main.self_signup.*
 import kotlinx.android.synthetic.main.social_signup.*
+import kotlinx.android.synthetic.main.social_signup.All
+import kotlinx.android.synthetic.main.social_signup.agreeCb
+import kotlinx.android.synthetic.main.social_signup.agreeCb2
 
 class social_signup : AppCompatActivity() {
 
@@ -38,6 +42,25 @@ class social_signup : AppCompatActivity() {
 
 
         }
+
+
+        All.setOnClickListener {
+            if(All.isChecked)
+            {
+                agreeCb.isChecked = true
+                agreeCb2.isChecked = true
+            }
+            else
+            {
+                agreeCb.isChecked = false
+                agreeCb2.isChecked = false
+            }
+
+        }
+
+
+
+
     }
 }
 

@@ -126,12 +126,12 @@
         android:id="@+id/sub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_marginBottom="39dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/Version"
@@ -145,8 +145,8 @@
             android:id="@+id/QnA"
             android:layout_width="65dp"
             android:layout_height="20dp"
-            android:text="문의하기"
             android:layout_marginLeft="20dp"
+            android:text="문의하기"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Version" />
 
@@ -154,13 +154,26 @@
             android:id="@+id/source"
             android:layout_width="65dp"
             android:layout_height="20dp"
-            android:text="출처확인"
             android:layout_marginLeft="20dp"
+            android:text="출처확인"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/QnA"
 
             />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/Version2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="9dp"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sub" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

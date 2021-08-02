@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.user.UserApiClient
@@ -43,7 +44,31 @@ class My_page : AppCompatActivity(){
                 }
             }
         }
+
+
+
+        Version.setOnClickListener {
+            Version2.text = "버전 정보 : 1.0.0"
+            Version2.visibility = View.VISIBLE
+        }
+
+        QnA.setOnClickListener {
+            Version2.text = "avengers0623@gmail.com"
+            Version2.visibility = View.VISIBLE
+        }
+
+        source.setOnClickListener {
+            Version2.text = "카카오 firebase 네이버"
+            Version2.visibility = View.VISIBLE
+        }
+
+
+
+
+
+
     }
+
 
 
 }

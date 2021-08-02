@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Privacy_Policy"></activity>
+
+
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -43,9 +44,7 @@
         <activity
             android:name=".social_signup"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".list_details"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".add_item"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -55,6 +54,9 @@
         <activity
             android:name=".logo"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Privacy_Policy"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".login_signup"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

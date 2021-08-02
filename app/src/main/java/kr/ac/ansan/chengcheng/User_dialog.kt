@@ -5,7 +5,9 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Window
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import android.widget.TextView
 
 class User_dialog(context : Context) {
@@ -14,6 +16,10 @@ class User_dialog(context : Context) {
     private lateinit var btnOK : Button
     private lateinit var btnChange : Button
     private lateinit var btnCancel : Button
+    private var item2 :ArrayList<String> = ArrayList()
+    private lateinit var spinner : Spinner
+
+
 //    private lateinit var listeners : MyDialogOKClickedListeners
 
     fun start(content : String) {
@@ -21,8 +27,9 @@ class User_dialog(context : Context) {
         dia.setContentView(R.layout.user_dialog)     //다이얼로그에 사용할 xml 파일을 불러옴
         dia.setCancelable(false)    //다이얼로그의 바깥 화면을 눌렀을 때 다이얼로그가 닫히지 않도록 함
 
-        lblDesc = dia.findViewById(R.id.content)
-        lblDesc.text = content
+   //     val adapter = ArrayAdapter(add_item,android.R.layout.simple_spinner_dropdown_item,item2)
+//        lblDesc = dia.findViewById(R.id.content)
+//        lblDesc.text = content
 
         btnOK = dia.findViewById(R.id.ok)
         btnOK.setOnClickListener {
@@ -40,6 +47,11 @@ class User_dialog(context : Context) {
         btnCancel.setOnClickListener {
             dia.dismiss()
         }
+
+
+
+
+
 
         dia.show()
     }
