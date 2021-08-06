@@ -37,6 +37,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService(){
         Log.d(TAG, "From: ${remoteMessage.from}")
 
 
+
         //메시지에 데이터 페이로드가 포함되어 있는지 확인한다. 여기서 페이로드란 전송된 데이터를 의한다.
         //데이터 값이 있는지 없는 지 확인 할때 쓰인다.
         if (remoteMessage.data.isNotEmpty()) {
