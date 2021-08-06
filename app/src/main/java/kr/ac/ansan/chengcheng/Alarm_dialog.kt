@@ -47,7 +47,6 @@ class Alarm_dialog (context : Context){
 //        }
 //    }
 
-
     interface MyDialogOKClickedListeners {
         fun onOKClicked(content : String)
     }
