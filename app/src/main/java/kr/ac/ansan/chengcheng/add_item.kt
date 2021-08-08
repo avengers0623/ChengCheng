@@ -1,11 +1,17 @@
 package kr.ac.ansan.chengcheng
 
 import android.app.TimePickerDialog
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
+import android.widget.TimePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.add_item.*
+import kotlinx.android.synthetic.main.alarm_dialog.*
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -42,8 +48,23 @@ class add_item :  AppCompatActivity(){
 
 
         alarm_im.setOnClickListener{
-            alarm.start("알람")
-        }
+            var cal = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, minute)
+                Toast.makeText(this, " ${SimpleDateFormat("HH:mm").format(cal.time)}",Toast.LENGTH_SHORT).show()
+                //            alarm.start("알람")
+
+            }
+
+            TimePickerDialog(this, timeSetListener,cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+            }
+
+
+
+
+
+
 
 
 
