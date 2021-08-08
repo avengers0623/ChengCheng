@@ -46,8 +46,6 @@ class add_item :  AppCompatActivity(){
 
 
 
-
-
         alarm_im.setOnClickListener{
             var cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
