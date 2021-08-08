@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
+import kr.ac.ansan.chengcheng.add_item.Companion.context_additem
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Calendar.HOUR_OF_DAY
@@ -21,10 +22,11 @@ class Alarm_dialog (context : Context) :TimePickerDialog.OnTimeSetListener{
     private lateinit var btnCancel : Button
 
 //    private lateinit var listeners : MyDialogOKClickedListeners
-    var hour=0
-    var minute=0
-    var savehour=0
-    var saveminute=0
+    private var hour = 0
+    private var minute = 0
+    private var savehour = 0
+    private var saveminute = 0
+
     fun start(content : String) {
 //        dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dia.setContentView(R.layout.alarm_dialog)     //다이얼로그에 사용할 xml 파일을 불러옴
@@ -55,7 +57,9 @@ class Alarm_dialog (context : Context) :TimePickerDialog.OnTimeSetListener{
         val cal:Calendar=Calendar.getInstance()
         hour = cal.get(Calendar.HOUR_OF_DAY)
         minute = cal.get(Calendar.MINUTE)
+        (context_additem as add_item).getTime(hour, minute)
     }
+//Toast는 사용못함
 //    fun setOnOKClickedListener(listener: (String) -> Unit) {
 //        this.listeners = object: MyDialogOKClickedListeners {
 //            override fun onOKClicked(content: String) {
@@ -75,7 +79,6 @@ class Alarm_dialog (context : Context) :TimePickerDialog.OnTimeSetListener{
         savehour = hourOfDay
         saveminute = minute
 
-        Log.i(TAG, "뭐든 :$savehour, $saveminute")
 
     }
 
