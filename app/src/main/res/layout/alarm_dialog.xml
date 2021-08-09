@@ -37,12 +37,12 @@
         </LinearLayout>
 
 
-        <TimePicker
-            android:id="@+id/timePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintVertical_chainStyle="packed"
-            android:timePickerMode="spinner"/>
+<!--        <TimePicker-->
+<!--            android:id="@+id/timePicker"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            style="@style/SpinnerTimePicker"-->
+<!--            app:layout_constraintVertical_chainStyle="packed" />-->
 
         <LinearLayout
             android:id="@+id/bottom"

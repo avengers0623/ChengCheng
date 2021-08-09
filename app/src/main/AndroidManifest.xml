@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
     package="kr.ac.ansan.chengcheng">
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,14 +15,6 @@
         android:theme="@style/AppTheme">
 
 
-        <service
-            android:name="MyFirebaseMessagingService"
-            android:exported="false"
-            tools:ignore="Instantiatable">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -56,7 +48,9 @@
 
         <activity
             android:name=".add_item"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme"
+
+            />
         <activity
             android:name=".plus"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

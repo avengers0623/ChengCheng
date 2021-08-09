@@ -14,6 +14,7 @@ import kr.ac.ansan.chengcheng.add_item.Companion.context_additem
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Calendar.HOUR_OF_DAY
+import kotlin.math.absoluteValue
 
 class Alarm_dialog (context : Context) :TimePickerDialog.OnTimeSetListener{
     private val dia = Dialog(context)   //부모 액티비티의 context 가 들어감
@@ -22,8 +23,8 @@ class Alarm_dialog (context : Context) :TimePickerDialog.OnTimeSetListener{
     private lateinit var btnCancel : Button
 
 //    private lateinit var listeners : MyDialogOKClickedListeners
-    private var hour = 0
-    private var minute = 0
+     var hour=0
+     var minute = 0
     private var savehour = 0
     private var saveminute = 0
 
@@ -34,11 +35,21 @@ class Alarm_dialog (context : Context) :TimePickerDialog.OnTimeSetListener{
 
         lblDesc = dia.findViewById(R.id.content)
         lblDesc.text = content
-
         btnOK = dia.findViewById(R.id.ok)
         btnOK.setOnClickListener {
 
-            getTime()
+            //getTime()
+
+            TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+                val cal:Calendar=Calendar.getInstance()
+                cal.set(Calendar.HOUR_OF_DAY, hour)
+                cal.set(Calendar.MINUTE, minute)
+
+                //(context_additem as add_item).getTime(hour, minute, cal)
+                //            alarm.start("알람")
+                Log.d("ㅎ", "$hour, $minute")
+            }
+
 //            listeners.onOKClicked("확인을 눌렀습니다")
             dia.dismiss()
         }
@@ -54,10 +65,23 @@ class Alarm_dialog (context : Context) :TimePickerDialog.OnTimeSetListener{
     }
 
     private fun getTime(){
-        val cal:Calendar=Calendar.getInstance()
-        hour = cal.get(Calendar.HOUR_OF_DAY)
-        minute = cal.get(Calendar.MINUTE)
-        (context_additem as add_item).getTime(hour, minute)
+//        hour = cal.get(Calendar.HOUR_OF_DAY)
+//        minute = cal.get(Calendar.MINUTE)
+        //val mtimePicker: TimePicker = dia.findViewById(R.id.timePicker)
+
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+            val cal:Calendar=Calendar.getInstance()
+            cal.set(Calendar.HOUR_OF_DAY, hour)
+            cal.set(Calendar.MINUTE, minute)
+
+            //(context_additem as add_item).getTime(hour, minute, cal)
+            //            alarm.start("알람")
+            Log.d("ㅎ", "$hour, $minute")
+        }
+
+
+//            TimePickerDialog(this, timeSetListener,cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+
     }
 //Toast는 사용못함
 //    fun setOnOKClickedListener(listener: (String) -> Unit) {
@@ -83,3 +107,4 @@ class Alarm_dialog (context : Context) :TimePickerDialog.OnTimeSetListener{
     }
 
 }
+

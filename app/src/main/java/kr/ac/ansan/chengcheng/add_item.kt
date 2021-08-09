@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class add_item :  AppCompatActivity(){
+class add_item :  AppCompatActivity() {
 
     private val items: ArrayList<Data_addItem> = ArrayList()
     companion object {
@@ -51,8 +52,18 @@ class add_item :  AppCompatActivity(){
 
 
         alarm_im.setOnClickListener{
-               alarm.start("알람")
+              //alarm.start("알람")
+            var cal = Calendar.getInstance()
+            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+//                //cal.set(Calendar.HOUR_OF_DAY, hour)
+                //cal.set(Calendar.MINUTE, minute)
+                Toast.makeText(this, "$hour : $minute",Toast.LENGTH_SHORT).show()
+                //            alarm.start("알람") //${SimpleDateFormat("HH:mm").format(cal.time)}
+                Log.d("ㅎ", "$hour, $minute")
             }
+            TimePickerDialog(this, timeSetListener,cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+        }
+
 
 
 
@@ -63,8 +74,10 @@ class add_item :  AppCompatActivity(){
     }
 
 
-    fun getTime(hour: Int, minute: Int) {
+    fun getTime(hour: Int, minute: Int, cal: Calendar) {
+
         Toast.makeText(this, "${hour}시 ${minute}분", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, " ${SimpleDateFormat("HH:mm").format(cal.time)}",Toast.LENGTH_SHORT).show()
     }
 
 
@@ -81,5 +94,6 @@ class add_item :  AppCompatActivity(){
         items.add(Data_addItem(R.drawable.thor, "예시7"))
 
     }
+
 }
 
