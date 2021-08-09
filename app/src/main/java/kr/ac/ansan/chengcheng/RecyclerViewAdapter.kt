@@ -74,7 +74,7 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
         var onViewHolderItemClickListener: OnViewHolderItemClickListener? = null
         val dig = Dialog(itemView.context)
         init {
-            one = itemView.one
+            //one = itemView.one
             two = itemView.two
             linearlayout = itemView.linearlayout_add
 
@@ -92,7 +92,7 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
 
         fun onBind(data: Data_items, position: Int, selectedItems: SparseBooleanArray){
             two!!.text = data.getTitle()
-            one!!.setImageResource(data.getImage())
+            //one!!.setImageResource(data.getImage())
         }
 
         @JvmName("setOnViewHolderItemClickListener1")
