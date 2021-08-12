@@ -5,6 +5,7 @@
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:name=".KakaoApplication"
         android:allowBackup="true"
@@ -30,39 +31,25 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:configChanges="orientation|screenSize"> <!-- 회전시 리사이클러뷰 유지 -->
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+            android:configChanges="orientation|screenSize"> <!-- 키보드 올릴때 EditText같이 올라감, 회전시 리사이클러뷰 유지 -->
 
         </activity>
-        <activity
-            android:name=".My_page"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".My_page">
 
         </activity>
-        <activity
-            android:name=".self_signup"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".social_signup"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".self_signup" />
+        <activity android:name=".social_signup" />
 
         <activity
             android:name=".add_item"
-            android:theme="@style/AppTheme"
+            android:theme="@style/SpinnerAppTheme"
 
             />
-        <activity
-            android:name=".plus"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".logo"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".Privacy_Policy"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity
-            android:name=".login_signup"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".plus" />
+        <activity android:name=".logo" />
+        <activity android:name=".Privacy_Policy" />
+        <activity android:name=".login_signup">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

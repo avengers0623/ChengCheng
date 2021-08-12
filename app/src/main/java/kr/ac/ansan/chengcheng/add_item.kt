@@ -1,13 +1,14 @@
 package kr.ac.ansan.chengcheng
 
+import android.app.AlertDialog
 import android.app.TimePickerDialog
 import android.content.ContentValues
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TimePicker
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,10 @@ import kotlin.collections.ArrayList
 class add_item :  AppCompatActivity() {
 
     private val items: ArrayList<Data_addItem> = ArrayList()
+//    private val builder = AlertDialog.Builder(this)
+//    private val inflater = this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//    private val view = inflater.inflate(R.layout.user_dialog, null)
+
     companion object {
         var context_additem: Context? = null
     }
@@ -29,6 +34,27 @@ class add_item :  AppCompatActivity() {
         setContentView(R.layout.add_item)
 
         context_additem = this
+
+
+
+
+
+//        val spinner = view.findViewById<Spinner>(R.id.spinner)
+//        var spinner_List = ArrayList<String>()
+//
+//        val array_Adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinner_List)
+//        spinner.adapter = array_Adapter
+//        spinner.setSelection(0)
+//
+//        builder.setView(view)
+//
+//        //val listener = DialogInterface.OnClickListener()
+//
+//        val dlg = builder.create()
+//        dlg.setTitle("편집 대상 레이어")
+//        dlg.show()
+
+
 
 
 
@@ -55,13 +81,13 @@ class add_item :  AppCompatActivity() {
               //alarm.start("알람")
             var cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-//                //cal.set(Calendar.HOUR_OF_DAY, hour)
+                //cal.set(Calendar.HOUR_OF_DAY, hour)
                 //cal.set(Calendar.MINUTE, minute)
                 Toast.makeText(this, "$hour : $minute",Toast.LENGTH_SHORT).show()
                 //            alarm.start("알람") //${SimpleDateFormat("HH:mm").format(cal.time)}
                 Log.d("ㅎ", "$hour, $minute")
             }
-            TimePickerDialog(this, timeSetListener,cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+            TimePickerDialog(this, timeSetListener,cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), false).show()
         }
 
 
@@ -69,7 +95,8 @@ class add_item :  AppCompatActivity() {
 
 
         custom_button.setOnClickListener {
-            dig.start("사용자 아이템 추가 창")
+            dig.start("사용자 아이템 추가 창", context_additem as add_item)
+
         }
     }
 
@@ -84,11 +111,11 @@ class add_item :  AppCompatActivity() {
     private fun initDataset() {
         items.clear()
         items.add(Data_addItem(R.drawable.ic_clothing, "의류"))
-        items.add(Data_addItem(R.drawable.spider_man, "세면도구"))
-        items.add(Data_addItem(R.drawable.black_panther, "예시1"))
-        items.add(Data_addItem(R.drawable.doctor, "예시2"))
-        items.add(Data_addItem(R.drawable.hulk, "예시3"))
-        items.add(Data_addItem(R.drawable.thor, "예시4"))
+        items.add(Data_addItem(R.drawable.spider_man, "전자기기"))
+        items.add(Data_addItem(R.drawable.black_panther, "세면용품"))
+        items.add(Data_addItem(R.drawable.doctor, "여가활동"))
+        items.add(Data_addItem(R.drawable.hulk, "차량용품"))
+        items.add(Data_addItem(R.drawable.thor, "기타"))
         items.add(Data_addItem(R.drawable.thor, "예시5"))
         items.add(Data_addItem(R.drawable.thor, "예시6"))
         items.add(Data_addItem(R.drawable.thor, "예시7"))

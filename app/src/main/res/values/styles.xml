@@ -1,19 +1,34 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:statusBarColor">#f4f9ff</item> <!-- 상단바 색 배경색 같음 -->
+        <item name="android:windowLightStatusBar">true</item> <!-- 상단바 아이콘 색 반전 -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="SpinnerAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
         <item name="android:timePickerMode">spinner</item>
+        <item name="android:statusBarColor">#b4d7ff</item> <!-- 상단바 색 배경색 같음 -->
+        <item name="android:windowLightStatusBar">true</item> <!-- 상단바 아이콘 색 반전 -->
+        <item name="android:radius">50dp</item>
         <item name="android:timePickerStyle">@style/SpinnerTimePicker</item>
         <item name="colorPrimary">@color/colorZero</item>
     </style>
 
+<!--    parent="android:Widget.Material.Light.TimePicker"-->
     <style name="SpinnerTimePicker" parent="android:Widget.Material.Light.TimePicker">
         <item name="android:timePickerMode">spinner</item>
+        <item name="android:textSize">50dp</item>
         <item name="android:headerBackground">#FF5722</item>
         <item name="android:numbersTextColor">#673AB7</item>
         <item name="android:numbersSelectorColor">#FFEB3B</item>
         <item name="android:numbersBackgroundColor">#61E761</item>
-        <item name="android:background">#FFC107</item>
+        <item name="android:background">#FFE597</item>
     </style>
 
 </resources>
