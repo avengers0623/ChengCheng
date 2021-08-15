@@ -127,7 +127,7 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/button_kakao_login" />
 
-        <Button
+        <com.google.android.gms.common.SignInButton
             android:id="@+id/button_google_login"
             android:layout_width="300dp"
             android:layout_height="45dp"
@@ -137,6 +137,7 @@
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/button_facebook_login" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
