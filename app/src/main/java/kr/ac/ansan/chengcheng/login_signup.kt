@@ -36,6 +36,8 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
 
     private val RC_SIGN_IN = 99
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_signup)
@@ -50,7 +52,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
 
 
         Glide.with(this)
-            .load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnCZj8tODbi4JNvIG4p4OJ3uH4wQthqjqOBw&usqp=CAU")
+            .load("https://img.hankyung.com/photo/202103/BF.25772861.1.jpg")
             .into(logo)
 
 
@@ -79,6 +81,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(context, "실패", Toast.LENGTH_SHORT).show()
                 } else if (token != null) {
                     Log.i(TAG, "로그인 성공 ${token.accessToken}")
+
                     //intent = Intent(Intent.ACTION_VIEW,  Uri.parse(KakaoTalkLinkProtocol.TALK_MARKET_URL_PREFIX_2 + makeReferrer()))
                     startActivity(intent)
 
@@ -111,9 +114,9 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
         public override fun onStart() {
             super.onStart()
             val account = GoogleSignIn.getLastSignedInAccount(this)
-            if(account!==null){ // 이미 로그인 되어있을시 바로 메인 액티비티로 이동
+            /*if(account!==null){ // 이미 로그인 되어있을시 바로 메인 액티비티로 이동
                 toMainActivity(firebaseAuth.currentUser)
-            }
+            }*/
         } //onStart End
 
         // onActivityResult
@@ -176,15 +179,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
 
 
 
-        private fun signOut() { // 로그아웃
-            // Firebase sign out
-            firebaseAuth.signOut()
 
-            // Google sign out
-            googleSignInClient.signOut().addOnCompleteListener(this) {
-                //updateUI(null)
-            }
-        }
 
         private fun revokeAccess() { //회원탈퇴
             // Firebase sign out

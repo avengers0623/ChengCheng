@@ -3,15 +3,20 @@ package kr.ac.ansan.chengcheng
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.firebase.auth.FirebaseAuth
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.my_page.*
 
 class My_page : AppCompatActivity(){
+    private lateinit var firebaseAuth: FirebaseAuth
+    // [END declare_auth]
+
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +26,7 @@ class My_page : AppCompatActivity(){
         val loginSignup = Intent(this,login_signup::class.java)
 
         logout.setOnClickListener {
-            //로그아웃
+            //카카오 로그아웃
             UserApiClient.instance.logout { error ->
                 if (error != null) {
                     Log.e(ContentValues.TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error)
@@ -31,6 +36,13 @@ class My_page : AppCompatActivity(){
                     startActivity(loginSignup)
                 }
             }
+        }
+
+        google_logout.setOnClickListener {
+            signOut()
+            Toast.makeText(this,"구글 로그아웃 성공",Toast.LENGTH_LONG).show()
+            startActivity(loginSignup)
+
         }
         exit.setOnClickListener {
             // 연결 끊기
@@ -68,7 +80,10 @@ class My_page : AppCompatActivity(){
 
 
     }
-
+   /// 구글 로그아웃
+    private fun signOut() {
+        FirebaseAuth.getInstance().signOut()
+    }
 
 
 }
