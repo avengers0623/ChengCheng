@@ -1,22 +1,23 @@
 package kr.ac.ansan.chengcheng
 
-import android.app.AlertDialog
 import android.app.TimePickerDialog
-import android.content.ContentValues
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.add_item.*
 import kotlinx.android.synthetic.main.alarm_dialog.*
+import kotlinx.android.synthetic.main.item_add.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class add_item :  AppCompatActivity() {
 
@@ -24,6 +25,9 @@ class add_item :  AppCompatActivity() {
 //    private val builder = AlertDialog.Builder(this)
 //    private val inflater = this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
 //    private val view = inflater.inflate(R.layout.user_dialog, null)
+
+    //서브 grid뷰
+    //private var gridview: GridView? = null
 
     companion object {
         var context_additem: Context? = null
@@ -36,30 +40,27 @@ class add_item :  AppCompatActivity() {
         context_additem = this
 
 
+        //서브 grid뷰
+        val gridAdapter = GridViewAdapter()
+
+        gridAdapter.addItem(Data_addItem_Sub("1", "파랑이", R.drawable.thor))
+        gridAdapter.addItem(Data_addItem_Sub("1", "파랑이", R.drawable.thor))
+        gridAdapter.addItem(Data_addItem_Sub("1", "파랑이", R.drawable.thor))
+        gridAdapter.addItem(Data_addItem_Sub("1", "파랑이", R.drawable.thor))
 
 
-
-//        val spinner = view.findViewById<Spinner>(R.id.spinner)
-//        var spinner_List = ArrayList<String>()
+//        val view: View = LayoutInflater.from(this).inflate(R.layout.item_add, null)
+//        var gridview = view.findViewById<GridView>(R.id.gridview)
 //
-//        val array_Adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinner_List)
-//        spinner.adapter = array_Adapter
-//        spinner.setSelection(0)
-//
-//        builder.setView(view)
-//
-//        //val listener = DialogInterface.OnClickListener()
-//
-//        val dlg = builder.create()
-//        dlg.setTitle("편집 대상 레이어")
-//        dlg.show()
+//        val inflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//        convertView = inflater.inflate(R.layout.gridview_list_item, viewGroup, false)
 
-
-
-
+        gridview.adapter = gridAdapter
+        //
 
 
         initDataset()
+
         val recyclerView: RecyclerView = recycler_list_add
         recyclerView.setHasFixedSize(true)
 
@@ -101,6 +102,58 @@ class add_item :  AppCompatActivity() {
     }
 
 
+    /* 그리드뷰 어댑터 */
+    internal inner class GridViewAdapter : BaseAdapter() {
+        var items = java.util.ArrayList<Data_addItem_Sub>()
+        override fun getCount(): Int {
+            return items.size
+        }
+
+        fun addItem(item: Data_addItem_Sub) {
+            items.add(item)
+        }
+
+        override fun getItem(position: Int): Any {
+            return items[position]
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+
+        override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup): View {
+            var convertView = convertView
+            val context = viewGroup.context
+            val (num, name, resId) = items[position]
+            if (convertView == null) {
+                val inflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                convertView = inflater.inflate(R.layout.gridview_list_item, viewGroup, false)
+                val tv_num = convertView.findViewById<View>(R.id.tv_num) as TextView
+                val tv_name = convertView.findViewById<View>(R.id.tv_name) as TextView
+                val iv_icon = convertView.findViewById<View>(R.id.iv_icon) as ImageView
+                tv_num.text = num
+                tv_name.text = name
+                iv_icon.setImageResource(resId)
+                //Log.d(TAG, "getView() - [ $position ] $name")
+            } else {
+                var view = View(context)
+                view = convertView
+            }
+
+            //각 아이템 선택 event
+            convertView!!.setOnClickListener {
+                Toast.makeText(
+                    context,
+                    "$num 번 - $name 입니당! ",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            return convertView //뷰 객체 반환
+        }
+    }
+
+
     fun getTime(hour: Int, minute: Int, cal: Calendar) {
 
         Toast.makeText(this, "${hour}시 ${minute}분", Toast.LENGTH_SHORT).show()
@@ -121,6 +174,8 @@ class add_item :  AppCompatActivity() {
         items.add(Data_addItem(R.drawable.thor, "예시7"))
 
     }
+
+
 
 }
 

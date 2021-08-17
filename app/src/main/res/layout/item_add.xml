@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/linearlayout_add"
-    android:orientation="vertical"
-    tools:ignore="MissingDefaultResource">
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -32,26 +31,19 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
 
-        <ImageView
-            android:id="@+id/iv_movie2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/iv_movie3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
+            android:background="#dedede"
+            android:numColumns="5"
             android:visibility="gone"/>
-
-        <ImageView
-            android:id="@+id/iv_movie4"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:visibility="gone">
-        </ImageView>
 
     </LinearLayout>
 

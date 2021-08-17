@@ -102,7 +102,7 @@
             android:id="@+id/google_logout"
             android:layout_width="320dp"
             android:layout_height="40dp"
-            android:text="구글 로그아웃"
+            android:text="구글 탈퇴"
             android:layout_marginBottom="20dp"
             android:background="@drawable/style_btn_login"
            />

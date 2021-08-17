@@ -17,7 +17,7 @@ class My_page : AppCompatActivity(){
     // [END declare_auth]
 
     private lateinit var googleSignInClient: GoogleSignInClient
-
+   private val mAuth = FirebaseAuth.getInstance();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.my_page)
@@ -39,7 +39,7 @@ class My_page : AppCompatActivity(){
         }
 
         google_logout.setOnClickListener {
-            signOut()
+            revokeAccess()
             Toast.makeText(this,"구글 로그아웃 성공",Toast.LENGTH_LONG).show()
             startActivity(loginSignup)
 
@@ -84,6 +84,8 @@ class My_page : AppCompatActivity(){
     private fun signOut() {
         FirebaseAuth.getInstance().signOut()
     }
-
-
+// 구글 탈퇴
+    private fun revokeAccess() {
+        mAuth.currentUser?.delete()
+    }
 }
