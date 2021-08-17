@@ -6,6 +6,7 @@ import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -80,18 +81,15 @@ class RecyclerViewAdapter_addItem(context: Context, persons: ArrayList<Data_addI
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var iv_movie: ImageView? = null
         var tv_movie_title: TextView? = null
-        var iv_movie2: ImageView? = null
-        var iv_movie3: ImageView? = null
         var linearlayout: LinearLayout? = null
         var onViewHolderItemClickListener: OnViewHolderItemClickListener? = null
+        var gridView: GridView? = null
 
         init {
             iv_movie = itemView.iv_movie
             tv_movie_title = itemView.tv_movie_title
-            iv_movie2 = itemView.iv_movie2
             linearlayout = itemView.linearlayout_add
-            iv_movie3 = itemView.iv_movie3
-
+            gridView = itemView.gridview
 
             linearlayout!!.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
@@ -101,14 +99,17 @@ class RecyclerViewAdapter_addItem(context: Context, persons: ArrayList<Data_addI
             )
         }
 
+
+
         fun onBind(data: Data_addItem, position: Int, selectedItems: SparseBooleanArray){
             tv_movie_title!!.text = data.getTitle()
             iv_movie!!.setImageResource(data.getImage())
 
-            iv_movie2!!.setImageResource(R.drawable.ic_cap)
-            iv_movie3!!.setImageResource(R.drawable.ic_add)
+
             changeVisibility(selectedItems.get(position))
         }
+
+
 
         private fun changeVisibility(isExpanded: Boolean){
             val va = if (isExpanded) ValueAnimator.ofInt(0, 600) else ValueAnimator.ofInt(600, 0)
@@ -117,13 +118,11 @@ class RecyclerViewAdapter_addItem(context: Context, persons: ArrayList<Data_addI
             va.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener{
                 override fun onAnimationUpdate(animation: ValueAnimator) {
                     // imageView의 높이 변경
-                    iv_movie2!!.layoutParams.height = animation.animatedValue as Int
-                    iv_movie2!!.requestLayout()
-                    iv_movie3!!.layoutParams.height = animation.animatedValue as Int
-                    iv_movie3!!.requestLayout()
-                    // imageView가 실제로 사라지게하는 부분
-                    iv_movie2!!.visibility = if (isExpanded) View.VISIBLE else View.GONE
-                    iv_movie3!!.visibility = if (isExpanded) View.VISIBLE else View.GONE
+                    gridView!!.layoutParams.height = animation.animatedValue as Int
+                    gridView!!.requestLayout()
+
+                    gridView!!.visibility = if (isExpanded) View.VISIBLE else View.GONE
+
                 }
             })
             // Animation start

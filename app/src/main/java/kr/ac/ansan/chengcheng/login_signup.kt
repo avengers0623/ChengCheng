@@ -35,13 +35,17 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
     private lateinit var googleSignInClient: GoogleSignInClient
 
     private val RC_SIGN_IN = 99
-
-
+    var kakao = 0
+    var google = 0
+    companion object {
+        var loginSignup: Context? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_signup)
         val context: Context = applicationContext
+        loginSignup = this
 
         val intent = Intent(context, social_signup::class.java)
 
@@ -81,7 +85,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(context, "실패", Toast.LENGTH_SHORT).show()
                 } else if (token != null) {
                     Log.i(TAG, "로그인 성공 ${token.accessToken}")
-
+                    kakao++
                     //intent = Intent(Intent.ACTION_VIEW,  Uri.parse(KakaoTalkLinkProtocol.TALK_MARKET_URL_PREFIX_2 + makeReferrer()))
                     startActivity(intent)
 
@@ -151,6 +155,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
                     if (task.isSuccessful) {
                         Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
                         toMainActivity(firebaseAuth?.currentUser)
+                        var google=2
                         startActivity(socialSignup)
                     } else {
                         Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
