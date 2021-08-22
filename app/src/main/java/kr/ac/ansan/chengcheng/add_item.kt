@@ -22,6 +22,7 @@ import kotlin.collections.ArrayList
 class add_item :  AppCompatActivity() {
 
     private val items: ArrayList<Data_addItem> = ArrayList()
+
 //    private val builder = AlertDialog.Builder(this)
 //    private val inflater = this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
 //    private val view = inflater.inflate(R.layout.user_dialog, null)
@@ -40,24 +41,6 @@ class add_item :  AppCompatActivity() {
         context_additem = this
 
 
-        //서브 grid뷰
-        val gridAdapter = GridViewAdapter()
-
-        gridAdapter.addItem(Data_addItem_Sub("1", "파랑이", R.drawable.thor))
-        gridAdapter.addItem(Data_addItem_Sub("1", "파랑이", R.drawable.thor))
-        gridAdapter.addItem(Data_addItem_Sub("1", "파랑이", R.drawable.thor))
-        gridAdapter.addItem(Data_addItem_Sub("1", "파랑이", R.drawable.thor))
-
-
-//        val view: View = LayoutInflater.from(this).inflate(R.layout.item_add, null)
-//        var gridview = view.findViewById<GridView>(R.id.gridview)
-//
-//        val inflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//        convertView = inflater.inflate(R.layout.gridview_list_item, viewGroup, false)
-
-        gridview.adapter = gridAdapter
-        //
-
 
         initDataset()
 
@@ -75,6 +58,8 @@ class add_item :  AppCompatActivity() {
 
         val dig = User_dialog(this)
         val alarm = Alarm_dialog(this)
+
+
 
 
 
@@ -102,57 +87,6 @@ class add_item :  AppCompatActivity() {
     }
 
 
-    /* 그리드뷰 어댑터 */
-    internal inner class GridViewAdapter : BaseAdapter() {
-        var items = java.util.ArrayList<Data_addItem_Sub>()
-        override fun getCount(): Int {
-            return items.size
-        }
-
-        fun addItem(item: Data_addItem_Sub) {
-            items.add(item)
-        }
-
-        override fun getItem(position: Int): Any {
-            return items[position]
-        }
-
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
-
-
-        override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup): View {
-            var convertView = convertView
-            val context = viewGroup.context
-            val (num, name, resId) = items[position]
-            if (convertView == null) {
-                val inflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                convertView = inflater.inflate(R.layout.gridview_list_item, viewGroup, false)
-                val tv_num = convertView.findViewById<View>(R.id.tv_num) as TextView
-                val tv_name = convertView.findViewById<View>(R.id.tv_name) as TextView
-                val iv_icon = convertView.findViewById<View>(R.id.iv_icon) as ImageView
-                tv_num.text = num
-                tv_name.text = name
-                iv_icon.setImageResource(resId)
-                //Log.d(TAG, "getView() - [ $position ] $name")
-            } else {
-                var view = View(context)
-                view = convertView
-            }
-
-            //각 아이템 선택 event
-            convertView!!.setOnClickListener {
-                Toast.makeText(
-                    context,
-                    "$num 번 - $name 입니당! ",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            return convertView //뷰 객체 반환
-        }
-    }
-
 
     fun getTime(hour: Int, minute: Int, cal: Calendar) {
 
@@ -175,7 +109,4 @@ class add_item :  AppCompatActivity() {
 
     }
 
-
-
 }
-

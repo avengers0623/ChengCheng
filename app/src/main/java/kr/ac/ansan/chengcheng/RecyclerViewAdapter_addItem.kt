@@ -89,7 +89,7 @@ class RecyclerViewAdapter_addItem(context: Context, persons: ArrayList<Data_addI
             iv_movie = itemView.iv_movie
             tv_movie_title = itemView.tv_movie_title
             linearlayout = itemView.linearlayout_add
-            gridView = itemView.gridview
+
 
             linearlayout!!.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
@@ -105,29 +105,9 @@ class RecyclerViewAdapter_addItem(context: Context, persons: ArrayList<Data_addI
             tv_movie_title!!.text = data.getTitle()
             iv_movie!!.setImageResource(data.getImage())
 
-
-            changeVisibility(selectedItems.get(position))
         }
 
 
-
-        private fun changeVisibility(isExpanded: Boolean){
-            val va = if (isExpanded) ValueAnimator.ofInt(0, 600) else ValueAnimator.ofInt(600, 0)
-            // Animation이 실행되는 시간, n/1000초
-            va.duration = 300
-            va.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener{
-                override fun onAnimationUpdate(animation: ValueAnimator) {
-                    // imageView의 높이 변경
-                    gridView!!.layoutParams.height = animation.animatedValue as Int
-                    gridView!!.requestLayout()
-
-                    gridView!!.visibility = if (isExpanded) View.VISIBLE else View.GONE
-
-                }
-            })
-            // Animation start
-            va.start()
-        }
         @JvmName("setOnViewHolderItemClickListener1")
         fun setOnViewHolderItemClickListener(onViewHolderItemClickListener: OnViewHolderItemClickListener?) {
             this.onViewHolderItemClickListener = onViewHolderItemClickListener
