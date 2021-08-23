@@ -1,129 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_add"
+    android:id="@+id/my_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#b4d7ff">
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/style_slide"
+    android:orientation="vertical">
 
 
-
-
-
-
-
-    <!--    <translate xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--        android:visibility="visible"-->
-    <!--        android:duration="500"-->
-    <!--        android:fromXDelta="0"-->
-    <!--        android:fromYDelta="0"-->
-    <!--        android:interpolator="@android:anim/linear_interpolator"-->
-    <!--        android:toXDelta="0"-->
-    <!--        android:toYDelta="100%"-->
-    <!--        android:fillAfter="true"-->
-    <!--        tools:ignore="MissingConstraints">-->
-
-    <!-- 첫번째 슬라이드 -->
     <LinearLayout
-        android:id="@+id/my_view"
+        android:id="@+id/top_line"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/style_slide"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <!-- 두번째 슬라이드 구역-->
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:id="@+id/top_line"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-                <ImageView
-                    android:id="@+id/search_im"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    app:srcCompat="@android:drawable/ic_menu_search" />
+        <ImageView
+            android:id="@+id/search_im"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@android:drawable/ic_menu_search" />
 
-                <MultiAutoCompleteTextView
-                    android:id="@+id/title"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:text="가평여행" />
+        <MultiAutoCompleteTextView
+            android:id="@+id/additem_title"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:hint="챙챙 여행"
+            android:orientation="horizontal"/>
 
-                <ImageView
-                    android:id="@+id/alarm_im"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
-
-
-            </LinearLayout>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_list_add"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/top_line" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <Button
-                    android:id="@+id/button_seve"
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/style_btn_login"
-                    android:text="저장"
-                    android:textSize="15dp"
-                    android:layout_marginLeft="150dp"
-                    android:layout_marginRight="50dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <Button
-                    android:id="@+id/custom_button"
-                    android:layout_width="125dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/style_btn_login"
-                    android:text="사용자아이템추가"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/button_seve" />
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/alarm_im"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
     </LinearLayout>
-    <!--    </translate>-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/additem_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingBottom="50dp"
+            tools:listitem="@layout/rv1_item"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/button_save"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="150dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/style_btn_login"
+                android:text="저장"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/custom_button"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
+                android:background="@drawable/style_btn_login"
+                android:text="사용자아이템추가"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_seve" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

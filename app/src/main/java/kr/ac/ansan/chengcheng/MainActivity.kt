@@ -20,7 +20,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.add_item.*
 import kotlinx.android.synthetic.main.dialog.*
+import kr.ac.ansan.chengcheng.add_item.Companion.context_additem
 import kr.ac.ansan.chengcheng.login_signup.Companion.loginSignup
 import java.math.RoundingMode.valueOf
 import java.util.*
@@ -37,7 +39,6 @@ class MainActivity : AppCompatActivity() {
     private var ProfileImg: String? = null
 
     private var progressBar: ProgressBar? = null
-
 
 
     companion object {
@@ -60,9 +61,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var kakao =(loginSignup as login_signup).kakao
-        Toast.makeText(this, "테스트$kakao", Toast.LENGTH_SHORT).show()
-  //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) // 화면 세로로 고정 시키기
+        //var kakao = (loginSignup as login_signup).kakao
+        //Toast.makeText(this, "테스트$kakao", Toast.LENGTH_SHORT).show()
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) // 화면 세로로 고정 시키기
         val addItem = Intent(this, add_item::class.java)
         val mypage = Intent(this, My_page::class.java)
         Toast.makeText(this, "메인액티비티 실행", Toast.LENGTH_SHORT).show()
@@ -115,59 +116,57 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("User")//.child("${userId},${nickName}")
 
-if(kakao == 1){
-        //***카카오 DB 읽어오기***
-            kakao = 0
-        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Log.e("접근", "함수 진입")
-                Items.clear()
-                Log.e("접근", "반복문 실행전")
+//        if (kakao == 1) {
+//            //***카카오 DB 읽어오기***
+//            kakao = 0
+            myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    Log.e("접근", "함수 진입")
+                    Items.clear()
+                    Log.e("접근", "반복문 실행전")
 
-                Log.e(
-                    "접근",
-                    "키키키:${snapshot.child("${userId},${nickName}").child("titleList").value}"
-                )
+                    Log.e(
+                        "접근",
+                        "키키키:${snapshot.child("${userId},${nickName}").child("titleList").value}"
+                    )
 
-                if (snapshot.child("${userId},${nickName}").exists()) {
-                    Log.d("ReadDB", "계정정보 찾음")
-                    for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
-                        .child("titleList").children) {
-                        Log.e("접근", "키키키(for문내부):${snapshot.child("title").value}")
+                    if (snapshot.child("${userId},${nickName}").exists()) {
+                        Log.d("ReadDB", "계정정보 찾음")
+                        for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
+                            .child("titleList").children) {
+                            Log.e("접근", "키키키(for문내부):${snapshot.child("title").value}")
 
-                        //val info: Data_items? = snapshot.child("title").getValue(Data_items::class.java)
-                        val info: String? = snapshot.child("title").value as String?
-                        //Log.d("info", info.toString())
-                        //val infoString: String? = info!!.getTitle()
-                        Items.add(Data_items(info!!))
-                        Log.d("ReadDB", "카운트")
+                            //val info: Data_items? = snapshot.child("title").getValue(Data_items::class.java)
+                            val info: String? = snapshot.child("title").value as String?
+                            //Log.d("info", info.toString())
+                            //val infoString: String? = info!!.getTitle()
+                            Items.add(Data_items(info!!))
+                            Log.d("ReadDB", "카운트")
+                        }
+
+                        //목록개수 가져오는 곳
+                        listCnt =
+                            snapshot.child("${userId},${nickName}")
+                                .child("listCnt").value.toString()
+                        Log.e("접근", "성공적(개수가져오고바로의값)${listCnt}")
+                        clickAndBinding(listCnt!!.toInt())
+                    } else {
+                        Log.d("ReadDB", "계정정보가 없습니다")
+                        clickAndBinding(0)
                     }
 
-                    //목록개수 가져오는 곳
-                    listCnt =
-                        snapshot.child("${userId},${nickName}")
-                            .child("listCnt").value.toString()
-                    Log.e("접근", "성공적(개수가져오고바로의값)${listCnt}")
-                    //listCnt = "0"
-                    clickAndBinding(listCnt!!.toInt())
-                } else {
-                    Log.d("ReadDB", "계정정보가 없습니다")
-                    clickAndBinding(0)
+                    adapter!!.notifyDataSetChanged()
+                    Log.e("접근", "새로고침 완료")
                 }
 
-                adapter!!.notifyDataSetChanged()
-                Log.e("접근", "새로고침 완료")
-            }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainActivity", valueOf(error.toException().toString()).toString())
+                }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("MainActivity", valueOf(error.toException().toString()).toString())
-            }
-
-        })
-}
-        else{
-             Toast.makeText(this, "테스트용ㅇㅇㅇㅇㅇㅇㅇ", Toast.LENGTH_LONG).show()
-        }
+            })
+//        } else {
+//            Toast.makeText(this, "테스트용ㅇㅇㅇㅇㅇㅇㅇ", Toast.LENGTH_LONG).show()
+//        }
         ////////////////DB
 
         Log.e("접근", "성공적(빠져나와서)${listCnt}")
@@ -198,7 +197,7 @@ if(kakao == 1){
 
     }
 
-    //***DB쓰기***
+//    //***DB쓰기***
     fun clickAndBinding(listCnt: Int) {
         Log.d("접근", "클릭바인딩함수내:${listCnt}")
         listCntInt = listCnt
@@ -217,7 +216,11 @@ if(kakao == 1){
                                 .child("titleList").children) {
                                 val info: String? = snapshot.child("title").value as String?
                                 if (info == listName) {
-                                    Toast.makeText(context_main, "중복된 리스트(이름)가(이) 있습니다", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        context_main,
+                                        "중복된 리스트(이름)가(이) 있습니다",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     Log.d("중복", "중복된 리스트(이름)가(이) 있습니다")
                                     return
                                 }
@@ -248,7 +251,7 @@ if(kakao == 1){
             .child("title").setValue(listName)
         Log.d("접근", "리스트추가체크${listCntInt}")
         adapter?.notifyDataSetChanged()
-
+        listname.setText("")
     }
 
     fun listCounting() {

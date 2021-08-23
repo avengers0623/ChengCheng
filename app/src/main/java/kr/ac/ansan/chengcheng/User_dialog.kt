@@ -52,7 +52,6 @@ class User_dialog(context : Context) {
 
         builder.setView(view)
 
-
         val dlg = builder.create()
         dlg.setTitle(context)
         dlg.show()

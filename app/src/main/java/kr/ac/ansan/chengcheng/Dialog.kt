@@ -24,11 +24,8 @@ class Dialog(context: Context) {
     private lateinit var lblDesc: TextView
     private lateinit var btnOK: Button
     private lateinit var btnChange: Button
+    private lateinit var btnDelete: Button
 
-    companion object {
-        //        var context_dlg =
-        lateinit var btnDelete: Button
-    }
 
     private lateinit var listener: MyDialogOKClickedListener
 

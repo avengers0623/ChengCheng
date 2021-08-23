@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:tools="http://schemas.android.com/tools"
     package="kr.ac.ansan.chengcheng">
-    <!-- 인터넷 사용 권한 설정 -->
+    <!--인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
-
-
     <application
         android:name=".KakaoApplication"
         android:allowBackup="true"
@@ -15,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
+        <service
+            android:name="MyFirebaseMessagingService"
+            android:exported="false"
+            tools:ignore="Instantiatable">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
@@ -29,23 +36,23 @@
                     android:scheme="kakao33ec8453c4320ad8871dad69d36cd570" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
-            android:configChanges="orientation|screenSize"> <!-- 키보드 올릴때 EditText같이 올라감, 회전시 리사이클러뷰 유지 -->
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"> <!-- 키보드 올릴때 EditText같이 올라감, 회전시 리사이클러뷰 유지 -->
 
         </activity>
-        <activity android:name=".My_page">
-
-        </activity>
+        <activity
+            android:name=".My_page"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"></activity>
         <activity android:name=".self_signup" />
         <activity android:name=".social_signup" />
 
         <activity
             android:name=".add_item"
             android:theme="@style/SpinnerAppTheme"
-
-            />
+            android:windowSoftInputMode="adjustNothing|stateAlwaysHidden"/>
         <activity android:name=".plus" />
         <activity android:name=".logo" />
         <activity android:name=".Privacy_Policy" />
@@ -55,8 +62,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
     </application>
 
 </manifest>
