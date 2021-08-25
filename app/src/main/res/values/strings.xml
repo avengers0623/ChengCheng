@@ -5,4 +5,33 @@
     <string name="default_notification_channel_id">ohdio</string>
     <string name="fcm_message">rug</string>
     <string name="msg_token_fmt">dodk</string>
+    <string name="category_default">챙챙 추천템</string>
+    <string name="category1">의류</string>
+    <string name="category2">전자기기</string>
+    <string name="category3">세면도구</string>
+    <string name="category4">캠핑용품</string>
+    <string name="category5">비상용품</string>
+    <string name="category6">기타</string>
+    <string-array name="category">
+        <item>챙챙 추천템</item>
+        <item>의류</item>
+        <item>전자기기</item>
+        <item>세면도구</item>
+        <item>캠핑용품</item>
+        <item>비상용품</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="campList">
+        <item>@drawable/ic_camp_1</item>
+        <item>@drawable/ic_camp_2</item>
+        <item>@drawable/ic_camp_3</item>
+        <item>@drawable/ic_camp_4</item>
+    </string-array>
+    <string-array name="campNameList">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>
