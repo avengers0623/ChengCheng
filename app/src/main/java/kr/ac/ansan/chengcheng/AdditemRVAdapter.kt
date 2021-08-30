@@ -17,13 +17,15 @@ class AdditemRVAdapter(context: Context) : RecyclerView.Adapter<AdditemRVAdapter
     var data = mutableListOf<Data_addItem_1>()
     var checkboxStatus:HashMap<Int, Boolean> = hashMapOf()
     var compareList = ArrayList<Int>()
+    var saveMap: HashMap<Int, MutableList<Int>> = HashMap()
 
     inner class Rv1Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun setData(data: Data_addItem_1, position1: Int){
             itemView.tv_subject.text =  data.title
 
             //AdditemRVAdapter2의 어댑터 객체를 만들어 데이터를 넘겨준다
-            val additemRVAdapter2 = AdditemRVAdapter2(position1, checkboxStatus, compareList)
+            val additemRVAdapter2 = AdditemRVAdapter2(position1, checkboxStatus, compareList, saveMap)
+//            val additemRVAdapter2 = AdditemRVAdapter2()
             val r2Data = data.itemList
             additemRVAdapter2.data = r2Data
             //AdditemRVAdapter2의 레이아웃 설정

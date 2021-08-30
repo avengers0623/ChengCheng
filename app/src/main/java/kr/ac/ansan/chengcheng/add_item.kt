@@ -217,6 +217,7 @@ class add_item : AppCompatActivity() {
     }
 
 
+
     fun getTime(hour: Int, minute: Int, cal: Calendar) {
 
         Toast.makeText(this, "${hour}시 ${minute}분", Toast.LENGTH_SHORT).show()

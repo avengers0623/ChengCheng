@@ -13,6 +13,7 @@
         android:background="@drawable/itemcheck_style"
         android:button="@null" />
 
+
     <ImageView
         android:id="@+id/img_cover"
         android:layout_width="100dp"
