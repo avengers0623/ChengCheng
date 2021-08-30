@@ -28,6 +28,7 @@ import kotlin.collections.ArrayList
 class add_item : AppCompatActivity() {
     private val items: ArrayList<Data_addItem> = ArrayList()
     var rv1Data: MutableList<Data_addItem_1>? = null
+
 //    private val builder = AlertDialog.Builder(this)
 //    private val inflater = this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
 //    private val view = inflater.inflate(R.layout.user_dialog, null)
@@ -37,6 +38,7 @@ class add_item : AppCompatActivity() {
 
     companion object {
         var context_additem: Context? = null
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -173,31 +175,45 @@ class add_item : AppCompatActivity() {
         rv1Data = mutableListOf()
 
         val categorySub: MutableList<Data_addItem_2> = mutableListOf()
+        val categorySub2: MutableList<Data_addItem_2> = mutableListOf()
         var typedArray: TypedArray? = null
+        var max: Int = 0
+
+        //chengItem
+        typedArray = resources.obtainTypedArray(R.array.chengItem)
+        max = typedArray.length()
+        val chengItemList: Array<String> = resources.getStringArray(R.array.chengItemList)
+        for (i in 0 until max) { // 0 until max면 max-1 값 리턴
+            Log.d("길이", i.toString())
+            categorySub2.add(Data_addItem_2(typedArray.getResourceId(i, 0), chengItemList[i]))
+        }
+
+        //camp
         typedArray = resources.obtainTypedArray(R.array.campList)
-        var max = typedArray.length()
-
-
+        max = typedArray.length()
         val campNameList: Array<String> = resources.getStringArray(R.array.campNameList)
-
-
         for (i in 0 until max) { // 0 until max면 max-1 값 리턴
             Log.d("길이", i.toString())
             categorySub.add(Data_addItem_2(typedArray.getResourceId(i, 0), campNameList[i]))
         }
 
-        val categoryList: Array<String> = resources.getStringArray(R.array.category)
-        categoryList!!.forEach {
-            Log.d("카테고리", it)
-            rv1Data?.add(Data_addItem_1(it, categorySub))
-        }
 
-        /*rv1Data?.add(category1)
-        rv1Data?.add(category2)
-        rv1Data?.add(category3)
-        rv1Data?.add(category4)
-        rv1Data?.add(category5)
-        rv1Data?.add(category6)*/
+        //큰 카테고리
+        val categoryList: Array<String> = resources.getStringArray(R.array.category)
+//        categoryList!!.forEach {
+//            Log.d("카테고리", it)
+//            rv1Data?.add(Data_addItem_1(it, categorySub))
+//        }
+
+            rv1Data?.add(Data_addItem_1(categoryList[0], categorySub))
+            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+
     }
 
 
@@ -222,6 +238,5 @@ class add_item : AppCompatActivity() {
         items.add(Data_addItem(R.drawable.thor, "예시7"))
 
     }
-
 }
 

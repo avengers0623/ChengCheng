@@ -3,10 +3,12 @@ package kr.ac.ansan.chengcheng
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.kakao.sdk.common.util.SdkLogLevel
 
 
 class User_dialog(context : Context) {
@@ -30,6 +32,7 @@ class User_dialog(context : Context) {
 
 
         val spinner = view.findViewById<Spinner>(R.id.spinner)
+        val img_add = view.findViewById<Button>(R.id.user_dialog_img_add)
 
         var spinner_List = ArrayList<String>()
         spinner_List.add("종류를 선택 하세요")
@@ -39,6 +42,11 @@ class User_dialog(context : Context) {
         spinner_List.add("여가활동")
         spinner_List.add("차량용품")
         spinner_List.add("기타")
+
+        img_add.setOnClickListener {
+          //  val intent:Intent = SdkLogLevel.I
+        }
+
 
 
 

@@ -27,8 +27,85 @@
         <item>@drawable/ic_camp_2</item>
         <item>@drawable/ic_camp_3</item>
         <item>@drawable/ic_camp_4</item>
+        <item>@drawable/ic_camp_1</item>
+        <item>@drawable/ic_camp_2</item>
+        <item>@drawable/ic_camp_3</item>
+        <item>@drawable/ic_camp_4</item>
+        <item>@drawable/ic_camp_1</item>
+        <item>@drawable/ic_camp_2</item>
+        <item>@drawable/ic_camp_3</item>
+        <item>@drawable/ic_camp_4</item>
+        <item>@drawable/ic_camp_1</item>
+        <item>@drawable/ic_camp_2</item>
+        <item>@drawable/ic_camp_3</item>
+        <item>@drawable/ic_camp_4</item>
+        <item>@drawable/ic_camp_1</item>
+        <item>@drawable/ic_camp_2</item>
+        <item>@drawable/ic_camp_3</item>
+        <item>@drawable/ic_camp_4</item>
+        <item>@drawable/ic_camp_1</item>
+        <item>@drawable/ic_camp_2</item>
+        <item>@drawable/ic_camp_3</item>
+        <item>@drawable/ic_camp_4</item>
+        <item>@drawable/ic_camp_1</item>
+        <item>@drawable/ic_camp_2</item>
+        <item>@drawable/ic_camp_3</item>
+        <item>@drawable/ic_camp_4</item>
+        <item>@drawable/ic_camp_1</item>
+        <item>@drawable/ic_camp_2</item>
+        <item>@drawable/ic_camp_3</item>
+        <item>@drawable/ic_camp_4</item>
+        <item>@drawable/ic_camp_1</item>
+        <item>@drawable/ic_camp_2</item>
+        <item>@drawable/ic_camp_3</item>
+        <item>@drawable/ic_camp_4</item>
     </string-array>
     <string-array name="campNameList">
+        <item>구급상자</item>
+        <item>의자</item>
+        <item>낚시대</item>
+        <item>손전등</item>
+        <item>구급상자</item>
+        <item>의자</item>
+        <item>낚시대</item>
+        <item>손전등</item>
+        <item>구급상자</item>
+        <item>의자</item>
+        <item>낚시대</item>
+        <item>손전등</item>
+        <item>구급상자</item>
+        <item>의자</item>
+        <item>낚시대</item>
+        <item>손전등</item>
+        <item>구급상자</item>
+        <item>의자</item>
+        <item>낚시대</item>
+        <item>손전등</item>
+        <item>구급상자</item>
+        <item>의자</item>
+        <item>낚시대</item>
+        <item>손전등</item>
+        <item>구급상자</item>
+        <item>의자</item>
+        <item>낚시대</item>
+        <item>손전등</item>
+        <item>구급상자</item>
+        <item>의자</item>
+        <item>낚시대</item>
+        <item>손전등</item>
+        <item>구급상자</item>
+        <item>의자</item>
+        <item>낚시대</item>
+        <item>손전등</item>
+    </string-array>
+
+    <string-array name="chengItem">
+        <item>@drawable/ic_etc_1</item>
+        <item>@drawable/ic_etc_2</item>
+        <item>@drawable/ic_etc_3</item>
+        <item>@drawable/ic_etc_4</item>
+    </string-array>
+    <string-array name="chengItemList">
         <item>1</item>
         <item>2</item>
         <item>3</item>

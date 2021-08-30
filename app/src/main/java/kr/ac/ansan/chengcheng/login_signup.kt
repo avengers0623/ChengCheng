@@ -1,4 +1,4 @@
-package kr.ac.ansan.chengcheng
+    package kr.ac.ansan.chengcheng
 
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -25,6 +25,7 @@ import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.add_item.*
 import kotlinx.android.synthetic.main.login_signup.*
 
 class login_signup : AppCompatActivity(), View.OnClickListener {

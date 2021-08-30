@@ -4,6 +4,12 @@
     package="kr.ac.ansan.chengcheng">
     <!--인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--갤러리 권한-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+
     <application
         android:name=".KakaoApplication"
         android:allowBackup="true"
@@ -63,6 +69,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
     </application>
 

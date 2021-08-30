@@ -1,9 +1,12 @@
 package kr.ac.ansan.chengcheng
 
 import android.content.Context
+import android.util.Log
+import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,14 +15,15 @@ import kotlinx.android.synthetic.main.rv1_item.view.*
 class AdditemRVAdapter(context: Context) : RecyclerView.Adapter<AdditemRVAdapter.Rv1Holder>() {
     val context = context
     var data = mutableListOf<Data_addItem_1>()
-
+    var checkboxStatus:HashMap<Int, Boolean> = hashMapOf()
+    var compareList = ArrayList<Int>()
 
     inner class Rv1Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        fun setData(data: Data_addItem_1){
+        fun setData(data: Data_addItem_1, position1: Int){
             itemView.tv_subject.text =  data.title
 
             //AdditemRVAdapter2의 어댑터 객체를 만들어 데이터를 넘겨준다
-            val additemRVAdapter2 = AdditemRVAdapter2()
+            val additemRVAdapter2 = AdditemRVAdapter2(position1, checkboxStatus, compareList)
             val r2Data = data.itemList
             additemRVAdapter2.data = r2Data
             //AdditemRVAdapter2의 레이아웃 설정
@@ -42,8 +46,21 @@ class AdditemRVAdapter(context: Context) : RecyclerView.Adapter<AdditemRVAdapter
     override fun onBindViewHolder(holder: AdditemRVAdapter.Rv1Holder, position: Int) {
         var item = data[position]
         holder.apply {
-            setData(item)
+            setData(item, position)
         }
+
+//        val checkboxUser = holder.itemView.findViewById<CheckBox>(R.id.itemCheckBox)
+//
+//        checkboxUser.isChecked = checkboxStatus[position]
+//
+//        checkboxUser.setOnClickListener {
+//            if (!checkboxUser.isChecked)
+//                checkboxStatus.put(position, false)
+//            else
+//                checkboxStatus.put(position, true)
+//            notifyItemChanged(position)
+//        }
+
     }
 
     override fun getItemCount(): Int {
