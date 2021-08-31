@@ -17,7 +17,7 @@ class AdditemRVAdapter(context: Context) : RecyclerView.Adapter<AdditemRVAdapter
     var data = mutableListOf<Data_addItem_1>()
     var checkboxStatus:HashMap<Int, Boolean> = hashMapOf()
     var compareList = ArrayList<Int>()
-    var saveMap: HashMap<Int, MutableList<Int>> = HashMap()
+    var saveMap: HashMap<Int, ArrayList<Int>> = HashMap()
 
     inner class Rv1Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun setData(data: Data_addItem_1, position1: Int){

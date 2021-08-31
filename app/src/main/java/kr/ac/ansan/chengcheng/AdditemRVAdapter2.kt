@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.FrameLayout
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.rv2_item.view.*
 
@@ -14,7 +13,7 @@ class AdditemRVAdapter2(
     position1: Int,
     checkboxStatus: HashMap<Int, Boolean>,
     compareList: ArrayList<Int>,
-    saveMap: HashMap<Int, MutableList<Int>>
+    saveMap: HashMap<Int,ArrayList<Int>>
 ) : RecyclerView.Adapter<AdditemRVAdapter2.Rv2Holder>() {
 
     var data = mutableListOf<Data_addItem_2>()
@@ -24,23 +23,20 @@ class AdditemRVAdapter2(
     var saveMap = saveMap
 
     companion object {
-        var list = arrayListOf<Data_addItem_2>()
-        var checkboxList = arrayListOf<checkboxData>()
-        lateinit var selectCheckBoxPosition: HashMap<Int, Int>
-            private set
+
     }
 
     inner class Rv2Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var onViewHolderItemClickListener: OnViewHolderItemClickListener? = null
         private var frameLayout: FrameLayout? = null
 
-
         init {
             frameLayout = itemView.frameLayout_addItem
 
-            frameLayout!!.setOnClickListener {
-                onViewHolderItemClickListener!!.onViewHolderItemClick()
-            }
+            //오류나서 일단 주석처리(아마 중복이지 않을까)
+//            frameLayout!!.setOnClickListener {
+//                onViewHolderItemClickListener!!.onViewHolderItemClick()
+//            }
         }
 
 
@@ -65,55 +61,21 @@ class AdditemRVAdapter2(
     override fun onBindViewHolder(holder: Rv2Holder, position: Int) {
         Log.d("어댑터띵", "띵")
         val item = data[position]
-        val img = holder.itemView.findViewById<ImageView>(R.id.img_cover)
-        val campList2: Array<String> =
-            holder.itemView.resources.getStringArray(R.array.campNameList)
-        val campList3: ArrayList<String> = ArrayList()
-        var max = campList2.size
 
         holder.apply {
             setData(item)
         }
+
         val checkboxUser = holder.itemView.findViewById<CheckBox>(R.id.itemCheckBox)
-
-        Log.d("시발 받아오고나서", "1번: ${position1}, 2번: ${position}")
-        var posMap: HashMap<Int, Int> = hashMapOf()
-        posMap.put(position1, position)
-        Log.d("pos", posMap.toString())
-
-        var compareMap: HashMap<Int, MutableList<Int>> = HashMap()
-        compareMap[position1] = compareList
-
-        //큰카테고리 추가하면 추가해줘야함 ㅄ아 아니면 생각을해
-
-//        when(position1){
-//            0 -> {
-//
-//            }
-//            1 ->
-//                2 ->
-//            3 ->
-//            4 ->
-//            5 ->
-//            6 ->
-//        }
-
-
-        checkboxUser.isChecked = checkboxStatus[position] == true
-        Log.d("시발포지션", checkboxStatus.toString())
-        //var compareList2 = ArrayList<Int>()
         checkboxUser.setOnClickListener {
-            when (position1) {
-                0 -> {  }
-                1 -> {  }
-            }
+
             if (!checkboxUser.isChecked) {
                 checkboxStatus.put(position, false)
                 Log.d("시발결과", "체크상태: ${checkboxStatus.toString()}")
-                var positionCheck = position
-                compareList.remove(positionCheck)
                 Log.d("맵제거", compareList.toString())
 
+
+                removeCheckedList(position, compareList)
 
                 saveMap.put(position1, compareList)
                 Log.d("saveMap", saveMap.toString())
@@ -121,40 +83,42 @@ class AdditemRVAdapter2(
             } else {
                 checkboxStatus.put(position, true)
                 Log.d("시발결과", "큰카테고리:${position1} ,: ${compareList.toString()}")
-                var positionCheck = position
-                compareList.add(positionCheck)
                 Log.d("맵추가", "큰카테고리:${position1} ,: ${compareList.toString()}")
 
 
+                addCheckedList(position, compareList)
+
                 saveMap.put(position1, compareList)
                 Log.d("saveMap", saveMap.toString())
-
-                //  notifyItemChanged(position)
             }
         }
 
 
-        holder.setOnViewHolderItemClickListener {
-
-            //img.setBackgroundColor(Color.RED)
-            Log.d("어댑터위치", "$position")
-
-            /*for (i in 0 until max) {
-                if(position.toString() == campList2[i]){
-                    campList3.add(campList2[i])
-                }
+        val checkboxData = checkboxData(saveMap)
+        Log.d("마실험", checkboxData.saveMap[position1].toString())
+        checkboxData.saveMap[position1]?.forEach {
+            checkboxStatus.put(it, true)
+            Log.d("마실험", it.toString())
+            if(checkboxStatus[it] == true){
+                checkboxUser.isChecked = checkboxStatus[position] == true
             }
-            for (i in 0 until max) {
-                Log.d("어댑터값","${campList3[i]}")
-            }
-            Log.d("어댑터", "작동함")
-            Log.d("어댑터위치", "$position")*/
-
-
-            //notifyItemChanged(position)
-
         }
 
+        compareList = arrayListOf()
+
+    }
+
+    //큰카테고리에 체크상태를 담아줌
+    private fun addCheckedList(position: Int, compareList: ArrayList<Int>){
+
+        var positionCheck = position
+        compareList.add(positionCheck)
+    }
+
+    private fun removeCheckedList(position: Int, compareList: ArrayList<Int>){
+
+        var positionCheck = position
+        compareList.remove(positionCheck)
     }
 
 
@@ -163,3 +127,4 @@ class AdditemRVAdapter2(
     }
 
 }
+
