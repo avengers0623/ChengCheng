@@ -38,7 +38,7 @@ class add_item : AppCompatActivity() {
 
     companion object {
         var context_additem: Context? = null
-
+        var typedArrayRecycler: TypedArray? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +46,7 @@ class add_item : AppCompatActivity() {
         setContentView(R.layout.add_item)
 
         context_additem = this
+        typedArrayRecycler = resources.obtainTypedArray(R.array.category)
 
         val mainActivity = Intent(this, MainActivity::class.java)
 
@@ -206,7 +207,6 @@ class add_item : AppCompatActivity() {
 //        }
 
             rv1Data?.add(Data_addItem_1(categoryList[0], categorySub))
-            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
             rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
             rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
             rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))

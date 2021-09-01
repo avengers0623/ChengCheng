@@ -1,5 +1,6 @@
 package kr.ac.ansan.chengcheng
 
+import android.icu.text.Edits
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,19 +9,21 @@ import android.widget.CheckBox
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.rv2_item.view.*
+import java.util.function.Predicate
 
 class AdditemRVAdapter2(
     position1: Int,
     checkboxStatus: HashMap<Int, Boolean>,
-    compareList: ArrayList<Int>,
-    saveMap: HashMap<Int,ArrayList<Int>>
+    compareList: MutableSet<Int>,
+    saveMap: checkboxData
 ) : RecyclerView.Adapter<AdditemRVAdapter2.Rv2Holder>() {
 
     var data = mutableListOf<Data_addItem_2>()
     var checkboxStatus = checkboxStatus
     var compareList = compareList
     var position1 = position1
-    var saveMap = saveMap
+    var saveMap = saveMap.saveMaper
+    var com: MutableSet<Int> = mutableSetOf()
 
     companion object {
 
@@ -70,55 +73,84 @@ class AdditemRVAdapter2(
         checkboxUser.setOnClickListener {
 
             if (!checkboxUser.isChecked) {
-                checkboxStatus.put(position, false)
-                Log.d("시발결과", "체크상태: ${checkboxStatus.toString()}")
-                Log.d("맵제거", compareList.toString())
-
-
-                removeCheckedList(position, compareList)
-
-                saveMap.put(position1, compareList)
-                Log.d("saveMap", saveMap.toString())
-
+                removeCheckedList(position)
             } else {
-                checkboxStatus.put(position, true)
-                Log.d("시발결과", "큰카테고리:${position1} ,: ${compareList.toString()}")
-                Log.d("맵추가", "큰카테고리:${position1} ,: ${compareList.toString()}")
-
-
-                addCheckedList(position, compareList)
-
-                saveMap.put(position1, compareList)
-                Log.d("saveMap", saveMap.toString())
+                addCheckedList(position)
             }
+
         }
 
 
-        val checkboxData = checkboxData(saveMap)
-        Log.d("마실험", checkboxData.saveMap[position1].toString())
-        checkboxData.saveMap[position1]?.forEach {
-            checkboxStatus.put(it, true)
-            Log.d("마실험", it.toString())
-            if(checkboxStatus[it] == true){
-                checkboxUser.isChecked = checkboxStatus[position] == true
-            }
-        }
+//        Log.d("객체1", saveMap[position1].toString())
+//        saveMap[position1]?.forEach {
+//            Log.d("마실험it", it.toString())
+//            checkboxStatus.put(it, true)
+//            Log.d("마실험status", "$checkboxStatus")
+//            Log.d("마실험save", saveMap.toString())
+//            if (checkboxStatus[it] == true) {
+//                Log.d("마실험status_position", "$position")
+//                checkboxUser.isChecked = checkboxStatus[position] == true
+//            }
+//        }
 
-        compareList = arrayListOf()
+
+        //compareList = arrayListOf()
+        Log.d("객체2", saveMap[position1].toString())
 
     }
 
     //큰카테고리에 체크상태를 담아줌
-    private fun addCheckedList(position: Int, compareList: ArrayList<Int>){
+    private fun addCheckedList(position: Int) {
+        Log.d("aaa saveMap1", "position1: ${position1} ,map: ${saveMap}")
+//        if (saveMap.containsKey(position1)) {
+        //com은 임시 리스트
+        var it = saveMap[position1]!!.iterator()
+
+        while (it.hasNext()) {
+            val item = it.next()
+            Log.d("ititit", item.toString())
+            com.add(item)
+        }
+
+        Log.d("aaa Iterator", com.toString())
+//        }
+
 
         var positionCheck = position
-        compareList.add(positionCheck)
+        com.add(positionCheck)
+        Log.d("aaa comapreList추가후", "position1: ${position1} ,list: ${com}")
+        saveMap.put(position1, com)
+        Log.d("aaa saveMap put", saveMap.toString())
+
+        saveMap[position1]!!.addAll(com)
+        //com = mutableSetOf()
+
+        Log.d("aaa compareList 초기화", com.toString())
+
     }
 
-    private fun removeCheckedList(position: Int, compareList: ArrayList<Int>){
+    private fun removeCheckedList(position: Int) {
+
+        if (saveMap.containsKey(position1)) {
+            var it: Iterator<Int> = saveMap[position1]!!.iterator()
+
+            while (it.hasNext()) {
+                val item = it.next()
+                compareList.add(item)
+            }
+            Log.d("saveMap", "values: ${compareList}")
+        }
+
+        //checkboxStatus.put(position, false)
+        Log.d("시발결과", "체크상태: ${checkboxStatus.toString()}")
+        Log.d("맵제거", compareList.toString())
 
         var positionCheck = position
         compareList.remove(positionCheck)
+
+        saveMap.put(position1, compareList)
+        compareList = mutableSetOf()
+        Log.d("saveMap", saveMap.toString())
     }
 
 

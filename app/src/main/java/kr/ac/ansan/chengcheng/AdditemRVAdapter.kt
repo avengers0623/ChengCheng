@@ -2,13 +2,10 @@ package kr.ac.ansan.chengcheng
 
 import android.content.Context
 import android.util.Log
-import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.rv1_item.view.*
 
@@ -16,8 +13,9 @@ class AdditemRVAdapter(context: Context) : RecyclerView.Adapter<AdditemRVAdapter
     val context = context
     var data = mutableListOf<Data_addItem_1>()
     var checkboxStatus:HashMap<Int, Boolean> = hashMapOf()
-    var compareList = ArrayList<Int>()
-    var saveMap: HashMap<Int, ArrayList<Int>> = HashMap()
+    var compareList = mutableSetOf<Int>()
+    var saveMapList = HashMap<Int, MutableSet<Int>>()
+    var saveMap: checkboxData = checkboxData(saveMapList, compareList)
 
     inner class Rv1Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun setData(data: Data_addItem_1, position1: Int){
