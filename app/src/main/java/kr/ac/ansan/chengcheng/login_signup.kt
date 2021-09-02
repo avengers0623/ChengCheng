@@ -3,13 +3,17 @@
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.facebook.CallbackManager
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -27,13 +31,23 @@ import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.add_item.*
 import kotlinx.android.synthetic.main.login_signup.*
+import java.security.MessageDigest
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
+import java.util.*
 
-class login_signup : AppCompatActivity(), View.OnClickListener {
+
+    class login_signup : AppCompatActivity(), View.OnClickListener{
     // [START declare_auth]
     private lateinit var firebaseAuth: FirebaseAuth
     // [END declare_auth]
 
     private lateinit var googleSignInClient: GoogleSignInClient
+    private val FB_SIGN_IN = 64206
+    private lateinit var loginManager: LoginManager
+    private lateinit var callbackManager:CallbackManager
 
     private val RC_SIGN_IN = 99
     var kakao = 0
@@ -53,6 +67,14 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
         val selfsignup = Intent(this, self_signup::class.java)
         val activitymain = Intent(this, MainActivity::class.java)
 
+
+        FacebookSdk.sdkInitialize(applicationContext);
+        AppEventsLogger.activateApp(this);
+        callbackManager = CallbackManager.Factory.create();
+
+       /*// button_facebook_login.setOnClickListener {
+
+        }*/
 
 
 
@@ -196,15 +218,44 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
         }
 
 
+      // 해쉬값 찾는 함수
+    /*fun printHashKey(context:Context): String? {
+
+        val TAG = "HASH_KEY"
+
+        var hashKey : String? = null
+
+        try {
+
+            val info : PackageInfo = context.packageManager.getPackageInfo(context.packageName, PackageManager.GET_SIGNATURES)
+
+            for (signature in info.signatures) {
+
+                var md : MessageDigest
+
+                md = MessageDigest.getInstance("SHA")
+
+                md.update(signature.toByteArray())
+
+                hashKey = String(Base64.encode(md.digest(), 0))
+
+                Log.d(TAG, hashKey)
+
+            }
+
+        } catch (e:Exception){
+
+            Log.e(TAG, e.toString())
+
+        }
+
+        return hashKey
+
+    }
 
 
 
-
-
-
-
-
-
+*/
 
 
 
