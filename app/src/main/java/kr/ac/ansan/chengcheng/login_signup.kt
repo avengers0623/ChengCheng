@@ -87,7 +87,6 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
 
 
 
-
         Glide.with(this)
             .load("https://img.hankyung.com/photo/202103/BF.25772861.1.jpg")
             .into(logo)
