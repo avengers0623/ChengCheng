@@ -116,7 +116,7 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <com.facebook.share.widget.ShareButton
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/button_facebook_login"
             android:layout_width="300dp"
             android:layout_height="45dp"

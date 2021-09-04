@@ -1,45 +1,37 @@
-    package kr.ac.ansan.chengcheng
+package kr.ac.ansan.chengcheng
 
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.util.Base64
+import android.util.Base64.encode
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.facebook.CallbackManager
-import com.google.android.gms.auth.api.Auth
+import com.facebook.*
+import com.facebook.appevents.AppEventsLogger
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.add_item.*
 import kotlinx.android.synthetic.main.login_signup.*
 import java.security.MessageDigest
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
-import java.util.*
 
 
-    class login_signup : AppCompatActivity(), View.OnClickListener{
+class login_signup : AppCompatActivity(), View.OnClickListener {
     // [START declare_auth]
     private lateinit var firebaseAuth: FirebaseAuth
     // [END declare_auth]
@@ -47,11 +39,12 @@ import java.util.*
     private lateinit var googleSignInClient: GoogleSignInClient
     private val FB_SIGN_IN = 64206
     private lateinit var loginManager: LoginManager
-    private lateinit var callbackManager:CallbackManager
+    private lateinit var callbackManager: CallbackManager
 
     private val RC_SIGN_IN = 99
     var kakao = 0
     var google = 0
+
     companion object {
         var loginSignup: Context? = null
     }
@@ -67,14 +60,31 @@ import java.util.*
         val selfsignup = Intent(this, self_signup::class.java)
         val activitymain = Intent(this, MainActivity::class.java)
 
+        //Facebook 로그인
+        callbackManager = CallbackManager.Factory.create()
 
-        FacebookSdk.sdkInitialize(applicationContext);
-        AppEventsLogger.activateApp(this);
-        callbackManager = CallbackManager.Factory.create();
+        button_facebook_login.setOnClickListener {
+            Log.d(TAG, "클릭")
+            loginManager = LoginManager.getInstance()
+            loginManager.logInWithReadPermissions(this, listOf("public_profile", "email"))
+            loginManager.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+                    Log.d(TAG, "facebook:onSuccess")
+                    handleFacebookAccessToken(loginResult.accessToken)
+                    startActivity(intent)
+                }
 
-       /*// button_facebook_login.setOnClickListener {
+                override fun onCancel() {
+                    Log.d(TAG, "facebook:onCancel")
+                }
 
-        }*/
+                override fun onError(error: FacebookException?) {
+                    Log.d(TAG, "facebook:onError", error)
+                }
+
+            })
+        }
+
 
 
 
@@ -138,125 +148,145 @@ import java.util.*
         }
     }
 
-        public override fun onStart() {
-            super.onStart()
-            val account = GoogleSignIn.getLastSignedInAccount(this)
-            /*if(account!==null){ // 이미 로그인 되어있을시 바로 메인 액티비티로 이동
-                toMainActivity(firebaseAuth.currentUser)
-            }*/
-        } //onStart End
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        Log.d(TAG, "handleFacebookAccessToken:$token")
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        val auth = FirebaseAuth.getInstance()
+        auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                // Sign in success, update UI with the signed-in user's information
+                Log.d(TAG, "signInWithCredential:success")
 
-        // onActivityResult
-        public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-            super.onActivityResult(requestCode, resultCode, data)
+                val user = auth.currentUser
 
-            // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-            if (requestCode == RC_SIGN_IN) {
-                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-                try {
-                    // Google Sign In was successful, authenticate with Firebase
-                    val account = task.getResult(ApiException::class.java)
-                    firebaseAuthWithGoogle(account!!)
-
-                } catch (e: ApiException) {
-                    // Google Sign In failed, update UI appropriately
-                    Log.w("LoginActivity", "Google sign in failed", e)
+                user?.let {
+                    Log.d(user.displayName, user.email.toString())
+                    // Firebase 함수로 user 정보 호출 가능
                 }
+            } else {
+                // If sign in fails, display a message to the user.
+                Log.w(TAG, "signInWithCredential:failure", task.exception)
             }
-        } // onActivityResult End
+        }
+    }
 
-        // firebaseAuthWithGoogle
-        private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-            val socialSignup = Intent(this, social_signup::class.java)
+//Facebook 로그아웃
+//        val user:FirebaseUser? = FirebaseAuth.getInstance().currentUser
+//        val accessToken:AccessToken = AccessToken.getCurrentAccessToken()
+//        if(user!=null){
+//            val isLoggedIn:Boolean = accessToken != null && !accessToken.isExpired
+//            if(isLoggedIn){
+//                FirebaseAuth.getInstance().signOut()
+//                LoginManager.getInstance().logOut()
+//            }
+//        }
 
-            Log.d("LoginActivity", "firebaseAuthWithGoogle:" + acct.id!!)
+    public override fun onStart() {
+        super.onStart()
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        /*if(account!==null){ // 이미 로그인 되어있을시 바로 메인 액티비티로 이동
+            toMainActivity(firebaseAuth.currentUser)
+        }*/
+    } //onStart End
 
-            //Google SignInAccount 객체에서 ID 토큰을 가져와서 Firebase Auth로 교환하고 Firebase에 인증
-            val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-            firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
-                        toMainActivity(firebaseAuth?.currentUser)
-                        var google=2
-                        startActivity(socialSignup)
-                    } else {
-                        Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
+    // onActivityResult
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-                    }
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account!!)
+
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
+                Log.w("LoginActivity", "Google sign in failed", e)
+            }
+        }
+
+        //Facebook
+        if (requestCode == FB_SIGN_IN) {
+            callbackManager.onActivityResult(requestCode, resultCode, data)
+        }
+
+    } // onActivityResult End
+
+    // firebaseAuthWithGoogle
+    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+        val socialSignup = Intent(this, social_signup::class.java)
+
+        Log.d("LoginActivity", "firebaseAuthWithGoogle:" + acct.id!!)
+
+        //Google SignInAccount 객체에서 ID 토큰을 가져와서 Firebase Auth로 교환하고 Firebase에 인증
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
+                    toMainActivity(firebaseAuth?.currentUser)
+                    var google = 2
+                    startActivity(socialSignup)
+                } else {
+                    Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
 
                 }
-        }// firebaseAuthWithGoogle END
-
-
-        // toMainActivity
-        fun toMainActivity(user: FirebaseUser?) {
-            if(user !=null) { // MainActivity 로 이동
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }
-        } // toMainActivity End
-
-        // signIn
-        private fun signIn() {
-            val signInIntent = googleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
-        }
-        // signIn End
-
-
-
-
-
-
-        private fun revokeAccess() { //회원탈퇴
-            // Firebase sign out
-            firebaseAuth.signOut()
-            googleSignInClient.revokeAccess().addOnCompleteListener(this) {
 
             }
+    }// firebaseAuthWithGoogle END
+
+
+    // toMainActivity
+    fun toMainActivity(user: FirebaseUser?) {
+        if (user != null) { // MainActivity 로 이동
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
+    } // toMainActivity End
+
+    // signIn
+    private fun signIn() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+    // signIn End
 
 
-      // 해쉬값 찾는 함수
-    /*fun printHashKey(context:Context): String? {
-
-        val TAG = "HASH_KEY"
-
-        var hashKey : String? = null
-
-        try {
-
-            val info : PackageInfo = context.packageManager.getPackageInfo(context.packageName, PackageManager.GET_SIGNATURES)
-
-            for (signature in info.signatures) {
-
-                var md : MessageDigest
-
-                md = MessageDigest.getInstance("SHA")
-
-                md.update(signature.toByteArray())
-
-                hashKey = String(Base64.encode(md.digest(), 0))
-
-                Log.d(TAG, hashKey)
-
-            }
-
-        } catch (e:Exception){
-
-            Log.e(TAG, e.toString())
+    private fun revokeAccess() { //회원탈퇴
+        // Firebase sign out
+        firebaseAuth.signOut()
+        googleSignInClient.revokeAccess().addOnCompleteListener(this) {
 
         }
-
-        return hashKey
-
     }
 
 
+    // 해쉬값 찾는 함수
+    fun printHashKey(context: Context): String? {
 
-*/
+        val TAG = "HASH_KEY"
+        var hashKey: String? = null
 
+        try {
+            val info: PackageInfo = context.packageManager.getPackageInfo(
+                context.packageName,
+                PackageManager.GET_SIGNATURES
+            )
+            for (signature in info.signatures) {
+                var md: MessageDigest
+                md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                hashKey = String(encode(md.digest(), 0))
+                Log.d(TAG, hashKey)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, e.toString())
+        }
+
+        return hashKey
+    }
 
 
     override fun onClick(v: View?) {
