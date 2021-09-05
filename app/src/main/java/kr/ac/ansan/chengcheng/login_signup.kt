@@ -60,37 +60,6 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
         val selfsignup = Intent(this, self_signup::class.java)
         val activitymain = Intent(this, MainActivity::class.java)
 
-        //Facebook 로그인
-        callbackManager = CallbackManager.Factory.create()
-
-        button_facebook_login.setOnClickListener {
-            Log.d(TAG, "클릭")
-            loginManager = LoginManager.getInstance()
-            loginManager.logInWithReadPermissions(this, listOf("public_profile", "email"))
-            loginManager.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-                override fun onSuccess(loginResult: LoginResult) {
-                    Log.d(TAG, "facebook:onSuccess")
-                    handleFacebookAccessToken(loginResult.accessToken)
-                    startActivity(intent)
-                }
-
-                override fun onCancel() {
-                    Log.d(TAG, "facebook:onCancel")
-                }
-
-                override fun onError(error: FacebookException?) {
-                    Log.d(TAG, "facebook:onError", error)
-                }
-
-            })
-        }
-
-
-
-        Glide.with(this)
-            .load("https://img.hankyung.com/photo/202103/BF.25772861.1.jpg")
-            .into(logo)
-
 
         button_google_login.setOnClickListener {
             signIn()
@@ -108,6 +77,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
         //firebase auth 객체
         firebaseAuth = FirebaseAuth.getInstance()
 
+        //카카오 로그인
         button_kakao_login.setOnClickListener {
             Toast.makeText(context, "dadsdasdasd", Toast.LENGTH_SHORT).show()
             val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
@@ -120,7 +90,6 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
                     kakao++
                     //intent = Intent(Intent.ACTION_VIEW,  Uri.parse(KakaoTalkLinkProtocol.TALK_MARKET_URL_PREFIX_2 + makeReferrer()))
                     startActivity(intent)
-
                 }
             }
 
@@ -133,13 +102,6 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
 
 
         }
-        //회원가입 창
-        TextView_signup.setOnClickListener {
-            startActivity(selfsignup)
-
-
-        }
-
 
         // 임시로 로그인 버튼 눌렸을때 메인 화면으로
         login_button.setOnClickListener {
@@ -147,38 +109,6 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun handleFacebookAccessToken(token: AccessToken) {
-        Log.d(TAG, "handleFacebookAccessToken:$token")
-        val credential = FacebookAuthProvider.getCredential(token.token)
-        val auth = FirebaseAuth.getInstance()
-        auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
-                // Sign in success, update UI with the signed-in user's information
-                Log.d(TAG, "signInWithCredential:success")
-
-                val user = auth.currentUser
-
-                user?.let {
-                    Log.d(user.displayName, user.email.toString())
-                    // Firebase 함수로 user 정보 호출 가능
-                }
-            } else {
-                // If sign in fails, display a message to the user.
-                Log.w(TAG, "signInWithCredential:failure", task.exception)
-            }
-        }
-    }
-
-//Facebook 로그아웃
-//        val user:FirebaseUser? = FirebaseAuth.getInstance().currentUser
-//        val accessToken:AccessToken = AccessToken.getCurrentAccessToken()
-//        if(user!=null){
-//            val isLoggedIn:Boolean = accessToken != null && !accessToken.isExpired
-//            if(isLoggedIn){
-//                FirebaseAuth.getInstance().signOut()
-//                LoginManager.getInstance().logOut()
-//            }
-//        }
 
     public override fun onStart() {
         super.onStart()
@@ -205,12 +135,6 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
                 Log.w("LoginActivity", "Google sign in failed", e)
             }
         }
-
-        //Facebook
-        if (requestCode == FB_SIGN_IN) {
-            callbackManager.onActivityResult(requestCode, resultCode, data)
-        }
-
     } // onActivityResult End
 
     // firebaseAuthWithGoogle
@@ -228,6 +152,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
                     toMainActivity(firebaseAuth?.currentUser)
                     var google = 2
                     startActivity(socialSignup)
+                    finish()
                 } else {
                     Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
 
@@ -251,41 +176,6 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
     // signIn End
-
-
-    private fun revokeAccess() { //회원탈퇴
-        // Firebase sign out
-        firebaseAuth.signOut()
-        googleSignInClient.revokeAccess().addOnCompleteListener(this) {
-
-        }
-    }
-
-
-    // 해쉬값 찾는 함수
-    fun printHashKey(context: Context): String? {
-
-        val TAG = "HASH_KEY"
-        var hashKey: String? = null
-
-        try {
-            val info: PackageInfo = context.packageManager.getPackageInfo(
-                context.packageName,
-                PackageManager.GET_SIGNATURES
-            )
-            for (signature in info.signatures) {
-                var md: MessageDigest
-                md = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                hashKey = String(encode(md.digest(), 0))
-                Log.d(TAG, hashKey)
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, e.toString())
-        }
-
-        return hashKey
-    }
 
 
     override fun onClick(v: View?) {

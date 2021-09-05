@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -34,11 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private var key: String? = null
 
-    private var title: String? = null
-
     private var ProfileImg: String? = null
-
-    private var progressBar: ProgressBar? = null
 
 
     companion object {
@@ -49,8 +46,7 @@ class MainActivity : AppCompatActivity() {
         var userId: String? = null
         var nickName: String? = null
         var listName: String? = null
-        var listCntInt = 0
-        var listCnt: String? = null
+//        var listCnt: String? = null
 
     }
 
@@ -116,60 +112,55 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("User")//.child("${userId},${nickName}")
 
-//        if (kakao == 1) {
-//            //***카카오 DB 읽어오기***
-//            kakao = 0
-            myRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    Log.e("접근", "함수 진입")
-                    Items.clear()
-                    Log.e("접근", "반복문 실행전")
 
-                    Log.e(
-                        "접근",
-                        "키키키:${snapshot.child("${userId},${nickName}").child("titleList").value}"
-                    )
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.e("접근", "함수 진입")
+                Items.clear()
+                Log.e("접근", "반복문 실행전")
 
-                    if (snapshot.child("${userId},${nickName}").exists()) {
-                        Log.d("ReadDB", "계정정보 찾음")
-                        for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
-                            .child("titleList").children) {
-                            Log.e("접근", "키키키(for문내부):${snapshot.child("title").value}")
+                Log.e(
+                    "접근",
+                    "키키키:${snapshot.child("${userId},${nickName}").child("titleList").value}"
+                )
 
-                            //val info: Data_items? = snapshot.child("title").getValue(Data_items::class.java)
-                            val info: String? = snapshot.child("title").value as String?
-                            //Log.d("info", info.toString())
-                            //val infoString: String? = info!!.getTitle()
-                            Items.add(Data_items(info!!))
-                            Log.d("ReadDB", "카운트")
-                        }
+                if (snapshot.child("${userId},${nickName}").exists()) {
+                    Log.d("ReadDB", "계정정보 찾음")
+                    for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
+                        .child("titleList").children) {
+                        Log.e("접근", "키키키(for문내부):${snapshot.child("title").value}")
 
-                        //목록개수 가져오는 곳
-                        listCnt =
-                            snapshot.child("${userId},${nickName}")
-                                .child("listCnt").value.toString()
-                        Log.e("접근", "성공적(개수가져오고바로의값)${listCnt}")
-                        clickAndBinding(listCnt!!.toInt())
-                    } else {
-                        Log.d("ReadDB", "계정정보가 없습니다")
-                        clickAndBinding(0)
+                        //val info: Data_items? = snapshot.child("title").getValue(Data_items::class.java)
+                        val info: String? = snapshot.child("title").value as String?
+                        //Log.d("info", info.toString())
+                        //val infoString: String? = info!!.getTitle()
+                        Items.add(Data_items(info!!))
+                        Log.d("ReadDB", "카운트")
                     }
 
-                    adapter!!.notifyDataSetChanged()
-                    Log.e("접근", "새로고침 완료")
+                    /*//목록개수 가져오는 곳
+                    listCnt =
+                        snapshot.child("${userId},${nickName}")
+                            .child("listCnt").value.toString()
+                    Log.e("접근", "성공적(개수가져오고바로의값)${listCnt}")
+                    //(context_additem as add_item).clickAndBinding(listCnt!!.toInt())*/
+                } else {
+                    Log.d("ReadDB", "계정정보가 없습니다")
+                    //(context_additem as add_item).clickAndBinding(0)
                 }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("MainActivity", valueOf(error.toException().toString()).toString())
-                }
+                adapter!!.notifyDataSetChanged()
+                Log.e("접근", "새로고침 완료")
+            }
 
-            })
-//        } else {
-//            Toast.makeText(this, "테스트용ㅇㅇㅇㅇㅇㅇㅇ", Toast.LENGTH_LONG).show()
-//        }
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("MainActivity", valueOf(error.toException().toString()).toString())
+            }
+
+        })
         ////////////////DB
 
-        Log.e("접근", "성공적(빠져나와서)${listCnt}")
+//        Log.e("접근", "성공적(빠져나와서)${listCnt}")
 
 
         add_button.setOnClickListener {
@@ -180,78 +171,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(mypage)
         }
 
-
-        // 검색버튼 눌렀을때 리스트에서 검색하게 해야함
-        search.setOnClickListener {
-            var search2 = search_box.text
-            var title = title
-
-            Toast.makeText(this, "찾은건 $title", Toast.LENGTH_LONG).show()
-//            if (search2 == title) {
-//                Toast.makeText(this, "찾았다", Toast.LENGTH_LONG).show()
-//            }
-
-        }
-
-//        dlg_view = layoutInflater.inflate(R.layout.dialog, null, false)
-
-    }
-
-//    //***DB쓰기***
-    fun clickAndBinding(listCnt: Int) {
-        Log.d("접근", "클릭바인딩함수내:${listCnt}")
-        listCntInt = listCnt
-        main_btn_add.setOnClickListener {
-            listName = listname.text.toString()
-            if (listName.isNullOrEmpty()) {
-                Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
-            } else {
-                //title= "가평여행${listCnt}"
-                Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show()
-
-                database.getReference("User")
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
-                                .child("titleList").children) {
-                                val info: String? = snapshot.child("title").value as String?
-                                if (info == listName) {
-                                    Toast.makeText(
-                                        context_main,
-                                        "중복된 리스트(이름)가(이) 있습니다",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    Log.d("중복", "중복된 리스트(이름)가(이) 있습니다")
-                                    return
-                                }
-                            }
-                            setData(listName!!, listCntInt)
-                            //목록개수 입력
-                            listCntInt++
-                            database.getReference("User").child("${userId!!},${nickName!!}")
-                                .child("listCnt")
-                                .setValue(listCntInt)
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            TODO("Not yet implemented")
-                        }
-                    })
-            }
-        }
-    }
-
-    private fun setData(listName: String, listCntInt: Int) {
-        //추가하는 부분
-        //.push() 랜덤 키값 생성
-        Items.add(Data_items(listName))
-        database.getReference("User").child("${userId!!},${nickName!!}")
-            .child("titleList")
-            .push()
-            .child("title").setValue(listName)
-        Log.d("접근", "리스트추가체크${listCntInt}")
-        adapter?.notifyDataSetChanged()
-        listname.setText("")
     }
 
     fun listCounting() {

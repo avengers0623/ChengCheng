@@ -25,7 +25,8 @@ class My_page : AppCompatActivity(){
         Toast.makeText(this, "설정창 액티비티 실행", Toast.LENGTH_SHORT).show()
         val loginSignup = Intent(this,login_signup::class.java)
 
-        logout.setOnClickListener {
+        //kakao logout
+/*        logout.setOnClickListener {
             //카카오 로그아웃
             UserApiClient.instance.logout { error ->
                 if (error != null) {
@@ -36,13 +37,12 @@ class My_page : AppCompatActivity(){
                     startActivity(loginSignup)
                 }
             }
-        }
+        }*/
 
         google_logout.setOnClickListener {
             revokeAccess()
-            Toast.makeText(this,"구글 로그아웃 성공",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"구글 탈퇴 성공",Toast.LENGTH_LONG).show()
             startActivity(loginSignup)
-
         }
         exit.setOnClickListener {
             // 연결 끊기
@@ -60,7 +60,7 @@ class My_page : AppCompatActivity(){
 
 
         Version.setOnClickListener {
-            Version2.text = "버전 정보 : 1.0.0"
+            Version2.text = "버전 정보 : ${R.string.app_version}"
             Version2.visibility = View.VISIBLE
         }
 
@@ -70,7 +70,7 @@ class My_page : AppCompatActivity(){
         }
 
         source.setOnClickListener {
-            Version2.text = "카카오 firebase 네이버"
+            Version2.text = "${R.string.sources}"
             Version2.visibility = View.VISIBLE
         }
 

@@ -46,6 +46,7 @@
 
     </LinearLayout>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/additem_content"
         android:layout_width="match_parent"
@@ -60,6 +61,17 @@
             android:paddingBottom="50dp"
             tools:listitem="@layout/rv1_item"
             tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/itemcheck_style"
+            app:layout_constraintBottom_toTopOf="@id/bottomBar"/>
+        <include
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            layout="@layout/inputdata"
+            app:layout_constraintBottom_toTopOf="@id/bottomBar"/>
 
         <LinearLayout
             android:id="@+id/bottomBar"
@@ -93,7 +105,7 @@
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button_seve" />
+                app:layout_constraintStart_toEndOf="@+id/button_save" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

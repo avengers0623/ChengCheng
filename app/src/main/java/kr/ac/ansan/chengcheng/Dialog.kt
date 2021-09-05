@@ -14,8 +14,6 @@ import kr.ac.ansan.chengcheng.MainActivity.Companion.Items
 import kr.ac.ansan.chengcheng.MainActivity.Companion.adapter
 import kr.ac.ansan.chengcheng.MainActivity.Companion.context_main
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
-import kr.ac.ansan.chengcheng.MainActivity.Companion.listCnt
-import kr.ac.ansan.chengcheng.MainActivity.Companion.listCntInt
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 
@@ -23,9 +21,7 @@ class Dialog(context: Context) {
     private val dlg = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var lblDesc: TextView
     private lateinit var btnOK: Button
-    private lateinit var btnChange: Button
     private lateinit var btnDelete: Button
-
 
     private lateinit var listener: MyDialogOKClickedListener
 
@@ -45,11 +41,6 @@ class Dialog(context: Context) {
             dlg.dismiss()
         }
 
-        btnChange = dlg.findViewById(R.id.change)
-        btnChange.setOnClickListener {
-            dlg.dismiss()
-        }
-
 
         btnDelete = dlg.findViewById(R.id.delete)
         database = FirebaseDatabase.getInstance()
@@ -60,7 +51,7 @@ class Dialog(context: Context) {
             myRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     Log.d("실험", "${userId},${nickName}")
-                    Log.d("실험", "${listCnt}, ${listCntInt}")
+                    //Log.d("실험", "${listCnt}, ${listCntInt}")
                     for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
                         .child("titleList").children) {
 
@@ -76,7 +67,7 @@ class Dialog(context: Context) {
                             break
                         }
                     }
-                    //목록개수 가져오는 곳(카운트 다운)
+/*                    //목록개수 가져오는 곳(카운트 다운)
                     listCnt =
                         snapshot.child("${userId},${nickName}")
                             .child("listCnt").value.toString()
@@ -84,8 +75,8 @@ class Dialog(context: Context) {
                     val listCntResult = listCntInt - 1
                     myRef.child("${userId},${nickName}")
                         .child("listCnt").setValue(listCntResult)
-                    (context_main as MainActivity).clickAndBinding(listCntResult)
-                    Log.d("제거listCnt:", "성공적:${listCntInt}")
+                    (context_main as add_item).clickAndBinding(listCntResult)
+                    Log.d("제거listCnt:", "성공적:${listCntInt}")*/
                     adapter!!.notifyDataSetChanged()
                 }
 

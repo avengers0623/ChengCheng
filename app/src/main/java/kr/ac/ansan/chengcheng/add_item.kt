@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.add_item.*
 import kr.ac.ansan.chengcheng.MainActivity.Companion.Items
 import kr.ac.ansan.chengcheng.MainActivity.Companion.adapter
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
-import kr.ac.ansan.chengcheng.MainActivity.Companion.listCntInt
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 import java.text.SimpleDateFormat
@@ -39,6 +38,8 @@ class add_item : AppCompatActivity() {
     companion object {
         var context_additem: Context? = null
         var typedArrayRecycler: TypedArray? = null
+        var typedArray: TypedArray? = null
+//        var listCntInt = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +49,7 @@ class add_item : AppCompatActivity() {
         context_additem = this
         typedArrayRecycler = resources.obtainTypedArray(R.array.category)
 
-        val mainActivity = Intent(this, MainActivity::class.java)
+
 
 //        initDataset()
 //
@@ -109,55 +110,55 @@ class add_item : AppCompatActivity() {
 
         }
 
-
-
-
+        val mainActivity = Intent(this, MainActivity::class.java)
+// *** DB쓰기 ***
         button_save.setOnClickListener {
-            listCntInt
-            val listName = additem_title.text.toString()
-            if (listName.isNullOrEmpty()) {
-                Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
-            } else {
-                //title= "가평여행${listCnt}"
-                Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show()
-
-                database.getReference("User")
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
-                                .child("titleList").children) {
-                                val info: String? = snapshot.child("title").value as String?
-                                if (info == listName) {
-                                    Toast.makeText(
-                                        context_additem,
-                                        "중복된 리스트(이름)가(이) 있습니다",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    Log.d("중복", "중복된 리스트(이름)가(이) 있습니다")
-                                    return
-                                }
-                            }
-                            setData(listName!!, listCntInt)
-                            startActivity(mainActivity)
-                            //목록개수 입력
-                            listCntInt++
-                            database.getReference("User").child("${userId!!},${nickName!!}")
-                                .child("listCnt")
-                                .setValue(listCntInt)
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            TODO("Not yet implemented")
-                        }
-                    })
-            }
-
+            clickAndBinding(mainActivity)
         }
-
-
     }
 
-    private fun setData(listName: String, listCntInt: Int) {
+    fun clickAndBinding(intent: Intent){
+//        var listCntInt = listCntInt
+        val listName = additem_title.text.toString()
+        if (listName.isNullOrEmpty()) {
+            Toast.makeText(this, "제목을 입력해주세요", Toast.LENGTH_SHORT).show()
+        } else {
+            //title= "가평여행${listCnt}"
+            Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show()
+
+            database.getReference("User")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
+                            .child("titleList").children) {
+                            val info: String? = snapshot.child("title").value as String?
+                            if (info == listName) {
+                                Toast.makeText(
+                                    context_additem,
+                                    "중복된 리스트(이름)가(이) 있습니다",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                Log.d("중복", "중복된 리스트(이름)가(이) 있습니다")
+                                return
+                            }
+                        }
+                        setData(listName)
+                        startActivity(intent)
+                        /*//목록개수 입력
+                        listCntInt++
+                        database.getReference("User").child("${userId!!},${nickName!!}")
+                            .child("listCnt")
+                            .setValue(listCntInt)*/
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+                })
+        }
+    }
+
+    private fun setData(listName: String) {
         //추가하는 부분
         //.push() 랜덤 키값 생성
         Items.add(Data_items(listName))
@@ -165,7 +166,7 @@ class add_item : AppCompatActivity() {
             .child("titleList")
             .push()
             .child("title").setValue(listName)
-        Log.d("접근", "리스트추가체크${listCntInt}")
+        //Log.d("접근", "리스트추가체크${listCntInt}")
         adapter?.notifyDataSetChanged()
         additem_title.setText("")
     }
@@ -177,25 +178,24 @@ class add_item : AppCompatActivity() {
 
         val categorySub: MutableList<Data_addItem_2> = mutableListOf()
         val categorySub2: MutableList<Data_addItem_2> = mutableListOf()
-        var typedArray: TypedArray? = null
         var max: Int = 0
 
         //chengItem
         typedArray = resources.obtainTypedArray(R.array.chengItem)
-        max = typedArray.length()
+        max = typedArray!!.length()
         val chengItemList: Array<String> = resources.getStringArray(R.array.chengItemList)
         for (i in 0 until max) { // 0 until max면 max-1 값 리턴
             Log.d("길이", i.toString())
-            categorySub2.add(Data_addItem_2(typedArray.getResourceId(i, 0), chengItemList[i]))
+            categorySub2.add(Data_addItem_2(typedArray!!.getResourceId(i, 0), chengItemList[i]))
         }
 
         //camp
         typedArray = resources.obtainTypedArray(R.array.campList)
-        max = typedArray.length()
+        max = typedArray!!.length()
         val campNameList: Array<String> = resources.getStringArray(R.array.campNameList)
         for (i in 0 until max) { // 0 until max면 max-1 값 리턴
             Log.d("길이", i.toString())
-            categorySub.add(Data_addItem_2(typedArray.getResourceId(i, 0), campNameList[i]))
+            categorySub.add(Data_addItem_2(typedArray!!.getResourceId(i, 0), campNameList[i]))
         }
 
 
@@ -206,16 +206,15 @@ class add_item : AppCompatActivity() {
 //            rv1Data?.add(Data_addItem_1(it, categorySub))
 //        }
 
-            rv1Data?.add(Data_addItem_1(categoryList[0], categorySub))
-            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
-            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
-            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
-            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
-            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
-            rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+        rv1Data?.add(Data_addItem_1(categoryList[0], categorySub))
+        rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+        rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+        rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+        rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+        rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
+        rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
 
     }
-
 
 
     fun getTime(hour: Int, minute: Int, cal: Calendar) {

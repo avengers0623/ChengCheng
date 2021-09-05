@@ -26,39 +26,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo">
 
-        <LinearLayout
-            android:id="@+id/editText_idpw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logo">
-
-            <EditText
-                android:id="@+id/edittext_ID"
-                android:layout_width="245dp"
-                android:layout_height="40dp"
-                android:background="@drawable/style_edittext"
-                android:hint="아이디"
-                android:inputType="textPersonName"
-                android:maxLength="29"
-                android:paddingLeft="10dp"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/edittext_Password"
-                android:layout_width="245dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/style_edittext"
-                android:hint="비밀번호"
-                android:inputType="textPersonName|textPassword"
-                android:paddingLeft="10dp"
-                android:textSize="12sp" />
-
-        </LinearLayout>
 
         <Button
             android:id="@+id/login_button"
@@ -71,72 +38,30 @@
             app:layout_constraintTop_toBottomOf="@id/logo" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idpw_Form">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="아이디/비밀번호 찾기" />
-
-        <TextView
-            android:id="@+id/TextView_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:text="회원가입" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:layout_marginBottom="60dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/button_kakao_login"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:background="@drawable/kakao_login_medium_wide"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/style_kakao_login"/>
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/button_facebook_login"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/style_facebook_login"
-            android:text="페이스북로그인"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/button_kakao_login" />
-
-        <com.google.android.gms.common.SignInButton
+        <Button
             android:id="@+id/button_google_login"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/style_google_login"
-            android:text="구글 로그인"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/button_facebook_login" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/style_google_login"/>
 
     </LinearLayout>
 

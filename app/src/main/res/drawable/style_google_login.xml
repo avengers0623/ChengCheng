@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_enabled="false">
-        <shape>
-            <solid android:color="#F8F5F5"></solid>
-            <stroke android:color="#353333"></stroke>
-            <corners android:radius="12dp"></corners>
-            <size
-                android:width="90dp"
-                android:height="121dp"
-                />
-        </shape>
+    <item android:state_enabled="false" android:drawable="@drawable/btn_google_login">
     </item>
-    <item android:state_pressed="true">
-        <shape>
-            <solid android:color="#D1CACA"></solid>
-            <corners android:radius="12dp"></corners>
-            <size
-                android:width="87dp"
-                android:height="118dp"
-                />
-        </shape>
+    <item android:state_pressed="true" android:drawable="@drawable/btn_google_login_clicked">
     </item>
 </selector>

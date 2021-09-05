@@ -96,5 +96,5 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 
 
-
+    implementation "com.airbnb.android:lottie-compose:4.1.0"
 }

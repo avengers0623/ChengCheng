@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,38 +62,26 @@
             tools:layout_editor_absoluteX="65dp"
             tools:layout_editor_absoluteY="236dp" />
 
+        <EditText
+            android:id="@+id/social_age_text"
+            android:layout_width="282dp"
+            android:layout_height="43dp"
+            android:background="@drawable/style_edittext"
+            android:drawableLeft="@drawable/ic_add"
+            android:hint="나이 (선택사항)"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_Line" />
+
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/social_age_text"
-        android:layout_width="282dp"
-        android:layout_height="43dp"
-        android:background="@drawable/style_edittext"
-        android:drawableLeft="@drawable/ic_add"
-        android:hint="나이"
-        android:layout_marginTop="24dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_Line" />
 
 
-    <EditText
-        android:id="@+id/social_no_text"
-        android:layout_width="282dp"
-        android:layout_height="43dp"
-        android:background="@drawable/style_edittext"
-        android:hint="추천인 별명"
-        android:layout_marginTop="24dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:textSize="24sp"
-        android:drawableLeft="@drawable/name"
-        app:layout_constraintTop_toBottomOf="@+id/social_age_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -103,14 +91,14 @@
         app:layout_constraintBottom_toTopOf="@+id/start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/social_no_text">
+        app:layout_constraintTop_toBottomOf="@+id/name_Line">
 
         <CheckBox
             android:id="@+id/All"
             android:layout_width="334dp"
             android:layout_height="30dp"
             android:background="@drawable/style_edittext"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="15dp"
             android:buttonTint="#000000"
             android:text="전체 동의"
             android:textColor="#000000" />
@@ -119,7 +107,7 @@
             android:id="@+id/agreeCb"
             android:layout_width="334dp"
             android:layout_height="30dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/style_edittext"
             android:buttonTint="#000000"
             android:text="[필수] 서비스 이용 약관"
@@ -147,7 +135,7 @@
         android:layout_height="40dp"
         android:background="@drawable/style_btn_login"
         android:text="챙챙 시작하기"
-        android:layout_marginBottom="29dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

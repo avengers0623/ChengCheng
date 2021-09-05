@@ -1,5 +1,6 @@
 package kr.ac.ansan.chengcheng
 
+import android.content.res.TypedArray
 import android.icu.text.Edits
 import android.util.Log
 import android.view.LayoutInflater
@@ -70,15 +71,24 @@ class AdditemRVAdapter2(
         }
 
         val checkboxUser = holder.itemView.findViewById<CheckBox>(R.id.itemCheckBox)
+
+        val typedArray = add_item.typedArray
+
+
+
         checkboxUser.setOnClickListener {
 
-            if (!checkboxUser.isChecked) {
-                removeCheckedList(position)
-            } else {
-                addCheckedList(position)
-            }
-
         }
+
+//        checkboxUser.setOnClickListener {
+//            Log.d("큰카테고리", position1.toString())
+//            if (!checkboxUser.isChecked) {
+//                removeCheckedList(position)
+//            } else {
+//                addCheckedList(position)
+//            }
+//
+//        }
 
 
 //        Log.d("객체1", saveMap[position1].toString())
@@ -92,6 +102,8 @@ class AdditemRVAdapter2(
 //                checkboxUser.isChecked = checkboxStatus[position] == true
 //            }
 //        }
+
+
 
 
         //compareList = arrayListOf()

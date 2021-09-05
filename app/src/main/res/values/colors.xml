@@ -11,4 +11,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue_2251_1">#E3FEFE</color>
+    <color name="blue_2251_2">#CAF2F6</color>
+    <color name="blue_2251_3">#A4E4EA</color>
+    <color name="blue_2251_3_clicked">#718B8E</color>
+    <color name="blue_2251_4">#6DCACF</color>
+
 </resources>
