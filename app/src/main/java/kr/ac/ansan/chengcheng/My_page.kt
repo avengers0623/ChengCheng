@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
+import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.my_page.*
 
@@ -40,27 +41,38 @@ class My_page : AppCompatActivity(){
         }*/
 
         google_logout.setOnClickListener {
-            revokeAccess()
-            Toast.makeText(this,"구글 탈퇴 성공",Toast.LENGTH_LONG).show()
-            startActivity(loginSignup)
-        }
-        exit.setOnClickListener {
-            // 연결 끊기
-            UserApiClient.instance.unlink { error ->
-                if (error != null) {
-                    Log.e(ContentValues.TAG, "연결 끊기 실패", error)
-                }
-                else {
-                    Log.i(ContentValues.TAG, "연결 끊기 성공. SDK에서 토큰 삭제 됨")
-                    startActivity(loginSignup)
-                }
+            if(FirebaseAuth.getInstance().currentUser?.uid != null){
+                revokeAccess()
+                Toast.makeText(this,"구글 탈퇴 성공",Toast.LENGTH_LONG).show()
+                startActivity(loginSignup)
+            } else {
+                Toast.makeText(this, "카카오 로그인중", Toast.LENGTH_SHORT).show()
             }
+            
+        }
+        
+        exit.setOnClickListener {
+            if(AuthApiClient.instance.hasToken()){
+                // 연결 끊기
+                UserApiClient.instance.unlink { error ->
+                    if (error != null) {
+                        Log.e(ContentValues.TAG, "연결 끊기 실패", error)
+                    }
+                    else {
+                        Log.i(ContentValues.TAG, "연결 끊기 성공. SDK에서 토큰 삭제 됨")
+                        startActivity(loginSignup)
+                    }
+                }
+            } else {
+                Toast.makeText(this, "구글 로그인중", Toast.LENGTH_SHORT).show()
+            }
+            
         }
 
 
 
         Version.setOnClickListener {
-            Version2.text = "버전 정보 : ${R.string.app_version}"
+            Version2.text = R.string.app_version.toString()
             Version2.visibility = View.VISIBLE
         }
 
@@ -70,7 +82,7 @@ class My_page : AppCompatActivity(){
         }
 
         source.setOnClickListener {
-            Version2.text = "${R.string.sources}"
+            Version2.text = R.string.sources.toString()
             Version2.visibility = View.VISIBLE
         }
 
