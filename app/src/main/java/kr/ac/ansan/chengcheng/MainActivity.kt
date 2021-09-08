@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         //var kakao = (loginSignup as login_signup).kakao
         //Toast.makeText(this, "테스트$kakao", Toast.LENGTH_SHORT).show()
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) // 화면 세로로 고정 시키기
-        val addItem = Intent(this, add_item::class.java)
+        val addItem = Intent(this, Test_add_item::class.java)
         val mypage = Intent(this, My_page::class.java)
         Toast.makeText(this, "메인액티비티 실행", Toast.LENGTH_SHORT).show()
 

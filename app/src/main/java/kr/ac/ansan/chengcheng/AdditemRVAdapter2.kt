@@ -35,7 +35,7 @@ class AdditemRVAdapter2(
         private var frameLayout: FrameLayout? = null
 
         init {
-            frameLayout = itemView.frameLayout_addItem
+         //   frameLayout = itemView.frameLayout_addItem
 
             //오류나서 일단 주석처리(아마 중복이지 않을까)
 //            frameLayout!!.setOnClickListener {
@@ -70,38 +70,38 @@ class AdditemRVAdapter2(
             setData(item)
         }
 
-        val checkboxUser = holder.itemView.findViewById<CheckBox>(R.id.itemCheckBox)
+        //val checkboxUser = holder.itemView.findViewById<CheckBox>(R.id.itemCheckBox)
 
         val typedArray = add_item.typedArray
 
 
 
-        checkboxUser.setOnClickListener {
-
-        }
-
 //        checkboxUser.setOnClickListener {
-//            Log.d("큰카테고리", position1.toString())
-//            if (!checkboxUser.isChecked) {
-//                removeCheckedList(position)
-//            } else {
-//                addCheckedList(position)
-//            }
 //
 //        }
 
+/*        checkboxUser.setOnClickListener {
+            Log.d("큰카테고리", position1.toString())
+            if (!checkboxUser.isChecked) {
+                removeCheckedList(position)
+            } else {
+                addCheckedList(position)
+            }
 
-//        Log.d("객체1", saveMap[position1].toString())
-//        saveMap[position1]?.forEach {
-//            Log.d("마실험it", it.toString())
-//            checkboxStatus.put(it, true)
-//            Log.d("마실험status", "$checkboxStatus")
-//            Log.d("마실험save", saveMap.toString())
-//            if (checkboxStatus[it] == true) {
-//                Log.d("마실험status_position", "$position")
-//                checkboxUser.isChecked = checkboxStatus[position] == true
-//            }
-//        }
+        }*/
+
+
+/*        Log.d("객체1", saveMap[position1].toString())
+        saveMap[position1]?.forEach {
+            Log.d("마실험it", it.toString())
+            checkboxStatus.put(it, true)
+            Log.d("마실험status", "$checkboxStatus")
+            Log.d("마실험save", saveMap.toString())
+            if (checkboxStatus[it] == true) {
+                Log.d("마실험status_position", "$position")
+                checkboxUser.isChecked = checkboxStatus[position] == true
+            }
+        }*/
 
 
 

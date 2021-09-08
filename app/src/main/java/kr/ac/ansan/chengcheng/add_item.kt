@@ -1,6 +1,5 @@
 package kr.ac.ansan.chengcheng
 
-import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -47,7 +46,7 @@ class add_item : AppCompatActivity() {
         setContentView(R.layout.add_item)
 
         context_additem = this
-        typedArrayRecycler = resources.obtainTypedArray(R.array.category)
+        typedArrayRecycler = resources.obtainTypedArray(R.array.categoryListName)
 
 
 
@@ -67,7 +66,7 @@ class add_item : AppCompatActivity() {
 
 
         rv1Data = mutableListOf()
-        createData()
+        //createData()
 
         val adapterRV1 = AdditemRVAdapter(this)
         rv1.setHasFixedSize(true)
@@ -171,6 +170,7 @@ class add_item : AppCompatActivity() {
         additem_title.setText("")
     }
 
+/*
     @SuppressLint("ResourceType")
     fun createData() {
 
@@ -201,10 +201,10 @@ class add_item : AppCompatActivity() {
 
         //큰 카테고리
         val categoryList: Array<String> = resources.getStringArray(R.array.category)
-//        categoryList!!.forEach {
-//            Log.d("카테고리", it)
-//            rv1Data?.add(Data_addItem_1(it, categorySub))
-//        }
+        categoryList!!.forEach {
+            Log.d("카테고리", it)
+            rv1Data?.add(Data_addItem_1(it, categorySub))
+        }
 
         rv1Data?.add(Data_addItem_1(categoryList[0], categorySub))
         rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
@@ -215,6 +215,7 @@ class add_item : AppCompatActivity() {
         rv1Data?.add(Data_addItem_1(categoryList[1], categorySub2))
 
     }
+*/
 
 
     fun getTime(hour: Int, minute: Int, cal: Calendar) {
@@ -227,7 +228,7 @@ class add_item : AppCompatActivity() {
 
     private fun initDataset() {
         items.clear()
-        items.add(Data_addItem(R.drawable.ic_clothing, "의류"))
+        items.add(Data_addItem(R.drawable.ic_clothes_5, "의류"))
         items.add(Data_addItem(R.drawable.spider_man, "전자기기"))
         items.add(Data_addItem(R.drawable.black_panther, "세면용품"))
         items.add(Data_addItem(R.drawable.doctor, "여가활동"))

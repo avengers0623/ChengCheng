@@ -7,12 +7,12 @@
     <string name="msg_token_fmt">dodk</string>
 
 
-<!--    설정관리-->
+    <!--    설정관리-->
     <string name="app_version">1.0.0</string>
     <string name="sources">flaticon | lottie | hatchful</string>
 
 
-<!--    아이템 관리-->
+    <!--    아이템 관리-->
     <string name="category_default">챙챙 추천템</string>
     <string name="category1">의류</string>
     <string name="category2">전자기기</string>
@@ -20,8 +20,18 @@
     <string name="category4">캠핑용품</string>
     <string name="category5">비상용품</string>
     <string name="category6">기타</string>
-    <string-array name="category">
-        <item>챙챙 추천템</item>
+
+
+
+
+
+
+
+
+
+<!-- String Array 부분 -->
+    <string-array name="categoryListName">
+        <item>챙챙추천템</item>
         <item>의류</item>
         <item>전자기기</item>
         <item>세면도구</item>
@@ -30,93 +40,57 @@
         <item>기타</item>
     </string-array>
 
-    <string-array name="campList">
-        <item>@drawable/ic_camp_1</item>
-        <item>@drawable/ic_camp_2</item>
-        <item>@drawable/ic_camp_3</item>
-        <item>@drawable/ic_camp_4</item>
-        <item>@drawable/ic_camp_1</item>
-        <item>@drawable/ic_camp_2</item>
-        <item>@drawable/ic_camp_3</item>
-        <item>@drawable/ic_camp_4</item>
-        <item>@drawable/ic_camp_1</item>
-        <item>@drawable/ic_camp_2</item>
-        <item>@drawable/ic_camp_3</item>
-        <item>@drawable/ic_camp_4</item>
-        <item>@drawable/ic_camp_1</item>
-        <item>@drawable/ic_camp_2</item>
-        <item>@drawable/ic_camp_3</item>
-        <item>@drawable/ic_camp_4</item>
-        <item>@drawable/ic_camp_1</item>
-        <item>@drawable/ic_camp_2</item>
-        <item>@drawable/ic_camp_3</item>
-        <item>@drawable/ic_camp_4</item>
-        <item>@drawable/ic_camp_1</item>
-        <item>@drawable/ic_camp_2</item>
-        <item>@drawable/ic_camp_3</item>
-        <item>@drawable/ic_camp_4</item>
-        <item>@drawable/ic_camp_1</item>
-        <item>@drawable/ic_camp_2</item>
-        <item>@drawable/ic_camp_3</item>
-        <item>@drawable/ic_camp_4</item>
-        <item>@drawable/ic_camp_1</item>
-        <item>@drawable/ic_camp_2</item>
-        <item>@drawable/ic_camp_3</item>
-        <item>@drawable/ic_camp_4</item>
-        <item>@drawable/ic_camp_1</item>
-        <item>@drawable/ic_camp_2</item>
-        <item>@drawable/ic_camp_3</item>
-        <item>@drawable/ic_camp_4</item>
-    </string-array>
-    <string-array name="campNameList">
-        <item>구급상자</item>
-        <item>의자</item>
-        <item>낚시대</item>
-        <item>손전등</item>
-        <item>구급상자</item>
-        <item>의자</item>
-        <item>낚시대</item>
-        <item>손전등</item>
-        <item>구급상자</item>
-        <item>의자</item>
-        <item>낚시대</item>
-        <item>손전등</item>
-        <item>구급상자</item>
-        <item>의자</item>
-        <item>낚시대</item>
-        <item>손전등</item>
-        <item>구급상자</item>
-        <item>의자</item>
-        <item>낚시대</item>
-        <item>손전등</item>
-        <item>구급상자</item>
-        <item>의자</item>
-        <item>낚시대</item>
-        <item>손전등</item>
-        <item>구급상자</item>
-        <item>의자</item>
-        <item>낚시대</item>
-        <item>손전등</item>
-        <item>구급상자</item>
-        <item>의자</item>
-        <item>낚시대</item>
-        <item>손전등</item>
-        <item>구급상자</item>
-        <item>의자</item>
-        <item>낚시대</item>
-        <item>손전등</item>
-    </string-array>
-
-    <string-array name="chengItem">
+    <string-array name="chengIcon">
         <item>@drawable/ic_etc_1</item>
         <item>@drawable/ic_etc_2</item>
         <item>@drawable/ic_etc_3</item>
         <item>@drawable/ic_etc_4</item>
     </string-array>
-    <string-array name="chengItemList">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+    <string-array name="chengList">
+        <item>손소독제</item>
+        <item>손소독제2</item>
+        <item>간식</item>
+        <item>기타</item>
     </string-array>
+
+    <string-array name="clothesIcon">
+        <item>@drawable/ic_clothes_1</item>
+        <item>@drawable/ic_clothes_2</item>
+        <item>@drawable/ic_clothes_3</item>
+        <item>@drawable/ic_clothes_4</item>
+        <item>@drawable/ic_clothes_5</item>
+    </string-array>
+    <string-array name="clothesList">
+        <item>가방</item>
+        <item>캐리어</item>
+        <item>서류가방</item>
+        <item>시계</item>
+        <item>티셔츠</item>
+    </string-array>
+
+    <string-array name="electronicIcon">
+        <item>@drawable/ic_elec_1</item>
+        <item>@drawable/ic_elec_2</item>
+        <item>@drawable/ic_elec_3</item>
+    </string-array>
+    <string-array name="electronicList">
+        <item>보조배터리</item>
+        <item>카메라</item>
+        <item>충전기</item>
+    </string-array>
+
+    <string-array name="etcIcon">
+        <item>@drawable/ic_etc_1</item>
+        <item>@drawable/ic_etc_2</item>
+        <item>@drawable/ic_etc_3</item>
+        <item>@drawable/ic_etc_4</item>
+    </string-array>
+    <string-array name="etcList">
+        <item>손소독제</item>
+        <item>손소독제2</item>
+        <item>간식</item>
+        <item>기타</item>
+    </string-array>
+
+
 </resources>

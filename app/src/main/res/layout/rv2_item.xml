@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/frameLayout_addItem"
     android:layout_width="100dp"
     android:layout_height="100dp"
     android:layout_marginRight="20dp"
@@ -9,13 +8,13 @@
     android:layout_marginBottom="15dp"
     android:layout_marginTop="5dp">
 
-    <CheckBox
-        android:id="@+id/itemCheckBox"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:background="@drawable/itemcheck_style"
-        android:button="@null" />
+<!--    <CheckBox-->
+<!--        android:id="@+id/itemCheckBox"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:background="@drawable/itemcheck_style"-->
+<!--        android:button="@null" />-->
 
 
     <ImageView

@@ -11,7 +11,7 @@ import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
 
 class SplashActivity : Activity() {
-    val DURATION: Long = 1000
+    val DURATION: Long = 3000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
