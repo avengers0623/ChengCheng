@@ -12,10 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.facebook.*
-import com.facebook.appevents.AppEventsLogger
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -38,8 +35,6 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var googleSignInClient: GoogleSignInClient
     private val FB_SIGN_IN = 64206
-    private lateinit var loginManager: LoginManager
-    private lateinit var callbackManager: CallbackManager
 
     private val RC_SIGN_IN = 99
     var kakao = 0

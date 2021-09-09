@@ -60,7 +60,10 @@
             android:paddingTop="5dp"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="65dp"
-            tools:layout_editor_absoluteY="236dp" />
+            tools:layout_editor_absoluteY="236dp"
+            android:singleLine="true"
+            android:lines="1"
+            />
 
         <EditText
             android:id="@+id/social_age_text"
@@ -75,7 +78,9 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_Line" />
+            app:layout_constraintTop_toBottomOf="@+id/name_Line"
+            android:singleLine="true"
+            android:lines="1"/>
 
     </LinearLayout>
 

@@ -72,7 +72,7 @@ class My_page : AppCompatActivity(){
 
 
         Version.setOnClickListener {
-            Version2.text = R.string.app_version.toString()
+            Version2.text = getString(R.string.app_version) // getString을 붙여줘야함
             Version2.visibility = View.VISIBLE
         }
 
@@ -82,7 +82,7 @@ class My_page : AppCompatActivity(){
         }
 
         source.setOnClickListener {
-            Version2.text = R.string.sources.toString()
+            Version2.text = getString(R.string.sources)
             Version2.visibility = View.VISIBLE
         }
 
