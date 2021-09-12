@@ -6,7 +6,8 @@
     android:layout_marginRight="20dp"
     android:layout_marginLeft="15dp"
     android:layout_marginBottom="15dp"
-    android:layout_marginTop="5dp">
+    android:layout_marginTop="5dp"
+    android:id="@+id/framelayout_add">
 
 <!--    <CheckBox-->
 <!--        android:id="@+id/itemCheckBox"-->

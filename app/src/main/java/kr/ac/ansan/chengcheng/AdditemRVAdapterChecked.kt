@@ -10,18 +10,16 @@ import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.additem.view.*
+import kotlinx.android.synthetic.main.checked_items.view.*
 import kotlinx.android.synthetic.main.rv2_item.view.*
 
-class AdditemRVAdapter(
-) : RecyclerView.Adapter<AdditemRVAdapter.Rv2Holder>() {
-    var data = mutableListOf<Data_addItem_2>()
+class AdditemRVAdapterChecked(
+) : RecyclerView.Adapter<AdditemRVAdapterChecked.Rv3Holder>() {
+    var data = mutableListOf<CheckedItems>()
     private lateinit var itemClickListener: ItemClickListener
-    companion object{
 
-    }
-
-    interface ItemClickListener{
-        fun onClick(view : View, position: Int)
+    interface ItemClickListener {
+        fun onClick(view: View, position: Int)
     }
 
 
@@ -30,24 +28,20 @@ class AdditemRVAdapter(
     }
 
 
-    inner class Rv2Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var onViewHolderItemClickListener: OnViewHolderItemClickListener? = null
-        private var frameLayout: FrameLayout? = null
-
-        fun setData(data: Data_addItem_2) {
-            itemView.img_cover.setImageResource(data.getImage())
-            itemView.tv_name.text = data.imgName
+    inner class Rv3Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun setData(data: CheckedItems) {
+            itemView.itemview_img.setImageResource(data.img)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdditemRVAdapter.Rv2Holder {
-        return Rv2Holder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdditemRVAdapterChecked.Rv3Holder {
+        return Rv3Holder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.rv2_item, parent, false)
+                .inflate(R.layout.checked_items, parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: Rv2Holder, position: Int) {
+    override fun onBindViewHolder(holder: Rv3Holder, position: Int) {
         val item = data[position]
 
         holder.apply {
@@ -56,7 +50,7 @@ class AdditemRVAdapter(
 
         holder.itemView.setOnClickListener {
             notifyItemChanged(position)
-            itemClickListener.onClick(it,position)
+            itemClickListener.onClick(it, position)
         }
     }
 

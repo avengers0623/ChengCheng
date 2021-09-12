@@ -4,30 +4,22 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Vibrator
 import android.util.Log
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.add_item.*
-import kotlinx.android.synthetic.main.dialog.*
-import kr.ac.ansan.chengcheng.add_item.Companion.context_additem
-import kr.ac.ansan.chengcheng.login_signup.Companion.loginSignup
 import java.math.RoundingMode.valueOf
 import java.util.*
-import androidx.appcompat.app.AppCompatActivity.VIBRATOR_SERVICE as VIBRATOR_SERVICE1
+import kotlin.collections.HashMap
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,8 +38,7 @@ class MainActivity : AppCompatActivity() {
         var userId: String? = null
         var nickName: String? = null
         var listName: String? = null
-//        var listCnt: String? = null
-
+        var itemBox: MutableSet<Int>? = null
     }
 
     //날짜 포맷: SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
@@ -60,13 +51,16 @@ class MainActivity : AppCompatActivity() {
         //var kakao = (loginSignup as login_signup).kakao
         //Toast.makeText(this, "테스트$kakao", Toast.LENGTH_SHORT).show()
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) // 화면 세로로 고정 시키기
-        val addItem = Intent(this, Test_add_item::class.java)
+        val addItem = Intent(this, addItem::class.java)
         val mypage = Intent(this, My_page::class.java)
         Toast.makeText(this, "메인액티비티 실행", Toast.LENGTH_SHORT).show()
 
         context_main = this
 
-        //initDataset() //수동으로 데이터 불러오기
+        //additem 아이템 배열 초기화
+        itemBox = mutableSetOf()
+
+
 
         //리사이클러뷰 연결
 

@@ -10,7 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_add.view.linearlayout_add
+import kotlinx.android.synthetic.main.recycler_list_item.view.linearlayout_add
 import kotlinx.android.synthetic.main.recycler_list_item.view.*
 
 

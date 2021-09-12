@@ -51,7 +51,7 @@
         <activity android:name=".self_signup" />
         <activity android:name=".social_signup" />
         <activity
-            android:name=".Test_add_item"
+            android:name=".addItem"
             android:theme="@style/SpinnerAppTheme"
             android:windowSoftInputMode="adjustNothing|stateAlwaysHidden" />
         <activity android:name=".plus" />

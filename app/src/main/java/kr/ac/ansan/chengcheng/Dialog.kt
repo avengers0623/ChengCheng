@@ -34,6 +34,10 @@ class Dialog(context: Context) {
         lblDesc.text = content
         //adapter = context_main?.let { RecyclerViewAdapter(it, Items) }
 
+
+        //아이템 데이터들 불러오기
+
+
         dlg.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         btnOK = dlg.findViewById(R.id.ok)
         btnOK.setOnClickListener {
@@ -54,7 +58,6 @@ class Dialog(context: Context) {
                     //Log.d("실험", "${listCnt}, ${listCntInt}")
                     for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
                         .child("titleList").children) {
-
                         val info: String? = snapshot.child("title").value as String?
                         if (info == content) {
                             Log.d("제거대상 찾음:", info)
