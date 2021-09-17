@@ -20,6 +20,7 @@ class AdditemRVAdapter(
 
     }
 
+
     interface ItemClickListener{
         fun onClick(view : View, position: Int)
     }
