@@ -22,7 +22,6 @@ class AdditemRVAdapterChecked(
         fun onClick(view: View, position: Int)
     }
 
-
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener = itemClickListener
     }

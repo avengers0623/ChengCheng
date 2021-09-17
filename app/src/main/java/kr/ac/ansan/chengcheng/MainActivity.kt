@@ -19,6 +19,7 @@ import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
 import java.math.RoundingMode.valueOf
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         var userId: String? = null
         var nickName: String? = null
         var listName: String? = null
-        var itemBox: MutableSet<Int>? = null
+        var itemBox: MutableSet<Int>? = null //이거 필요없을듯
     }
 
     //날짜 포맷: SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
@@ -60,6 +61,11 @@ class MainActivity : AppCompatActivity() {
         //additem 아이템 배열 초기화
         itemBox = mutableSetOf()
 
+
+        //**************************************************************
+        //리스트 눌렀을때 처음에만 서버에서 불러오고 아이템들 (임시)배열에 저장
+        //두번째 눌렀을때 부터는 서버에서 불러오지 않고 배열 이용해서 띄어줌.
+        //**************************************************************
 
 
         //리사이클러뷰 연결

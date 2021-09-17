@@ -13,7 +13,7 @@
     <style name="SpinnerAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:timePickerMode">spinner</item>
-        <item name="android:statusBarColor">@color/blue_2251_1</item> <!-- 상단바 색 배경색 같음 -->
+        <item name="android:statusBarColor">@color/blue_2251_2</item> <!-- 상단바 색 배경색 같음 -->
         <item name="android:windowLightStatusBar">true</item> <!-- 상단바 아이콘 색 반전 -->
         <item name="android:radius">50dp</item>
         <item name="android:timePickerStyle">@style/SpinnerTimePicker</item>

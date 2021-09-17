@@ -23,8 +23,11 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.additem.*
 import kr.ac.ansan.chengcheng.MainActivity.Companion.itemBox
+import java.text.FieldPosition
+import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class addItem : AppCompatActivity() {
@@ -34,6 +37,7 @@ class addItem : AppCompatActivity() {
     var rv2Data: MutableList<Data_addItem_2>? = null
     var rv3Data: MutableList<CheckedItems>? = null
     var spinner_List_test = ArrayList<String>()
+    var indexForDelete: ArrayList<Int> = arrayListOf()
 
     companion object {
         var context_additem: Context? = null
@@ -127,8 +131,10 @@ class addItem : AppCompatActivity() {
         val alarm = Alarm_dialog(this)
         val mainActivity = Intent(this, MainActivity::class.java)
 
+
         //저장
         button_save.setOnClickListener {
+            // 아이템들 데이터베이스에 저장
             clickAndBinding(mainActivity)
         }
 
@@ -215,39 +221,68 @@ class addItem : AppCompatActivity() {
             rv2Data!!.add(Data_addItem_2(Icon.getResourceId(i, 0), List[i]))
         }
 
+        // 서브RV에 아이템 추가
         adapterRV.setItemClickListener(object : AdditemRVAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
-                Log.d("SSS", "${List[position]}")
+                //Log.d("SSS", )
                 //스크롤뷰에 아이템 추가 해야함
-                val iconIndex = Icon.getResourceId(position, 0)
-                itemBox?.add(iconIndex) //DB 에서 쓸라고
-                addImageScrollView(iconIndex, itemBox!!) // 리사이클러뷰(밑에있는거)에서 쓸라고
+                val iconRes = Icon.getResourceId(position, 0) // 이미지 소스 값
+                addImageScrollView(iconRes) // 리사이클러뷰(밑에있는거)에서 쓸라고
                 Log.d("SSS", itemBox!!.toString())
             }
 
         })
         adapterRV.notifyDataSetChanged()
+
+        // 서브RV 누르면 삭제
+        adapterRVChecked.setItemClickListener(object : AdditemRVAdapterChecked.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
+
+                val iconRes = indexForDelete[position]  // 이미지 소스 값
+                Log.d("testICON", "pos: ${position}, $iconRes")
+                delImageScrollView(iconRes)
+            }
+        })
     }
 
-    private fun addImageScrollView(iconIndex: Int, itemBox: MutableSet<Int>) {
 
-//        itemBox.forEach {
-//            if(it == iconIndex){
-//                Toast.makeText(this, "이미 중복된 항목", Toast.LENGTH_SHORT).show()
-//            } else{
-//                rv3Data!!.add(CheckedItems(iconIndex))
-//                adapterRVChecked.notifyDataSetChanged()
-//            }
-//        }
+    private fun addImageScrollView(iconRes: Int) {
 
-        rv3Data!!.add(CheckedItems(iconIndex))
+        var flag = true
+
+        if (itemBox!!.contains(iconRes)) {
+            Log.d("inddex", " 빠져나감 ")
+            Log.d("inddexBBBBBBBBB111111", flag.toString())
+            flag = false
+        }
+
+        if (flag) {
+            rv3Data!!.add(CheckedItems(iconRes))
+            adapterRVChecked.notifyDataSetChanged()
+            itemBox!!.add(iconRes) //DB 에서 쓸라고
+            indexForDelete.add(iconRes)
+            Log.d("indexDelete1", indexForDelete.toString())
+
+        }
+
+    }
+
+    private fun delImageScrollView(iconRes: Int) {
+        indexForDelete.remove(iconRes)
+        itemBox!!.remove(iconRes)
+        Log.d("test", itemBox!!.toString())
+        rv3Data!!.remove(CheckedItems(iconRes))
+        Log.d("test", rv3Data.toString())
         adapterRVChecked.notifyDataSetChanged()
-
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
-        itemBox!!.clear()
+
+        //이제 필요 없을듯.,.
+//        itemBox!!.clear()
+//        indexForDelete.clear()
     }
 }
 
