@@ -11,14 +11,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.additem.view.*
 import kotlinx.android.synthetic.main.rv2_item.view.*
+import kotlinx.android.synthetic.main.rv_dlg.view.*
 
-class AdditemRVAdapter(
-) : RecyclerView.Adapter<AdditemRVAdapter.Rv2Holder>() {
-    var data = mutableListOf<Data_addItem_2>()
+class AdditemRVAdapterDialog(
+) : RecyclerView.Adapter<AdditemRVAdapterDialog.Rv2Holder>() {
+    var data = mutableListOf<DialogItems>()
     private lateinit var itemClickListener: ItemClickListener
-    companion object{
-
-    }
 
 
     interface ItemClickListener{
@@ -33,16 +31,15 @@ class AdditemRVAdapter(
 
     inner class Rv2Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun setData(data: Data_addItem_2) {
-            itemView.img_cover.setImageResource(data.img)
-            itemView.tv_name.text = data.imgName
+        fun setData(data: DialogItems) {
+            itemView.img_cover_dlg.setImageResource(data.img)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdditemRVAdapter.Rv2Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdditemRVAdapterDialog.Rv2Holder {
         return Rv2Holder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.rv2_item, parent, false)
+                .inflate(R.layout.rv_dlg, parent, false)
         )
     }
 

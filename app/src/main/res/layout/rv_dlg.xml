@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_margin="10dp"
+    android:id="@+id/framelayout_add_dlg">
+
+
+    <ImageView
+        android:id="@+id/img_cover_dlg"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_name_dlg"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="제목"-->
+<!--        android:textAlignment="center" />-->
+
+
+</FrameLayout>

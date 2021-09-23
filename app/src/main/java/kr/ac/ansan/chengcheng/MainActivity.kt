@@ -25,11 +25,8 @@ import kotlin.collections.HashMap
 
 class MainActivity : AppCompatActivity() {
     private lateinit var dlg_view: View
-
-    private var key: String? = null
-
     private var ProfileImg: String? = null
-
+    private var dlgItems: ArrayList<Int> = arrayListOf()
 
     companion object {
         val Items: ArrayList<Data_items> = ArrayList()
@@ -39,7 +36,9 @@ class MainActivity : AppCompatActivity() {
         var userId: String? = null
         var nickName: String? = null
         var listName: String? = null
+        var indexForDelete: ArrayList<Int> = arrayListOf()
         var itemBox: MutableSet<Int>? = null //이거 필요없을듯
+        var dlgItemsMap: HashMap<Int,ArrayList<Int>> = hashMapOf()
     }
 
     //날짜 포맷: SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
@@ -62,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         itemBox = mutableSetOf()
 
 
+
         //**************************************************************
         //리스트 눌렀을때 처음에만 서버에서 불러오고 아이템들 (임시)배열에 저장
         //두번째 눌렀을때 부터는 서버에서 불러오지 않고 배열 이용해서 띄어줌.
@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         adapter?.notifyDataSetChanged()
+
         // 사용자 정보 요청 (기본)
         UserApiClient.instance.me { user, error ->
             if (error != null) {
@@ -112,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("User")//.child("${userId},${nickName}")
 
-
+        var cnt = 0
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.e("접근", "함수 진입")
@@ -129,12 +130,20 @@ class MainActivity : AppCompatActivity() {
                     for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
                         .child("titleList").children) {
                         Log.e("접근", "키키키(for문내부):${snapshot.child("title").value}")
+                        Log.e("접근", "키키키(for문내부):${snapshot.child("item").value}")
 
                         //val info: Data_items? = snapshot.child("title").getValue(Data_items::class.java)
                         val info: String? = snapshot.child("title").value as String?
                         //Log.d("info", info.toString())
                         //val infoString: String? = info!!.getTitle()
                         Items.add(Data_items(info!!))
+                        dlgItems = snapshot.child("item").value as ArrayList<Int>
+                        dlgItemsMap[cnt] = dlgItems
+                        cnt++
+                        Log.d("DialogTitle", info)
+                        Log.d("DialogTitle", dlgItemsMap.toString())
+                        Log.d("DialogTitle", dlgItems.javaClass.name)
+
                         Log.d("ReadDB", "카운트")
                     }
 
@@ -179,11 +188,7 @@ class MainActivity : AppCompatActivity() {
         //일괄로 작성하는 것이 비효율적 일수도 있음..
     }
 
-    private fun makeKey(): String? { //랜덤 키값 구하는 함수
-        key = database.getReference("User").child("${userId!!},${nickName!!}").child("title")
-            .push().key.toString()
-        return key
-    }
+
 
 //    private fun initDataset() {
 //        Items.clear()
@@ -192,6 +197,4 @@ class MainActivity : AppCompatActivity() {
 
 
 }
-
-
 

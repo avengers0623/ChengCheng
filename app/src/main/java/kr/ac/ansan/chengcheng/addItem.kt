@@ -8,10 +8,8 @@ import android.content.res.TypedArray
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,24 +21,28 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.additem.*
 import kr.ac.ansan.chengcheng.MainActivity.Companion.itemBox
-import java.text.FieldPosition
-import java.time.LocalDate
+import kr.ac.ansan.chengcheng.MainActivity.Companion.Items
+import kr.ac.ansan.chengcheng.MainActivity.Companion.adapter
+import kr.ac.ansan.chengcheng.MainActivity.Companion.database
+import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
+import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 
 class addItem : AppCompatActivity() {
     private lateinit var spinner: Spinner
     private lateinit var adapterRV: AdditemRVAdapter
     private lateinit var adapterRVChecked: AdditemRVAdapterChecked
+    private var key: String? = null
     var rv2Data: MutableList<Data_addItem_2>? = null
     var rv3Data: MutableList<CheckedItems>? = null
     var spinner_List_test = ArrayList<String>()
-    var indexForDelete: ArrayList<Int> = arrayListOf()
+
 
     companion object {
         var context_additem: Context? = null
+        var indexForDelete: ArrayList<Int> = arrayListOf()
     }
 
 
@@ -49,6 +51,7 @@ class addItem : AppCompatActivity() {
         setContentView(R.layout.additem)
 
         context_additem = this
+
 
         //  카테고리 덩어리
         //나중에 클래스든 어디든 모아놓기
@@ -168,10 +171,10 @@ class addItem : AppCompatActivity() {
             //title= "가평여행${listCnt}"
             // Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show()
 
-            MainActivity.database.getReference("User")
+            database.getReference("User")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        for (snapshot: DataSnapshot in snapshot.child("${MainActivity.userId},${MainActivity.nickName}")
+                        for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
                             .child("titleList").children) {
                             val info: String? = snapshot.child("title").value as String?
                             if (info == listName) {
@@ -195,6 +198,7 @@ class addItem : AppCompatActivity() {
 
                     override fun onCancelled(error: DatabaseError) {
                         TODO("Not yet implemented")
+
                     }
                 })
         }
@@ -203,14 +207,27 @@ class addItem : AppCompatActivity() {
     private fun setData(listName: String) {
         //추가하는 부분
         //.push() 랜덤 키값 생성
-        MainActivity.Items.add(Data_items(listName))
-        MainActivity.database.getReference("User")
-            .child("${MainActivity.userId!!},${MainActivity.nickName!!}")
+        val key2 = makeKey()
+        Items.add(Data_items(listName))
+        database.getReference("User")
+            .child("${userId!!},${nickName!!}")
             .child("titleList")
-            .push()
-            .child("title").setValue(listName)
+            .child(key2!!)
+            .child("title")
+            .setValue(listName)
+
+
+        database.getReference("User")
+            .child("${userId!!},${nickName!!}")
+            .child("titleList")
+            .child(key2)
+            .child("item")
+            .setValue(indexForDelete)
+
+
+        Items.add(Data_items())
         //Log.d("접근", "리스트추가체크${listCntInt}")
-        MainActivity.adapter?.notifyDataSetChanged()
+        adapter?.notifyDataSetChanged()
         additem_title.setText("")
     }
 
@@ -281,8 +298,14 @@ class addItem : AppCompatActivity() {
         super.onDestroy()
 
         //이제 필요 없을듯.,.
-//        itemBox!!.clear()
-//        indexForDelete.clear()
+        itemBox!!.clear()
+        indexForDelete.clear()
+    }
+
+    fun makeKey(): String? { //랜덤 키값 구하는 함수
+        key = database.getReference("User").child("${userId!!},${nickName!!}").child("title")
+            .push().key.toString()
+        return key
     }
 }
 

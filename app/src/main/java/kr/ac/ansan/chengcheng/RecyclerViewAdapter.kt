@@ -73,6 +73,11 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
         var linearlayout: LinearLayout? = null
         var onViewHolderItemClickListener: OnViewHolderItemClickListener? = null
         val dig = Dialog(itemView.context)
+
+        companion object{
+            var dlgPosition: Int? = null
+        }
+
         init {
             //one = itemView.one
             two = itemView.two
@@ -80,6 +85,8 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
 
             linearlayout!!.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
+                    dlgPosition = position
+
                     dig.start("${two!!.text}")
 
                     onViewHolderItemClickListener!!.onViewHolderItemClick()

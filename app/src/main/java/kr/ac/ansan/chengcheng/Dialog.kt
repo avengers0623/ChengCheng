@@ -8,20 +8,29 @@ import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.ac.ansan.chengcheng.MainActivity.Companion.Items
 import kr.ac.ansan.chengcheng.MainActivity.Companion.adapter
 import kr.ac.ansan.chengcheng.MainActivity.Companion.context_main
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
+import kr.ac.ansan.chengcheng.MainActivity.Companion.dlgItemsMap
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
+import kr.ac.ansan.chengcheng.RecyclerViewAdapter.MyViewHolder.Companion.dlgPosition
+import java.math.RoundingMode
 
 class Dialog(context: Context) {
     private val dlg = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var lblDesc: TextView
     private lateinit var btnOK: Button
     private lateinit var btnDelete: Button
+
+    private lateinit var adapterRV: AdditemRVAdapterDialog
+    private lateinit var rvData: MutableList<DialogItems>
+    private val items: ArrayList<DialogItems> = ArrayList()
 
     private lateinit var listener: MyDialogOKClickedListener
 
@@ -36,6 +45,29 @@ class Dialog(context: Context) {
 
 
         //아이템 데이터들 불러오기
+        adapterRV = AdditemRVAdapterDialog()
+        rvData = mutableListOf()
+        var rv = dlg.findViewById<RecyclerView>(R.id.dlg_rv)
+        rv.setHasFixedSize(true)
+        rv.adapter = adapterRV
+        rvData.let {
+            adapterRV.data = it
+        }
+        rv.layoutManager = GridLayoutManager(dlg.context, 3, RecyclerView.VERTICAL, false)
+
+
+        //DB연동
+        database = FirebaseDatabase.getInstance()
+        val myRef2 = database.getReference("User")//.child("${userId},${nickName}")
+
+        val mainActivity = MainActivity()
+        Log.d("Dialog", dlgItemsMap.toString())
+
+
+        dlgItemsMap[dlgPosition]!!.forEach {
+            rvData.add(DialogItems(it))
+        }
+
 
 
         dlg.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
