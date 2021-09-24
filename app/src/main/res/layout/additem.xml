@@ -32,7 +32,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:hint="챙챙 여행"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            android:singleLine="true"
+            android:lines="1"/>
 
         <ImageView
             android:id="@+id/alarm_im"
@@ -62,6 +64,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:padding="5dp"
+            android:layout_marginRight="5dp"
             tools:listitem="@layout/rv2_item" />
 
         <androidx.recyclerview.widget.RecyclerView

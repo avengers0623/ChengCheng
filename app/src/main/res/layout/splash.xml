@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f4f9ff">
+    android:background="#f4f9ff"
+   >
 
     <ImageView
         android:layout_width="150dp"
@@ -26,7 +27,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading3" />
+        app:lottie_rawRes="@raw/loading3"
+        tools:ignore="MissingClass" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

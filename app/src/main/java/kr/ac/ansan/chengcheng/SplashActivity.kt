@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.android.synthetic.main.splash.*
 
 class SplashActivity : Activity() {
     val DURATION: Long = 3000
@@ -17,6 +18,7 @@ class SplashActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash)
 
+
         val loginSignup = Intent(this, login_signup::class.java)
         val mainActivity = Intent(this, MainActivity::class.java)
 
@@ -24,6 +26,14 @@ class SplashActivity : Activity() {
             accountAvailable(mainActivity)
         } else {
             accountAvailable(loginSignup)
+        }
+
+        animationView.setOnClickListener {
+            if (FirebaseAuth.getInstance().currentUser?.uid != null || AuthApiClient.instance.hasToken()) {
+                clickAccountAvailable(mainActivity)
+            } else {
+                clickAccountAvailable(loginSignup)
+            }
         }
     }
 
@@ -36,6 +46,14 @@ class SplashActivity : Activity() {
         }, DURATION)
     }
 
+    private fun clickAccountAvailable(intent: Intent) {
+        Handler().postDelayed({
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
+            overridePendingTransition(anim.fade_in, anim.fade_out)
+            finish()
+        }, 100)
+    }
     override fun onBackPressed() {
         // We don't want the splash screen to be interrupted
     }

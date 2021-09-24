@@ -61,6 +61,10 @@ class addItem : AppCompatActivity() {
         val clothesList: Array<String> = resources.getStringArray(R.array.clothesList)
         val electronicIcon: TypedArray = resources.obtainTypedArray(R.array.electronicIcon)
         val electronicList: Array<String> = resources.getStringArray(R.array.electronicList)
+        val campIcon: TypedArray = resources.obtainTypedArray(R.array.campIcon)
+        val campList: Array<String> = resources.getStringArray(R.array.campList)
+        val etcIcon: TypedArray = resources.obtainTypedArray(R.array.etcIcon)
+        val etcList: Array<String> = resources.getStringArray(R.array.etcList)
 
 
         spinner = findViewById(R.id.spinner)
@@ -88,8 +92,8 @@ class addItem : AppCompatActivity() {
                     spinner_List_test[0] -> selectedItemSet(chengIcon, chengList)
                     spinner_List_test[1] -> selectedItemSet(clothesIcon, clothesList)
                     spinner_List_test[2] -> selectedItemSet(electronicIcon, electronicList)
-//                    spinner_List_test[3] -> selectedItemSet(itemIconList.chengIcon, itemIconList.chengList),
-//                    spinner_List_test[4] -> selectedItemSet(itemIconList.chengIcon, itemIconList.chengList),
+                    spinner_List_test[3] -> selectedItemSet(campIcon, campList)
+                    spinner_List_test[4] -> selectedItemSet(etcIcon, etcList)
 //                    spinner_List_test[5] -> selectedItemSet(itemIconList.chengIcon, itemIconList.chengList),
 //                    spinner_List_test[6] -> selectedItemSet(itemIconList.chengIcon, itemIconList.chengList),
                 }
@@ -116,7 +120,7 @@ class addItem : AppCompatActivity() {
             //배열에 데이터가 있는지 확인 후, 어댑터의 data에 설정
             adapterRV.data = it
         }
-        rv2.layoutManager = GridLayoutManager(this, 3, RecyclerView.HORIZONTAL, false)
+        rv2.layoutManager = GridLayoutManager(this, 4, RecyclerView.VERTICAL, false)
 
         // 아이템 체크 어댑터
         adapterRVChecked = AdditemRVAdapterChecked()

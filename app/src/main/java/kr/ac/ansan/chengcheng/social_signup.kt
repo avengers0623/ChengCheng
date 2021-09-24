@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.social_signup.*
 import kotlinx.android.synthetic.main.social_signup.All
 import kotlinx.android.synthetic.main.social_signup.agreeCb
 import kotlinx.android.synthetic.main.social_signup.agreeCb2
+import kr.ac.ansan.chengcheng.MainActivity.Companion.social_name
 import java.util.regex.Pattern
 
 class social_signup : AppCompatActivity() {
@@ -31,9 +32,6 @@ class social_signup : AppCompatActivity() {
         social_name_text = findViewById(R.id.social_name_text)
         social_age_text = findViewById(R.id.social_age_text)
 
-        var test = 0
-        var test2 = 0
-
 
 
         agreeCb2.setOnClickListener {
@@ -45,10 +43,10 @@ class social_signup : AppCompatActivity() {
             if (social_name_text.text.isEmpty()) {
                 Toast.makeText(this, "별명을 입력해 주세요", Toast.LENGTH_SHORT).show()
             } else if(!social_name_text.text.matches(("^[a-zA-Z0-9ㄱ-ㅎ가-힣]+\$").toRegex())){
-                Toast.makeText(this, "별명을 확인해 주세요(특수문자 제외)", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "별명을 확인해 주세요(특수문자,띄어쓰기 제외)", Toast.LENGTH_SHORT).show()
             } else {
                 if (agreeCb.isChecked && agreeCb2.isChecked) {
-                    test = 1
+                    social_name = social_name_text.text.toString()
                     startActivity(mainPage)
                     finish()
                 } else if (agreeCb.isChecked) {

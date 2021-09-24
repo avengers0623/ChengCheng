@@ -53,7 +53,7 @@ class Dialog(context: Context) {
         rvData.let {
             adapterRV.data = it
         }
-        rv.layoutManager = GridLayoutManager(dlg.context, 3, RecyclerView.VERTICAL, false)
+        rv.layoutManager = GridLayoutManager(dlg.context, 5, RecyclerView.VERTICAL, false)
 
 
         //DB연동
@@ -67,7 +67,13 @@ class Dialog(context: Context) {
         dlgItemsMap[dlgPosition]!!.forEach {
             rvData.add(DialogItems(it))
         }
+        adapterRV.setItemClickListener(object : AdditemRVAdapterDialog.ItemClickListener{
+            override fun onClick(view: View, position: Int) {
 
+                Log.d("test333","$position")
+            }
+
+        })
 
         dlg.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         btnOK = dlg.findViewById(R.id.ok)

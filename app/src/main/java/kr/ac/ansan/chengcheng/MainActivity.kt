@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         var userId: String? = null
         var nickName: String? = null
         var listName: String? = null
+        var social_name : String? = null
         var itemBox: MutableSet<Int>? = null //이거 필요없을듯
         var dlgItemsMap: HashMap<Int,ArrayList<Int>> = hashMapOf()
     }
@@ -56,10 +57,13 @@ class MainActivity : AppCompatActivity() {
 
         context_main = this
 
+
         //additem 아이템 배열 초기화
         itemBox = mutableSetOf()
 
 
+        var user_nickname = social_name
+        listOfNickname1.text = user_nickname
 
         //**************************************************************
         //리스트 눌렀을때 처음에만 서버에서 불러오고 아이템들 (임시)배열에 저장
