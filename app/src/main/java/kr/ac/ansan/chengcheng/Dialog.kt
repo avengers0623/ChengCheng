@@ -69,7 +69,6 @@ class Dialog(context: Context) {
         }
 
 
-
         dlg.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         btnOK = dlg.findViewById(R.id.ok)
         btnOK.setOnClickListener {

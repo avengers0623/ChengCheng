@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         var userId: String? = null
         var nickName: String? = null
         var listName: String? = null
-        var indexForDelete: ArrayList<Int> = arrayListOf()
         var itemBox: MutableSet<Int>? = null //이거 필요없을듯
         var dlgItemsMap: HashMap<Int,ArrayList<Int>> = hashMapOf()
     }

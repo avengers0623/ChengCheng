@@ -188,6 +188,7 @@ class addItem : AppCompatActivity() {
                             }
                         }
                         setData(listName)
+                        indexForDelete.clear()
                         startActivity(intent)
                         /*//목록개수 입력
                         listCntInt++
