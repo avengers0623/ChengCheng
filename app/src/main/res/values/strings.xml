@@ -62,6 +62,9 @@
         <item>@drawable/ic_clothes_6</item>
         <item>@drawable/ic_clothes_7</item>
         <item>@drawable/ic_clothes_8</item>
+        <item>@drawable/ic_clothes_9</item>
+        <item>@drawable/ic_clothes_10</item>
+        <item>@drawable/ic_clothes_11</item>
     </string-array>
     <string-array name="clothesList">
         <item>가방</item>
@@ -72,6 +75,9 @@
         <item>바지</item>
         <item>겉옷</item>
         <item>우비</item>
+        <item>속옷</item>
+        <item>슬리퍼</item>
+        <item>신발</item>
     </string-array>
 
     <string-array name="electronicIcon">
@@ -79,6 +85,12 @@
         <item>@drawable/ic_elec_2</item>
         <item>@drawable/ic_elec_3</item>
         <item>@drawable/ic_elec_4</item>
+        <item>@drawable/ic_elec_5</item>
+        <item>@drawable/ic_elec_6</item>
+        <item>@drawable/ic_elec_7</item>
+        <item>@drawable/ic_elec_8</item>
+        <item>@drawable/ic_elec_9</item>
+        <item>@drawable/ic_elec_10</item>
 
     </string-array>
     <string-array name="electronicList">
@@ -86,6 +98,12 @@
         <item>카메라</item>
         <item>충전기</item>
         <item>USB</item>
+        <item>드라이기</item>
+        <item>블루투스 마이크</item>
+        <item>라디오</item>
+        <item>게임기</item>
+        <item>노트북</item>
+        <item>스마트워치</item>
 
     </string-array>
 
@@ -96,6 +114,14 @@
         <item>@drawable/ic_camp_4</item>
         <item>@drawable/ic_camp_5</item>
         <item>@drawable/ic_camp_6</item>
+        <item>@drawable/ic_camp_7</item>
+        <item>@drawable/ic_camp_8</item>
+        <item>@drawable/ic_camp_9</item>
+        <item>@drawable/ic_camp_10</item>
+        <item>@drawable/ic_camp_11</item>
+        <item>@drawable/ic_camp_12</item>
+        <item>@drawable/ic_camp_13</item>
+        <item>@drawable/ic_camp_14</item>
 
     </string-array>
     <string-array name="campList">
@@ -105,6 +131,14 @@
         <item>손전등</item>
         <item>칼</item>
         <item>라이터</item>
+        <item>접시</item>
+        <item>허브솔트</item>
+        <item>가위</item>
+        <item>그릴</item>
+        <item>테이블</item>
+        <item>베개</item>
+        <item>텐트</item>
+        <item>집게</item>
     </string-array>
 
     <string-array name="etcIcon">
@@ -117,6 +151,14 @@
         <item>@drawable/ic_etc_7</item>
         <item>@drawable/ic_etc_8</item>
         <item>@drawable/ic_etc_9</item>
+        <item>@drawable/ic_etc_10</item>
+        <item>@drawable/ic_etc_11</item>
+        <item>@drawable/ic_etc_12</item>
+        <item>@drawable/ic_etc_13</item>
+        <item>@drawable/ic_etc_14</item>
+        <item>@drawable/ic_etc_15</item>
+        <item>@drawable/ic_etc_16</item>
+        <item>@drawable/ic_etc_17</item>
 
 
     </string-array>
@@ -130,6 +172,15 @@
         <item>여권</item>
         <item>휴지</item>
         <item>헤어롤</item>
+        <item>샴푸</item>
+        <item>면도기</item>
+        <item>비누</item>
+        <item>칫솔,치약</item>
+        <item>수건</item>
+        <item>삼각대</item>
+        <item>물통</item>
+        <item>우산</item>
+
     </string-array>
 
 
