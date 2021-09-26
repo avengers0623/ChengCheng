@@ -1,40 +1,48 @@
 package kr.ac.ansan.chengcheng
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.res.TypedArray
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.additem.*
-import kr.ac.ansan.chengcheng.MainActivity.Companion.itemBox
 import kr.ac.ansan.chengcheng.MainActivity.Companion.Items
 import kr.ac.ansan.chengcheng.MainActivity.Companion.adapter
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
+import kr.ac.ansan.chengcheng.MainActivity.Companion.itemBox
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
+import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class addItem : AppCompatActivity() {
+class addItem : AppCompatActivity(){
     private lateinit var spinner: Spinner
     private lateinit var adapterRV: AdditemRVAdapter
     private lateinit var adapterRVChecked: AdditemRVAdapterChecked
     private var key: String? = null
+    private var alarmManager: AlarmManager? = null
+    private var mCalender: GregorianCalendar? = null
+    private var notificationManager: NotificationManager? = null
+    var builder: NotificationCompat.Builder? = null
+
     var rv2Data: MutableList<Data_addItem_2>? = null
     var rv3Data: MutableList<CheckedItems>? = null
     var spinner_List_test = ArrayList<String>()
@@ -48,9 +56,16 @@ class addItem : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+
+        mCalender = GregorianCalendar()
+
         setContentView(R.layout.additem)
 
         context_additem = this
+
 
 
         //  카테고리 덩어리
@@ -130,8 +145,8 @@ class addItem : AppCompatActivity() {
         rv3Data?.let {
             adapterRVChecked.data = it
         }
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManager = GridLayoutManager(this, 5, RecyclerView.VERTICAL, false)
+     //   layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         itemcheck_recyclerView.layoutManager = layoutManager
 
 
@@ -166,7 +181,7 @@ class addItem : AppCompatActivity() {
         }
     }
 
-    fun clickAndBinding(intent: Intent) {
+    private fun clickAndBinding(intent: Intent) {
 //        var listCntInt = listCntInt
         val listName = additem_title.text.toString()
         if (listName.isNullOrEmpty()) {
@@ -305,6 +320,7 @@ class addItem : AppCompatActivity() {
         //이제 필요 없을듯.,.
         itemBox!!.clear()
         indexForDelete.clear()
+        // additem 액티비티 나갈때 파괴해야함
     }
 
     fun makeKey(): String? { //랜덤 키값 구하는 함수
@@ -312,6 +328,7 @@ class addItem : AppCompatActivity() {
             .push().key.toString()
         return key
     }
+
 }
 
 

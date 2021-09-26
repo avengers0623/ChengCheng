@@ -16,10 +16,9 @@
     <string name="category_default">챙챙 추천템</string>
     <string name="category1">의류</string>
     <string name="category2">전자기기</string>
-    <string name="category3">세면도구</string>
-    <string name="category4">캠핑용품</string>
-    <string name="category5">비상용품</string>
-    <string name="category6">기타</string>
+    <string name="category3">캠핑용품</string>
+    <string name="category4">비상용품</string>
+    <string name="category5">기타</string>
 
 
 
@@ -35,7 +34,6 @@
         <item>의류</item>
         <item>전자기기</item>
         <item>캠핑용품</item>
-        <item>세면도구</item>
         <item>비상용품</item>
         <item>기타</item>
     </string-array>
@@ -62,6 +60,8 @@
         <item>@drawable/ic_clothes_4</item>
         <item>@drawable/ic_clothes_5</item>
         <item>@drawable/ic_clothes_6</item>
+        <item>@drawable/ic_clothes_7</item>
+        <item>@drawable/ic_clothes_8</item>
     </string-array>
     <string-array name="clothesList">
         <item>가방</item>
@@ -70,6 +70,8 @@
         <item>시계</item>
         <item>티셔츠</item>
         <item>바지</item>
+        <item>겉옷</item>
+        <item>우비</item>
     </string-array>
 
     <string-array name="electronicIcon">
@@ -77,12 +79,14 @@
         <item>@drawable/ic_elec_2</item>
         <item>@drawable/ic_elec_3</item>
         <item>@drawable/ic_elec_4</item>
+
     </string-array>
     <string-array name="electronicList">
         <item>보조배터리</item>
         <item>카메라</item>
         <item>충전기</item>
         <item>USB</item>
+
     </string-array>
 
     <string-array name="campIcon">
@@ -100,7 +104,7 @@
         <item>낚시대</item>
         <item>손전등</item>
         <item>칼</item>
-        <item>라이</item>
+        <item>라이터</item>
     </string-array>
 
     <string-array name="etcIcon">
@@ -111,16 +115,21 @@
         <item>@drawable/ic_etc_5</item>
         <item>@drawable/ic_etc_6</item>
         <item>@drawable/ic_etc_7</item>
+        <item>@drawable/ic_etc_8</item>
+        <item>@drawable/ic_etc_9</item>
+
 
     </string-array>
     <string-array name="etcList">
         <item>손소독제</item>
         <item>손소독제2</item>
-        <item>간식</item>권
+        <item>간식</item>
         <item>기타</item>
         <item>신분증</item>
         <item>돈</item>
-        <item>여</item>
+        <item>여권</item>
+        <item>휴지</item>
+        <item>헤어롤</item>
     </string-array>
 
 
