@@ -4,8 +4,8 @@
         <!-- Customize your theme here. -->
         <item name="android:statusBarColor">#f4f9ff</item> <!-- 상단바 색 배경색 같음 -->
         <item name="android:windowLightStatusBar">true</item> <!-- 상단바 아이콘 색 반전 -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/blue_2251_3</item>
+        <item name="colorPrimaryDark">@color/blue_2251_3</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

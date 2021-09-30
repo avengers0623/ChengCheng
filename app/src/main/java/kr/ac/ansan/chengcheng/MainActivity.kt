@@ -1,9 +1,9 @@
 package kr.ac.ansan.chengcheng
 
-import android.app.TimePickerDialog
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,19 +12,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
 import java.math.RoundingMode.valueOf
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
     private lateinit var dlg_view: View
     private var ProfileImg: String? = null
     private var dlgItems: ArrayList<Int> = arrayListOf()
@@ -32,14 +33,15 @@ class MainActivity : AppCompatActivity(){
     companion object {
         val Items: ArrayList<Data_items> = ArrayList()
         var context_main: Context? = null
-        lateinit var database: FirebaseDatabase
+        var database = FirebaseDatabase.getInstance()
         var adapter: RecyclerViewAdapter? = null
+        var platformFlag: String? = null
         var userId: String? = null
         var nickName: String? = null
         var listName: String? = null
-        var social_name : String? = null
+        var social_name: String? = null
         var itemBox: MutableSet<Int>? = null //이거 필요없을듯
-        var dlgItemsMap: HashMap<Int,ArrayList<Int>> = hashMapOf()
+        var dlgItemsMap: HashMap<Int, ArrayList<Int>> = hashMapOf()
     }
 
     //날짜 포맷: SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
@@ -63,9 +65,6 @@ class MainActivity : AppCompatActivity(){
         itemBox = mutableSetOf()
 
 
-        var user_nickname = social_name
-        listOfNickname1.text = user_nickname
-
         //**************************************************************
         //리스트 눌렀을때 처음에만 서버에서 불러오고 아이템들 (임시)배열에 저장
         //두번째 눌렀을때 부터는 서버에서 불러오지 않고 배열 이용해서 띄어줌.
@@ -87,35 +86,50 @@ class MainActivity : AppCompatActivity(){
 
         adapter?.notifyDataSetChanged()
 
-        // 사용자 정보 요청 (기본)
-        UserApiClient.instance.me { user, error ->
-            if (error != null) {
-                Log.e(ContentValues.TAG, "사용자 정보 요청 실패", error)
-            } else if (user != null) {
-                Log.i(
-                    ContentValues.TAG, "사용자 정보 요청 성공" +
-                            "\n회원번호: ${user.id}" +
-                            "\n이메일: ${user.kakaoAccount?.email}" +
-                            "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
-                            "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}" +
-                            "\n성별: ${user.kakaoAccount?.gender}" +
-                            "\n나이 :${user.kakaoAccount?.ageRange}"
-                )
-                // 프로필사진 변수로 받아오기
-                ProfileImg = user.kakaoAccount?.profile?.thumbnailImageUrl
-                userId = user.id.toString()
-                nickName = user.kakaoAccount?.profile?.nickname
-                // 이미지뷰에 프로필사진 띄우기
-                Glide.with(this)
-                    .load(ProfileImg)
-                    .into(my_page)
 
+        // 사용자 정보 요청 (카카오!!!)
+        if(AuthApiClient.instance.hasToken()){
+            UserApiClient.instance.me { user, error ->
+                if (error != null) {
+                    Log.e(ContentValues.TAG, "사용자 정보 요청 실패", error)
+                } else if (user != null) {
+                    Log.i(
+                        ContentValues.TAG, "사용자 정보 요청 성공" +
+                                "\n회원번호: ${user.id}" +
+                                "\n이메일: ${user.kakaoAccount?.email}" +
+                                "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
+                                "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}" +
+                                "\n성별: ${user.kakaoAccount?.gender}" +
+                                "\n나이 :${user.kakaoAccount?.ageRange}"
+                    )
+                    // 프로필사진 변수로 받아오기
+                    ProfileImg = user.kakaoAccount?.profile?.thumbnailImageUrl
+                    userId = user.id.toString()
+                    nickName = user.kakaoAccount?.profile?.nickname
+                    // 이미지뷰에 프로필사진 띄우기
+                    Glide.with(this)
+                        .load(ProfileImg)
+                        .into(my_page)
+
+                }
             }
         }
 
+
+        // 사용자 정보 요청 (구글!!!)
+        val firebaseAuth = FirebaseAuth.getInstance()
+        if (firebaseAuth.currentUser?.uid != null) {
+            userId = firebaseAuth.currentUser!!.uid
+            nickName = firebaseAuth.currentUser!!.displayName
+            ProfileImg = firebaseAuth.currentUser!!.photoUrl.toString()
+            Glide.with(this)
+                .load(profileImage)
+                .into(my_page)
+        }
+
+
         //DB연동
-        database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("User")//.child("${userId},${nickName}")
+        val myRef = database.getReference("User")//.child("${platformFlag},${userId},${nickName}")
 
         var cnt = 0
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -126,12 +140,16 @@ class MainActivity : AppCompatActivity(){
 
                 Log.e(
                     "접근",
-                    "키키키:${snapshot.child("${userId},${nickName}").child("titleList").value}"
+                    "키키키:${snapshot.child("${platformFlag},${userId},${nickName}").child("titleList").value}"
                 )
 
-                if (snapshot.child("${userId},${nickName}").exists()) {
+                if (snapshot.child("${platformFlag},${userId},${nickName}").exists()) {
                     Log.d("ReadDB", "계정정보 찾음")
-                    for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
+
+                    //별명 불러오는 부분
+                    listNameSubmit(snapshot)
+
+                    for (snapshot: DataSnapshot in snapshot.child("${platformFlag},${userId},${nickName}")
                         .child("titleList").children) {
                         Log.e("접근", "키키키(for문내부):${snapshot.child("title").value}")
                         Log.e("접근", "키키키(for문내부):${snapshot.child("item").value}")
@@ -153,7 +171,7 @@ class MainActivity : AppCompatActivity(){
 
                     /*//목록개수 가져오는 곳
                     listCnt =
-                        snapshot.child("${userId},${nickName}")
+                        snapshot.child("${platformFlag},${userId},${nickName}")
                             .child("listCnt").value.toString()
                     Log.e("접근", "성공적(개수가져오고바로의값)${listCnt}")
                     //(context_additem as add_item).clickAndBinding(listCnt!!.toInt())*/
@@ -184,6 +202,21 @@ class MainActivity : AppCompatActivity(){
             startActivity(mypage)
         }
 
+
+
+    }
+
+    private fun listNameSubmit(snapshot: DataSnapshot) {
+        if (social_name != null) { //한번만 실행됨
+            var user_nickname = social_name
+            listOfNickname1.text = user_nickname
+        } else {
+            //데이터베이스 값 가져오기
+            val nickname = snapshot.child("${platformFlag},${userId},${nickName}").child("nickName").value
+            Log.d("nickName", nickname as String)
+            listOfNickname1.text = nickname
+        }
+
     }
 
     fun listCounting() {
@@ -191,7 +224,6 @@ class MainActivity : AppCompatActivity(){
         //근데 일일히 카운팅 하는 것 보다
         //일괄로 작성하는 것이 비효율적 일수도 있음..
     }
-
 
 
 //    private fun initDataset() {

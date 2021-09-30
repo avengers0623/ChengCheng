@@ -3,29 +3,29 @@ package kr.ac.ansan.chengcheng
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Base64.encode
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.login_signup.*
-import java.security.MessageDigest
+import kr.ac.ansan.chengcheng.MainActivity.Companion.database
+import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
+import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
+import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 
 
 class login_signup : AppCompatActivity(), View.OnClickListener {
@@ -52,10 +52,9 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
 
         val intent = Intent(context, social_signup::class.java)
 
-        val selfsignup = Intent(this, self_signup::class.java)
         val activitymain = Intent(this, MainActivity::class.java)
 
-
+        //구글 로그인
         button_google_login.setOnClickListener {
             signIn()
         }
@@ -84,11 +83,12 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
                     Log.i(TAG, "로그인 성공 ${token.accessToken}")
                     kakao++
                     //intent = Intent(Intent.ACTION_VIEW,  Uri.parse(KakaoTalkLinkProtocol.TALK_MARKET_URL_PREFIX_2 + makeReferrer()))
-                    startActivity(intent)
+                    //startActivity(intent)
+                    userExists("ka", activitymain, intent)
                 }
             }
 
-// 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
+            // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
                 UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
             } else {
@@ -103,6 +103,68 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
             startActivity(activitymain)
         }
     }
+
+    private fun userExists(platform: String, activitymain: Intent, socialSignup: Intent) {
+        val myRef = database.getReference("User")
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(snapshot: DataSnapshot in snapshot.child("${platform},${userId},${nickName}")
+                .child("titleList").children){
+                    Log.d("타",snapshot.child("title").value.toString())
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+            })
+
+
+/*        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (snapshot: DataSnapshot in snapshot.children) {
+                    Log.d("platformFlag", snapshot.key.toString())
+                    val platformFlagSplit = snapshot.key.toString().substring(0, 2)
+                    val nameFlagArray = snapshot.key.toString().split(",")
+                    val idFlagSplit = nameFlagArray[1]
+                    Log.d("platformFlag", platformFlagSplit)
+                    Log.d("platformFlag", idFlagSplit)
+
+                    when (platform) {
+                        "ka" -> {
+                            UserApiClient.instance.me { user, error ->
+                                if (error != null) {
+
+                                } else if (user != null) {
+                                    val id = user.id.toString()
+                                    if (id == idFlagSplit) {
+                                        startActivity(activitymain)
+                                        finish()
+                                    }
+                                }
+                            }
+                        }
+
+                        "go" -> {
+                            val id = firebaseAuth.currentUser!!.uid
+                            if(id == idFlagSplit){
+                                startActivity(activitymain)
+                                finish()
+                            }
+                        }
+                    }
+                }
+
+                startActivity(socialSignup)
+                finish()
+            }
+
+
+        })*/
+        startActivity(socialSignup)
+        finish()
+        }
 
 
     public override fun onStart() {
@@ -134,7 +196,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
 
     // firebaseAuthWithGoogle
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        val socialSignup = Intent(this, social_signup::class.java)
+        val activitymain = Intent(this, MainActivity::class.java)
 
         Log.d("LoginActivity", "firebaseAuthWithGoogle:" + acct.id!!)
 
@@ -146,8 +208,8 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
                     Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
                     toMainActivity(firebaseAuth?.currentUser)
                     var google = 2
-                    startActivity(socialSignup)
-                    finish()
+                    //startActivity(socialSignup)
+                    userExists("go", activitymain, intent)
                 } else {
                     Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
 

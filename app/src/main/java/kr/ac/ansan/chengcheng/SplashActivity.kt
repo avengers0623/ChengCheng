@@ -12,7 +12,6 @@ import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.splash.*
 
 class SplashActivity : Activity() {
-    val DURATION: Long = 3000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,21 +22,21 @@ class SplashActivity : Activity() {
         val mainActivity = Intent(this, MainActivity::class.java)
 
         if (FirebaseAuth.getInstance().currentUser?.uid != null || AuthApiClient.instance.hasToken()) {
-            accountAvailable(mainActivity)
+            accountAvailable(mainActivity, 3000)
         } else {
-            accountAvailable(loginSignup)
+            accountAvailable(loginSignup, 3000)
         }
 
         animationView.setOnClickListener {
             if (FirebaseAuth.getInstance().currentUser?.uid != null || AuthApiClient.instance.hasToken()) {
-                clickAccountAvailable(mainActivity)
+                accountAvailable(mainActivity, 100)
             } else {
-                clickAccountAvailable(loginSignup)
+                accountAvailable(loginSignup, 100)
             }
         }
     }
 
-    private fun accountAvailable(intent: Intent) {
+    private fun accountAvailable(intent: Intent, DURATION: Long) {
         Handler().postDelayed({
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
@@ -46,14 +45,6 @@ class SplashActivity : Activity() {
         }, DURATION)
     }
 
-    private fun clickAccountAvailable(intent: Intent) {
-        Handler().postDelayed({
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
-            overridePendingTransition(anim.fade_in, anim.fade_out)
-            finish()
-        }, 100)
-    }
     override fun onBackPressed() {
         // We don't want the splash screen to be interrupted
     }

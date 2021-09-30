@@ -1,24 +1,19 @@
 package kr.ac.ansan.chengcheng
 
-import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.text.Spanned
-import android.util.Log
-import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApiClient
-import kotlinx.android.synthetic.main.activity_privacy_policy.*
-import kotlinx.android.synthetic.main.self_signup.*
 import kotlinx.android.synthetic.main.social_signup.*
-import kotlinx.android.synthetic.main.social_signup.All
-import kotlinx.android.synthetic.main.social_signup.agreeCb
-import kotlinx.android.synthetic.main.social_signup.agreeCb2
+import kr.ac.ansan.chengcheng.MainActivity.Companion.database
+import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
+import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
 import kr.ac.ansan.chengcheng.MainActivity.Companion.social_name
-import java.util.regex.Pattern
+import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 
 class social_signup : AppCompatActivity() {
 
@@ -42,13 +37,40 @@ class social_signup : AppCompatActivity() {
             //정보 확인
             if (social_name_text.text.isEmpty()) {
                 Toast.makeText(this, "별명을 입력해 주세요", Toast.LENGTH_SHORT).show()
-            } else if(!social_name_text.text.matches(("^[a-zA-Z0-9ㄱ-ㅎ가-힣]+\$").toRegex())){
+            } else if (!social_name_text.text.matches(("^[a-zA-Z0-9ㄱ-ㅎ가-힣]+\$").toRegex())) {
                 Toast.makeText(this, "별명을 확인해 주세요(특수문자,띄어쓰기 제외)", Toast.LENGTH_SHORT).show()
             } else {
                 if (agreeCb.isChecked && agreeCb2.isChecked) {
+
+                    //별명 DB에 등록 하는 부분
                     social_name = social_name_text.text.toString()
+
+                    if (AuthApiClient.instance.hasToken()) {
+                        UserApiClient.instance.me { user, error ->
+                            if (error != null) {
+
+                            } else if (user != null) {
+                                userId = user.id.toString()
+                                nickName = user.kakaoAccount?.profile?.nickname
+                            }
+                        }
+                        platformFlag = "ka"
+                    }
+                    val firebaseAuth = FirebaseAuth.getInstance()
+                    if (firebaseAuth.currentUser?.uid != null) {
+                        userId = firebaseAuth.currentUser!!.uid
+                        nickName = firebaseAuth.currentUser!!.displayName
+                        platformFlag = "go"
+                    }
+
+                    database.getReference("User")
+                        .child("${platformFlag},${userId},${nickName}")
+                        .child("nickName")
+                        .setValue(social_name)
+
                     startActivity(mainPage)
                     finish()
+
                 } else if (agreeCb.isChecked) {
                     Toast.makeText(this, "개인정보 취급방침에 동의 하셔야 합니다", Toast.LENGTH_SHORT).show()
                 } else if (agreeCb2.isChecked) {

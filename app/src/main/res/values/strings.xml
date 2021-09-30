@@ -17,12 +17,18 @@
     <string name="category1">의류</string>
     <string name="category2">전자기기</string>
     <string name="category3">캠핑용품</string>
-    <string name="category4">비상용품</string>
-    <string name="category5">기타</string>
+    <string name="category4">필수품</string>
+    <string name="category5">세면도구</string>
+    <string name="category6">비상용품</string>
+    <string name="category7">기타</string>
 
 
 
-
+<!--
+    <item>생활관련</item>
+    <item>세안관련</item>
+    <item>의약관련</item>
+-->
 
 
 
@@ -34,20 +40,20 @@
         <item>의류</item>
         <item>전자기기</item>
         <item>캠핑용품</item>
+        <item>필수품</item>
+        <item>세면도구</item>
         <item>비상용품</item>
         <item>기타</item>
     </string-array>
 
     <string-array name="chengIcon">
         <item>@drawable/ic_etc_1</item>
-        <item>@drawable/ic_etc_2</item>
         <item>@drawable/ic_etc_3</item>
         <item>@drawable/ic_etc_4</item>
-        <item>@drawable/ic_etc_5</item>
+        <item>@drawable/ic_key_1</item>
     </string-array>
     <string-array name="chengList">
         <item>손소독제</item>
-        <item>손소독제2</item>
         <item>간식</item>
         <item>기타</item>
         <item>신분증</item>
@@ -65,6 +71,9 @@
         <item>@drawable/ic_clothes_9</item>
         <item>@drawable/ic_clothes_10</item>
         <item>@drawable/ic_clothes_11</item>
+        <item>@drawable/ic_clothes_12</item>
+        <item>@drawable/ic_clothes_13</item>
+        <item>@drawable/ic_clothes_14</item>
     </string-array>
     <string-array name="clothesList">
         <item>가방</item>
@@ -78,6 +87,9 @@
         <item>속옷</item>
         <item>슬리퍼</item>
         <item>신발</item>
+        <item>안경</item>
+        <item>장갑</item>
+        <item>양말</item>
     </string-array>
 
     <string-array name="electronicIcon">
@@ -91,6 +103,7 @@
         <item>@drawable/ic_elec_8</item>
         <item>@drawable/ic_elec_9</item>
         <item>@drawable/ic_elec_10</item>
+        <item>@drawable/ic_elec_11</item>
 
     </string-array>
     <string-array name="electronicList">
@@ -104,11 +117,11 @@
         <item>게임기</item>
         <item>노트북</item>
         <item>스마트워치</item>
+        <item>태블릿</item>
 
     </string-array>
 
     <string-array name="campIcon">
-        <item>@drawable/ic_camp_1</item>
         <item>@drawable/ic_camp_2</item>
         <item>@drawable/ic_camp_3</item>
         <item>@drawable/ic_camp_4</item>
@@ -125,7 +138,6 @@
 
     </string-array>
     <string-array name="campList">
-        <item>구급상자</item>
         <item>의자</item>
         <item>낚시대</item>
         <item>손전등</item>
@@ -141,6 +153,58 @@
         <item>집게</item>
     </string-array>
 
+    <string-array name="keyIcon">
+        <item>@drawable/ic_key_1</item>
+        <item>@drawable/ic_key_2</item>
+        <item>@drawable/ic_key_3</item>
+        <item>@drawable/ic_key_4</item>
+        <item>@drawable/ic_key_5</item>
+
+    </string-array>
+    <string-array name="keyList">
+        <item>신분증</item>
+        <item>돈</item>
+        <item>여권</item>
+        <item>차키</item>
+        <item>지갑</item>
+    </string-array>
+
+    <string-array name="washIcon">
+        <item>@drawable/ic_wash_1</item>
+        <item>@drawable/ic_wash_2</item>
+        <item>@drawable/ic_wash_3</item>
+        <item>@drawable/ic_wash_4</item>
+        <item>@drawable/ic_wash_5</item>
+        <item>@drawable/ic_wash_6</item>
+        <item>@drawable/ic_wash_7</item>
+        <item>@drawable/ic_wash_8</item>
+        <item>@drawable/ic_wash_9</item>
+        <item>@drawable/ic_wash_10</item>
+
+    </string-array>
+    <string-array name="washList">
+        <item>헤어롤</item>
+        <item>샴푸</item>
+        <item>면도기</item>
+        <item>비누</item>
+        <item>칫솔,치약</item>
+        <item>수건</item>
+        <item>화장품</item>
+        <item>핸드크림</item>
+        <item>빗</item>
+        <item>로션</item>
+    </string-array>
+
+    <string-array name="emgIcon">
+        <item>@drawable/ic_emg_1</item>
+        <item>@drawable/ic_emg_2</item>
+    </string-array>
+    <string-array name="emgList">
+        <item>약</item>
+        <item>구급상자</item>
+    </string-array>
+
+
     <string-array name="etcIcon">
         <item>@drawable/ic_etc_1</item>
         <item>@drawable/ic_etc_2</item>
@@ -150,37 +214,33 @@
         <item>@drawable/ic_etc_6</item>
         <item>@drawable/ic_etc_7</item>
         <item>@drawable/ic_etc_8</item>
-        <item>@drawable/ic_etc_9</item>
         <item>@drawable/ic_etc_10</item>
         <item>@drawable/ic_etc_11</item>
         <item>@drawable/ic_etc_12</item>
-        <item>@drawable/ic_etc_13</item>
         <item>@drawable/ic_etc_14</item>
         <item>@drawable/ic_etc_15</item>
         <item>@drawable/ic_etc_16</item>
         <item>@drawable/ic_etc_17</item>
 
 
+
     </string-array>
     <string-array name="etcList">
         <item>손소독제</item>
-        <item>손소독제2</item>
         <item>간식</item>
         <item>기타</item>
-        <item>신분증</item>
-        <item>돈</item>
-        <item>여권</item>
         <item>휴지</item>
-        <item>헤어롤</item>
-        <item>샴푸</item>
-        <item>면도기</item>
-        <item>비누</item>
-        <item>칫솔,치약</item>
-        <item>수건</item>
         <item>삼각대</item>
         <item>물통</item>
         <item>우산</item>
-
+        <item>인공눈물</item>
+        <item>담배</item>
+        <item>종이</item>
+        <item>마스크</item>
+        <item>책</item>
+        <item>볼펜</item>
+        <item>목베게</item>
+        <item>삼각대</item>
     </string-array>
 
 

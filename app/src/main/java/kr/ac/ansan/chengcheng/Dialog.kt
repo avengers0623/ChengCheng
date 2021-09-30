@@ -18,6 +18,7 @@ import kr.ac.ansan.chengcheng.MainActivity.Companion.context_main
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
 import kr.ac.ansan.chengcheng.MainActivity.Companion.dlgItemsMap
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
+import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 import kr.ac.ansan.chengcheng.RecyclerViewAdapter.MyViewHolder.Companion.dlgPosition
 import java.math.RoundingMode
@@ -58,7 +59,7 @@ class Dialog(context: Context) {
 
         //DB연동
         database = FirebaseDatabase.getInstance()
-        val myRef2 = database.getReference("User")//.child("${userId},${nickName}")
+        val myRef2 = database.getReference("User")//.child("${platformFlag},${userId},${nickName}")
 
         val mainActivity = MainActivity()
         Log.d("Dialog", dlgItemsMap.toString())
@@ -91,9 +92,9 @@ class Dialog(context: Context) {
             //삭제기능
             myRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    Log.d("실험", "${userId},${nickName}")
+                    Log.d("실험", "${platformFlag},${userId},${nickName}")
                     //Log.d("실험", "${listCnt}, ${listCntInt}")
-                    for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
+                    for (snapshot: DataSnapshot in snapshot.child("${platformFlag},${userId},${nickName}")
                         .child("titleList").children) {
                         val info: String? = snapshot.child("title").value as String?
                         if (info == content) {
@@ -109,11 +110,11 @@ class Dialog(context: Context) {
                     }
 /*                    //목록개수 가져오는 곳(카운트 다운)
                     listCnt =
-                        snapshot.child("${userId},${nickName}")
+                        snapshot.child("${platformFlag},${userId},${nickName}")
                             .child("listCnt").value.toString()
                     listCntInt = listCnt!!.toInt()
                     val listCntResult = listCntInt - 1
-                    myRef.child("${userId},${nickName}")
+                    myRef.child("${platformFlag},${userId},${nickName}")
                         .child("listCnt").setValue(listCntResult)
                     (context_main as add_item).clickAndBinding(listCntResult)
                     Log.d("제거listCnt:", "성공적:${listCntInt}")*/

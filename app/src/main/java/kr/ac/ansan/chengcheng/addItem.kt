@@ -1,21 +1,20 @@
 package kr.ac.ansan.chengcheng
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.NotificationManager
-import android.app.PendingIntent
 import android.app.TimePickerDialog
-import android.content.ContentValues.TAG
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.res.TypedArray
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -27,8 +26,8 @@ import kr.ac.ansan.chengcheng.MainActivity.Companion.adapter
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
 import kr.ac.ansan.chengcheng.MainActivity.Companion.itemBox
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
+import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
-import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -38,10 +37,6 @@ class addItem : AppCompatActivity(){
     private lateinit var adapterRV: AdditemRVAdapter
     private lateinit var adapterRVChecked: AdditemRVAdapterChecked
     private var key: String? = null
-    private var alarmManager: AlarmManager? = null
-    private var mCalender: GregorianCalendar? = null
-    private var notificationManager: NotificationManager? = null
-    var builder: NotificationCompat.Builder? = null
 
     var rv2Data: MutableList<Data_addItem_2>? = null
     var rv3Data: MutableList<CheckedItems>? = null
@@ -56,11 +51,7 @@ class addItem : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-        alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-
-        mCalender = GregorianCalendar()
 
         setContentView(R.layout.additem)
 
@@ -78,6 +69,12 @@ class addItem : AppCompatActivity(){
         val electronicList: Array<String> = resources.getStringArray(R.array.electronicList)
         val campIcon: TypedArray = resources.obtainTypedArray(R.array.campIcon)
         val campList: Array<String> = resources.getStringArray(R.array.campList)
+        val keyIcon: TypedArray = resources.obtainTypedArray(R.array.keyIcon)
+        val keyList: Array<String> = resources.getStringArray(R.array.keyList)
+        val washIcon: TypedArray = resources.obtainTypedArray(R.array.washIcon)
+        val washList: Array<String> = resources.getStringArray(R.array.washList)
+        val emgIcon: TypedArray = resources.obtainTypedArray(R.array.emgIcon)
+        val emgList: Array<String> = resources.getStringArray(R.array.emgList)
         val etcIcon: TypedArray = resources.obtainTypedArray(R.array.etcIcon)
         val etcList: Array<String> = resources.getStringArray(R.array.etcList)
 
@@ -108,9 +105,10 @@ class addItem : AppCompatActivity(){
                     spinner_List_test[1] -> selectedItemSet(clothesIcon, clothesList)
                     spinner_List_test[2] -> selectedItemSet(electronicIcon, electronicList)
                     spinner_List_test[3] -> selectedItemSet(campIcon, campList)
-                    spinner_List_test[4] -> selectedItemSet(etcIcon, etcList)
-//                    spinner_List_test[5] -> selectedItemSet(itemIconList.chengIcon, itemIconList.chengList),
-//                    spinner_List_test[6] -> selectedItemSet(itemIconList.chengIcon, itemIconList.chengList),
+                    spinner_List_test[4] -> selectedItemSet(keyIcon,keyList )
+                    spinner_List_test[5] -> selectedItemSet(washIcon,washList)
+                    spinner_List_test[6] -> selectedItemSet(emgIcon,emgList)
+                    spinner_List_test[7] -> selectedItemSet(etcIcon,etcList)
                 }
             }
 
@@ -135,7 +133,7 @@ class addItem : AppCompatActivity(){
             //배열에 데이터가 있는지 확인 후, 어댑터의 data에 설정
             adapterRV.data = it
         }
-        rv2.layoutManager = GridLayoutManager(this, 4, RecyclerView.VERTICAL, false)
+        rv2.layoutManager = GridLayoutManager(this, 3, RecyclerView.HORIZONTAL, false)
 
         // 아이템 체크 어댑터
         adapterRVChecked = AdditemRVAdapterChecked()
@@ -193,7 +191,7 @@ class addItem : AppCompatActivity(){
             database.getReference("User")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        for (snapshot: DataSnapshot in snapshot.child("${userId},${nickName}")
+                        for (snapshot: DataSnapshot in snapshot.child("${platformFlag},${userId},${nickName}")
                             .child("titleList").children) {
                             val info: String? = snapshot.child("title").value as String?
                             if (info == listName) {
@@ -230,7 +228,7 @@ class addItem : AppCompatActivity(){
         val key2 = makeKey()
         Items.add(Data_items(listName))
         database.getReference("User")
-            .child("${userId!!},${nickName!!}")
+            .child("${platformFlag},${userId},${nickName}")
             .child("titleList")
             .child(key2!!)
             .child("title")
@@ -238,7 +236,7 @@ class addItem : AppCompatActivity(){
 
 
         database.getReference("User")
-            .child("${userId!!},${nickName!!}")
+            .child("${platformFlag},${userId},${nickName}")
             .child("titleList")
             .child(key2)
             .child("item")
@@ -324,7 +322,7 @@ class addItem : AppCompatActivity(){
     }
 
     fun makeKey(): String? { //랜덤 키값 구하는 함수
-        key = database.getReference("User").child("${userId!!},${nickName!!}").child("title")
+        key = database.getReference("User").child("${platformFlag},${userId},${nickName}").child("title")
             .push().key.toString()
         return key
     }
