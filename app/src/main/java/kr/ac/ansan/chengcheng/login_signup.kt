@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.login_signup.*
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
+import kr.ac.ansan.chengcheng.MainActivity.Companion.social_platform
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 
 
@@ -116,6 +117,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
 
         if (platform == "kakao") {
             //kakao
+                social_platform = "kakao"
             if (AuthApiClient.instance.hasToken()) {
                 UserApiClient.instance.me { user, error ->
                     if (error != null) {
@@ -128,6 +130,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
             }
         } else if (platform == "google") {
             //google
+            social_platform = "google"
             val firebaseAuth = FirebaseAuth.getInstance()
             if (firebaseAuth.currentUser?.uid != null) {
                 val currentUserId = firebaseAuth.currentUser!!.uid
