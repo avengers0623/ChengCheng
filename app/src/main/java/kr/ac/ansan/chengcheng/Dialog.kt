@@ -19,6 +19,7 @@ import kr.ac.ansan.chengcheng.MainActivity.Companion.database
 import kr.ac.ansan.chengcheng.MainActivity.Companion.dlgItemsMap
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
+import kr.ac.ansan.chengcheng.MainActivity.Companion.social_platform
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 import kr.ac.ansan.chengcheng.RecyclerViewAdapter.MyViewHolder.Companion.dlgPosition
 import java.math.RoundingMode
@@ -94,13 +95,14 @@ class Dialog(context: Context) {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     Log.d("실험", "${platformFlag},${userId},${nickName}")
                     //Log.d("실험", "${listCnt}, ${listCntInt}")
-                    for (snapshot: DataSnapshot in snapshot.child("${platformFlag},${userId},${nickName}")
+                    for (snapshot: DataSnapshot in snapshot.child("platform").child("$social_platform")
+                        .child("$userId")
                         .child("titleList").children) {
                         val info: String? = snapshot.child("title").value as String?
                         if (info == content) {
                             Log.d("제거대상 찾음:", info)
                             val key = snapshot.key
-                            myRef.child("${userId!!},${nickName!!}")
+                            myRef.child("platform").child("$social_platform").child("$userId")
                                 .child("titleList")
                                 .child(key!!).setValue(null)
 

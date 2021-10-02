@@ -27,6 +27,7 @@ import kr.ac.ansan.chengcheng.MainActivity.Companion.database
 import kr.ac.ansan.chengcheng.MainActivity.Companion.itemBox
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
+import kr.ac.ansan.chengcheng.MainActivity.Companion.social_platform
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 import java.util.*
 import kotlin.collections.ArrayList
@@ -37,6 +38,7 @@ class addItem : AppCompatActivity(){
     private lateinit var adapterRV: AdditemRVAdapter
     private lateinit var adapterRVChecked: AdditemRVAdapterChecked
     private var key: String? = null
+
 
     var rv2Data: MutableList<Data_addItem_2>? = null
     var rv3Data: MutableList<CheckedItems>? = null
@@ -59,6 +61,7 @@ class addItem : AppCompatActivity(){
 
 
 
+
         //  카테고리 덩어리
         //나중에 클래스든 어디든 모아놓기
         val chengIcon: TypedArray = resources.obtainTypedArray(R.array.chengIcon)
@@ -75,6 +78,10 @@ class addItem : AppCompatActivity(){
         val washList: Array<String> = resources.getStringArray(R.array.washList)
         val emgIcon: TypedArray = resources.obtainTypedArray(R.array.emgIcon)
         val emgList: Array<String> = resources.getStringArray(R.array.emgList)
+        val babyIcon: TypedArray = resources.obtainTypedArray(R.array.babyIcon)
+        val babyList: Array<String> = resources.getStringArray(R.array.babyList)
+        val dogIcon: TypedArray = resources.obtainTypedArray(R.array.dogIcon)
+        val dogList: Array<String> = resources.getStringArray(R.array.dogList)
         val etcIcon: TypedArray = resources.obtainTypedArray(R.array.etcIcon)
         val etcList: Array<String> = resources.getStringArray(R.array.etcList)
 
@@ -108,7 +115,9 @@ class addItem : AppCompatActivity(){
                     spinner_List_test[4] -> selectedItemSet(keyIcon,keyList )
                     spinner_List_test[5] -> selectedItemSet(washIcon,washList)
                     spinner_List_test[6] -> selectedItemSet(emgIcon,emgList)
-                    spinner_List_test[7] -> selectedItemSet(etcIcon,etcList)
+                    spinner_List_test[7] -> selectedItemSet(babyIcon,babyList)
+                    spinner_List_test[8] -> selectedItemSet(dogIcon,dogList)
+                    spinner_List_test[9] -> selectedItemSet(etcIcon,etcList)
                 }
             }
 
@@ -191,9 +200,11 @@ class addItem : AppCompatActivity(){
             database.getReference("User")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        for (snapshot: DataSnapshot in snapshot.child("${platformFlag},${userId},${nickName}")
+                        for (snapshot: DataSnapshot in snapshot.child("platform").child(social_platform!!).child("$userId")
                             .child("titleList").children) {
                             val info: String? = snapshot.child("title").value as String?
+                            Log.d("qwe","$snapshot")
+                            Log.d("qwe2","$info")
                             if (info == listName) {
                                 Toast.makeText(
                                     context_additem,
@@ -207,6 +218,7 @@ class addItem : AppCompatActivity(){
                         setData(listName)
                         indexForDelete.clear()
                         startActivity(intent)
+                        finish()
                         /*//목록개수 입력
                         listCntInt++
                         database.getReference("User").child("${userId!!},${nickName!!}")
@@ -228,7 +240,9 @@ class addItem : AppCompatActivity(){
         val key2 = makeKey()
         Items.add(Data_items(listName))
         database.getReference("User")
-            .child("${platformFlag},${userId},${nickName}")
+            .child("platform")
+            .child(social_platform!!)
+            .child("$userId")
             .child("titleList")
             .child(key2!!)
             .child("title")
@@ -236,7 +250,9 @@ class addItem : AppCompatActivity(){
 
 
         database.getReference("User")
-            .child("${platformFlag},${userId},${nickName}")
+            .child("platform")
+            .child(social_platform!!)
+            .child("$userId")
             .child("titleList")
             .child(key2)
             .child("item")

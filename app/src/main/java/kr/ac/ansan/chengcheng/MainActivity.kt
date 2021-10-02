@@ -39,7 +39,9 @@ class MainActivity : AppCompatActivity() {
         var userId: String? = null
         var nickName: String? = null
         var listName: String? = null
+        var age : String? = null
         var social_name: String? = null
+        var social_platform : String? = null
         var itemBox: MutableSet<Int>? = null //이거 필요없을듯
         var dlgItemsMap: HashMap<Int, ArrayList<Int>> = hashMapOf()
     }
@@ -122,6 +124,7 @@ class MainActivity : AppCompatActivity() {
             userId = firebaseAuth.currentUser!!.uid
             nickName = firebaseAuth.currentUser!!.displayName
             ProfileImg = firebaseAuth.currentUser!!.photoUrl.toString()
+            Log.d("이미지테스트", "$profileImage")
             Glide.with(this)
                 .load(profileImage)
                 .into(my_page)
@@ -130,7 +133,7 @@ class MainActivity : AppCompatActivity() {
 
         //DB연동
         val myRef = database.getReference("User")//.child("${platformFlag},${userId},${nickName}")
-
+    //platform 값 가져와야함
         var cnt = 0
         myRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -140,16 +143,17 @@ class MainActivity : AppCompatActivity() {
 
                 Log.e(
                     "접근",
-                    "키키키:${snapshot.child("${platformFlag},${userId},${nickName}").child("titleList").value}"
+                    "키키키:${snapshot.child("platform").child("$social_platform").value}"
                 )
 
-                if (snapshot.child("${platformFlag},${userId},${nickName}").exists()) {
+                if (snapshot.child("platform").child("$social_platform").child("$userId").exists()) {
                     Log.d("ReadDB", "계정정보 찾음")
 
                     //별명 불러오는 부분
                     listNameSubmit(snapshot)
 
-                    for (snapshot: DataSnapshot in snapshot.child("${platformFlag},${userId},${nickName}")
+                    for (snapshot: DataSnapshot in snapshot.child("platform").child("$social_platform")
+                        .child("$userId")
                         .child("titleList").children) {
                         Log.e("접근", "키키키(for문내부):${snapshot.child("title").value}")
                         Log.e("접근", "키키키(for문내부):${snapshot.child("item").value}")
@@ -212,7 +216,7 @@ class MainActivity : AppCompatActivity() {
             listOfNickname1.text = user_nickname
         } else {
             //데이터베이스 값 가져오기
-            val nickname = snapshot.child("${platformFlag},${userId},${nickName}").child("nickName").value
+            val nickname = snapshot.child("platform").child("$social_platform").child("$userId").child("name").value
             Log.d("nickName", nickname as String)
             listOfNickname1.text = nickname
         }

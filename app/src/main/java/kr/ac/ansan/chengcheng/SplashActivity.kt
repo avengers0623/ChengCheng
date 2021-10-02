@@ -10,6 +10,8 @@ import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.splash.*
+import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
+import kr.ac.ansan.chengcheng.MainActivity.Companion.social_platform
 
 class SplashActivity : Activity() {
 
@@ -20,29 +22,37 @@ class SplashActivity : Activity() {
 
         val loginSignup = Intent(this, login_signup::class.java)
         val mainActivity = Intent(this, MainActivity::class.java)
+        var splashFlag = false
 
-        if (FirebaseAuth.getInstance().currentUser?.uid != null || AuthApiClient.instance.hasToken()) {
-            accountAvailable(mainActivity, 3000)
-        } else {
-            accountAvailable(loginSignup, 3000)
+        if (AuthApiClient.instance.hasToken()) {
+            social_platform = "kakao"
+        }
+        val firebaseAuth = FirebaseAuth.getInstance()
+        if (firebaseAuth.currentUser?.uid != null) {
+            social_platform = "google"
         }
 
-        animationView.setOnClickListener {
-            if (FirebaseAuth.getInstance().currentUser?.uid != null || AuthApiClient.instance.hasToken()) {
-                accountAvailable(mainActivity, 100)
-            } else {
-                accountAvailable(loginSignup, 100)
-            }
+        if (FirebaseAuth.getInstance().currentUser?.uid != null || AuthApiClient.instance.hasToken()) {
+            animationView.setOnClickListener {
+                splashFlag = true
+                accountAvailable(mainActivity, splashFlag)
+            } //-------!!보류!!-------
+        } else {
+            accountAvailable(loginSignup, splashFlag)
         }
     }
 
-    private fun accountAvailable(intent: Intent, DURATION: Long) {
+    private fun accountAvailable(intent: Intent, splashFlag: Boolean) {
+        Log.d("dddddd","$splashFlag")
+        var duration: Long = if(splashFlag) 100 else 3000
+        Log.d("dddddd","$duration")
+
         Handler().postDelayed({
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             overridePendingTransition(anim.fade_in, anim.fade_out)
             finish()
-        }, DURATION)
+        }, duration)
     }
 
     override fun onBackPressed() {

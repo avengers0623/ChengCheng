@@ -5,6 +5,8 @@
     <string name="default_notification_channel_id">ohdio</string>
     <string name="fcm_message">rug</string>
     <string name="msg_token_fmt">dodk</string>
+    <string name="platform_KAKAO">kakao</string>
+    <string name="platform_GOOGLE">google</string>
 
 
     <!--    설정관리-->
@@ -20,7 +22,9 @@
     <string name="category4">필수품</string>
     <string name="category5">세면도구</string>
     <string name="category6">비상용품</string>
-    <string name="category7">기타</string>
+    <string name="category7">유아용품</string>
+    <string name="category8">애견용품</string>
+    <string name="category9">기타</string>
 
 
 
@@ -43,6 +47,8 @@
         <item>필수품</item>
         <item>세면도구</item>
         <item>비상용품</item>
+        <item>유아용품</item>
+        <item>애견용품</item>
         <item>기타</item>
     </string-array>
 
@@ -104,6 +110,8 @@
         <item>@drawable/ic_elec_9</item>
         <item>@drawable/ic_elec_10</item>
         <item>@drawable/ic_elec_11</item>
+        <item>@drawable/ic_elec_12</item>
+        <item>@drawable/ic_elec_13</item>
 
     </string-array>
     <string-array name="electronicList">
@@ -118,6 +126,8 @@
         <item>노트북</item>
         <item>스마트워치</item>
         <item>태블릿</item>
+        <item>손선풍기</item>
+        <item>멀티탭</item>
 
     </string-array>
 
@@ -135,6 +145,9 @@
         <item>@drawable/ic_camp_12</item>
         <item>@drawable/ic_camp_13</item>
         <item>@drawable/ic_camp_14</item>
+        <item>@drawable/ic_camp_15</item>
+        <item>@drawable/ic_camp_16</item>
+        <item>@drawable/ic_camp_17</item>
 
     </string-array>
     <string-array name="campList">
@@ -151,6 +164,9 @@
         <item>베개</item>
         <item>텐트</item>
         <item>집게</item>
+        <item>수저</item>
+        <item>버너</item>
+        <item>모기퇴치스프레이</item>
     </string-array>
 
     <string-array name="keyIcon">
@@ -180,6 +196,8 @@
         <item>@drawable/ic_wash_8</item>
         <item>@drawable/ic_wash_9</item>
         <item>@drawable/ic_wash_10</item>
+        <item>@drawable/ic_wash_11</item>
+        <item>@drawable/ic_wash_12</item>
 
     </string-array>
     <string-array name="washList">
@@ -193,6 +211,8 @@
         <item>핸드크림</item>
         <item>빗</item>
         <item>로션</item>
+        <item>면봉</item>
+        <item>향수</item>
     </string-array>
 
     <string-array name="emgIcon">
@@ -203,6 +223,29 @@
         <item>약</item>
         <item>구급상자</item>
     </string-array>
+
+    <string-array name="babyIcon">
+        <item>@drawable/ic_baby_1</item>
+        <item>@drawable/ic_baby_2</item>
+        <item>@drawable/ic_baby_3</item>
+        <item>@drawable/ic_baby_4</item>
+    </string-array>
+    <string-array name="babyList">
+        <item>기저귀</item>
+        <item>젖병</item>
+        <item>유모차</item>
+        <item>인형</item>
+    </string-array>
+
+    <string-array name="dogIcon">
+        <item>@drawable/ic_dog_1</item>
+        <item>@drawable/ic_emg_2</item>
+    </string-array>
+    <string-array name="dogList">
+        <item>배변봉투</item>
+        <item>구급상자</item>
+    </string-array>
+
 
 
     <string-array name="etcIcon">
@@ -221,6 +264,10 @@
         <item>@drawable/ic_etc_15</item>
         <item>@drawable/ic_etc_16</item>
         <item>@drawable/ic_etc_17</item>
+        <item>@drawable/ic_etc_18</item>
+        <item>@drawable/ic_etc_19</item>
+        <item>@drawable/ic_etc_20</item>
+        <item>@drawable/ic_etc_21</item>
 
 
 
@@ -241,6 +288,11 @@
         <item>볼펜</item>
         <item>목베게</item>
         <item>삼각대</item>
+        <item>양동이</item>
+        <item>옷걸이</item>
+        <item>모기퇴치스프레이</item>
+        <item>손톱깎이</item>
+
     </string-array>
 
 

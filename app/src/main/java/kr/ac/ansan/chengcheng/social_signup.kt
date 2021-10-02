@@ -9,18 +9,24 @@ import com.google.firebase.auth.FirebaseAuth
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.social_signup.*
+import kr.ac.ansan.chengcheng.MainActivity.Companion.age
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
 import kr.ac.ansan.chengcheng.MainActivity.Companion.social_name
+import kr.ac.ansan.chengcheng.MainActivity.Companion.social_platform
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 
 class social_signup : AppCompatActivity() {
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.social_signup)
-        val mainPage = Intent(this, kr.ac.ansan.chengcheng.MainActivity::class.java)
+        var ka = resources.getString(R.string.platform_KAKAO)
+        var go = resources.getString(R.string.platform_GOOGLE)
+        val mainPage = Intent(this, MainActivity::class.java)
         val pP = Intent(this, Privacy_Policy::class.java)
         var social_name_text: EditText? = null
         var social_age_text: EditText? = null
@@ -31,6 +37,7 @@ class social_signup : AppCompatActivity() {
 
         agreeCb2.setOnClickListener {
             startActivity(pP)
+            finish()
         }
 
         start.setOnClickListener {
@@ -44,7 +51,7 @@ class social_signup : AppCompatActivity() {
 
                     //별명 DB에 등록 하는 부분
                     social_name = social_name_text.text.toString()
-
+                    age = social_age_text.text.toString()
                     if (AuthApiClient.instance.hasToken()) {
                         UserApiClient.instance.me { user, error ->
                             if (error != null) {
@@ -63,10 +70,22 @@ class social_signup : AppCompatActivity() {
                         platformFlag = "go"
                     }
 
-                    database.getReference("User")
+                    when(platformFlag){
+                        "ka" -> {
+                            social_platform = "kakao"
+                            databaseCreate(ka)
+                        }
+                        "go" -> {
+                            social_platform = "google"
+                            databaseCreate(go)
+                        }
+                    }
+
+
+                   /* database.getReference("User")
                         .child("${platformFlag},${userId},${nickName}")
                         .child("nickName")
-                        .setValue(social_name)
+                        .setValue(social_name)*/
 
                     startActivity(mainPage)
                     finish()
@@ -96,6 +115,20 @@ class social_signup : AppCompatActivity() {
 
     }
 
+    fun databaseCreate(platform: String){
+        database.getReference("User")
+            .child("platform")
+            .child(platform)
+            .child("$userId")
+            .child("name")
+            .setValue("$nickName")
+        database.getReference("User")
+            .child("platform")
+            .child(platform)
+            .child("$userId")
+            .child("age")
+            .setValue(age)
+    }
 
 }
 

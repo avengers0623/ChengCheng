@@ -42,9 +42,10 @@ class My_page : AppCompatActivity(){
 
         google_logout.setOnClickListener {
             if(FirebaseAuth.getInstance().currentUser?.uid != null){
-                revokeAccess()
+                signOut()
                 Toast.makeText(this,"구글 탈퇴 성공",Toast.LENGTH_LONG).show()
                 startActivity(loginSignup)
+                finish()
             } else {
                 Toast.makeText(this, "카카오 로그인중", Toast.LENGTH_SHORT).show()
             }
@@ -61,6 +62,7 @@ class My_page : AppCompatActivity(){
                     else {
                         Log.i(ContentValues.TAG, "연결 끊기 성공. SDK에서 토큰 삭제 됨")
                         startActivity(loginSignup)
+                        finish()
                     }
                 }
             } else {
