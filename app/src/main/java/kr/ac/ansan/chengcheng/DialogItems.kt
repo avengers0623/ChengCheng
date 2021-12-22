@@ -1,3 +1,5 @@
 package kr.ac.ansan.chengcheng
 
-data class DialogItems(val img: Int)
+import java.util.ArrayList
+
+data class DialogItems(val img: Int, val digItemName: String)

@@ -30,6 +30,7 @@ class AdditemRVAdapterChecked(
     inner class Rv3Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setData(data: CheckedItems) {
             itemView.itemview_img.setImageResource(data.img)
+            itemView.itemName.text = data.Name
         }
     }
 

@@ -7,42 +7,58 @@ import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.*
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kr.ac.ansan.chengcheng.MainActivity.Companion.Items
 import kr.ac.ansan.chengcheng.MainActivity.Companion.adapter
 import kr.ac.ansan.chengcheng.MainActivity.Companion.context_main
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
+import kr.ac.ansan.chengcheng.MainActivity.Companion.dlgItemNameMap
 import kr.ac.ansan.chengcheng.MainActivity.Companion.dlgItemsMap
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
 import kr.ac.ansan.chengcheng.MainActivity.Companion.social_platform
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 import kr.ac.ansan.chengcheng.RecyclerViewAdapter.MyViewHolder.Companion.dlgPosition
+import kr.ac.ansan.chengcheng.databinding.AdditemBinding
+import kr.ac.ansan.chengcheng.databinding.DialogBinding
 import java.math.RoundingMode
 
-class Dialog(context: Context) {
+class Dialog(context: Context) : AppCompatActivity() {
     private val dlg = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var lblDesc: TextView
     private lateinit var btnOK: Button
     private lateinit var btnDelete: Button
-
+    private lateinit var alarmIm : ImageView
     private lateinit var adapterRV: AdditemRVAdapterDialog
     private lateinit var rvData: MutableList<DialogItems>
-    private val items: ArrayList<DialogItems> = ArrayList()
-
+    private lateinit var binding : DialogBinding
     private lateinit var listener: MyDialogOKClickedListener
 
+    companion object{
+         var itemList : ArrayList<Int> = arrayListOf()
+         var itemListName : ArrayList <String> = arrayListOf()
+    }
     fun start(content: String) {
 //        dlg.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dlg.setContentView(R.layout.dialog)     //다이얼로그에 사용할 xml 파일을 불러옴
         dlg.setCancelable(true)    //다이얼로그의 바깥 화면을 눌렀을 때 다이얼로그가 닫히지 않도록 함
         dlg.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         lblDesc = dlg.findViewById(R.id.main_dlg_content)
+        alarmIm = dlg.findViewById(R.id.alarm_im)
         lblDesc.text = content
+
+
+        //****************************
+       // binding = DialogBinding.inflate(layoutInflater)
+      //  setContentView(binding.root)
+        //**************
+
+
         //adapter = context_main?.let { RecyclerViewAdapter(it, Items) }
 
 
@@ -67,8 +83,20 @@ class Dialog(context: Context) {
 
 
         dlgItemsMap[dlgPosition]!!.forEach {
-            rvData.add(DialogItems(it))
+            itemList.add(it)
         }
+
+        dlgItemNameMap[dlgPosition]!!.forEach {
+            itemListName.add(it)
+        }
+        Log.d("Listtest", "${itemList[0]} + ${itemListName[0]}")
+        Log.d("Listtest2", "${itemList.size} + ${itemListName.size}")
+
+        for (i in itemList.indices)
+        {
+            rvData.add(DialogItems(itemList[i],itemListName[i]))
+        }
+
         adapterRV.setItemClickListener(object : AdditemRVAdapterDialog.ItemClickListener{
             override fun onClick(view: View, position: Int) {
 
@@ -83,6 +111,32 @@ class Dialog(context: Context) {
 
             dlg.dismiss()
         }
+
+
+        //알람
+      alarmIm.setOnClickListener {
+          var dialog = CustomDialog()
+
+
+          Log.d("dialog","알람 버튼 눌림")
+          dialog.setButtonClickListener(object : CustomDialog.OnButtonClickListener{
+              override fun onButtonClicked1() {
+                  Log.d("DialogFragment", "DialogFragment111")
+                  //resultBts.text = "BTS"
+              }
+              override fun onButtonClicked2() {
+                  Log.d("DialogFragment", "DialogFragment222")
+              }
+
+          })
+
+
+         dialog.show(supportFragmentManager,"CustomDialog")
+
+
+
+
+      }
 
 
         btnDelete = dlg.findViewById(R.id.delete)
@@ -147,4 +201,5 @@ class Dialog(context: Context) {
     interface MyDialogOKClickedListener {
         fun onOKClicked(content: String)
     }
+
 }

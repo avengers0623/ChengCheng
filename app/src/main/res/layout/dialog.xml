@@ -23,7 +23,7 @@
             android:layout_marginTop="15dp">
 
             <ImageView
-                android:id="@+id/icon"
+                android:id="@+id/ic_search"
                 android:layout_width="30dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="10dp"
@@ -33,7 +33,7 @@
 
             <TextView
                 android:id="@+id/main_dlg_content"
-                android:layout_width="match_parent"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
@@ -43,6 +43,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="text" />
+
+            <ImageView
+                android:id="@+id/alarm_im"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -31,6 +31,17 @@
         <item name="android:background">#FFE597</item>
     </style>
 
+    <!--    parent="android:Widget.Material.Light.TimePicker"-->
+    <style name="SpinnerDatePicker" parent="android:Widget.Material.Light.DatePicker">
+        <item name="android:datePickerMode">calendar</item>
+        <item name="android:textSize">50dp</item>
+        <item name="android:headerBackground">#FF5722</item>
+        <item name="android:numbersTextColor">#673AB7</item>
+        <item name="android:numbersSelectorColor">#FFEB3B</item>
+        <item name="android:numbersBackgroundColor">#61E761</item>
+        <item name="android:background">#FFE597</item>
+    </style>
+
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
 <!--        <item name="android:windowBackground">@dra</item>-->
     </style>

@@ -1,19 +1,15 @@
 package kr.ac.ansan.chengcheng
 
 import android.annotation.SuppressLint
-import android.app.TimePickerDialog
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.res.TypedArray
-import android.database.sqlite.SQLiteDatabase
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +25,7 @@ import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
 import kr.ac.ansan.chengcheng.MainActivity.Companion.social_platform
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
+import kr.ac.ansan.chengcheng.databinding.AdditemBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -37,6 +34,7 @@ class addItem : AppCompatActivity(){
     private lateinit var spinner: Spinner
     private lateinit var adapterRV: AdditemRVAdapter
     private lateinit var adapterRVChecked: AdditemRVAdapterChecked
+    private lateinit var binding : AdditemBinding
     private var key: String? = null
 
 
@@ -48,8 +46,11 @@ class addItem : AppCompatActivity(){
     companion object {
         var context_additem: Context? = null
         var indexForDelete: ArrayList<Int> = arrayListOf()
+        var itemName : ArrayList<String> = arrayListOf()
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +59,8 @@ class addItem : AppCompatActivity(){
         setContentView(R.layout.additem)
 
         context_additem = this
-
+        binding = AdditemBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
 
@@ -157,7 +159,7 @@ class addItem : AppCompatActivity(){
         itemcheck_recyclerView.layoutManager = layoutManager
 
 
-        val alarm = Alarm_dialog(this)
+
         val mainActivity = Intent(this, MainActivity::class.java)
 
 
@@ -167,25 +169,27 @@ class addItem : AppCompatActivity(){
             clickAndBinding(mainActivity)
         }
 
-        //알람
-        alarm_im.setOnClickListener {
-            //alarm.start("알람")
-            var cal = Calendar.getInstance()
-            val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                //cal.set(Calendar.HOUR_OF_DAY, hour)
-                //cal.set(Calendar.MINUTE, minute)
-                Toast.makeText(this, "$hour : $minute", Toast.LENGTH_SHORT).show()
-                //            alarm.start("알람") //${SimpleDateFormat("HH:mm").format(cal.time)}
-                Log.d("ㅎ", "$hour, $minute")
-            }
-            TimePickerDialog(
-                this,
-                timeSetListener,
-                cal.get(Calendar.HOUR_OF_DAY),
-                cal.get(Calendar.MINUTE),
-                false
-            ).show()
-        }
+        /*//알람
+        binding.alarmIm.setOnClickListener {
+            val dialog = CustomDialog()
+
+            dialog.setButtonClickListener(object : CustomDialog.OnButtonClickListener{
+                override fun onButtonClicked1() {
+                    Log.d("DialogFragment", "DialogFragment111")
+                    //resultBts.text = "BTS"
+                }
+                override fun onButtonClicked2() {
+                    Log.d("DialogFragment", "DialogFragment222")
+                }
+
+            })
+
+            dialog.show(supportFragmentManager, "CustomDialog")
+
+
+
+
+        }*/
     }
 
     private fun clickAndBinding(intent: Intent) {
@@ -217,6 +221,7 @@ class addItem : AppCompatActivity(){
                         }
                         setData(listName)
                         indexForDelete.clear()
+                        itemName.clear()
                         startActivity(intent)
                         finish()
                         /*//목록개수 입력
@@ -258,6 +263,15 @@ class addItem : AppCompatActivity(){
             .child("item")
             .setValue(indexForDelete)
 
+        database.getReference("User")
+            .child("platform")
+            .child(social_platform!!)
+            .child("$userId")
+            .child("titleList")
+            .child(key2)
+            .child("itemName")
+            .setValue(itemName)
+
 
         Items.add(Data_items())
         //Log.d("접근", "리스트추가체크${listCntInt}")
@@ -278,7 +292,8 @@ class addItem : AppCompatActivity(){
                 //Log.d("SSS", )
                 //스크롤뷰에 아이템 추가 해야함
                 val iconRes = Icon.getResourceId(position, 0) // 이미지 소스 값
-                addImageScrollView(iconRes) // 리사이클러뷰(밑에있는거)에서 쓸라고
+                val iconName = List[position]
+                addImageScrollView(iconRes,iconName) // 리사이클러뷰(밑에있는거)에서 쓸라고
                 Log.d("SSS", itemBox!!.toString())
             }
 
@@ -290,14 +305,16 @@ class addItem : AppCompatActivity(){
             override fun onClick(view: View, position: Int) {
 
                 val iconRes = indexForDelete[position]  // 이미지 소스 값
+                val iconName = itemName[position]
                 Log.d("testICON", "pos: ${position}, $iconRes")
-                delImageScrollView(iconRes)
+                delImageScrollView(iconRes,iconName)
+
             }
         })
     }
 
 
-    private fun addImageScrollView(iconRes: Int) {
+    private fun addImageScrollView(iconRes: Int , iconName : String) {
 
         var flag = true
 
@@ -308,21 +325,24 @@ class addItem : AppCompatActivity(){
         }
 
         if (flag) {
-            rv3Data!!.add(CheckedItems(iconRes))
+            rv3Data!!.add(CheckedItems(iconRes,iconName))
             adapterRVChecked.notifyDataSetChanged()
             itemBox!!.add(iconRes) //DB 에서 쓸라고
+            itemName!!.add(iconName)
             indexForDelete.add(iconRes)
             Log.d("indexDelete1", indexForDelete.toString())
+            Log.d("indexDelete2", itemName.toString())
 
         }
 
     }
 
-    private fun delImageScrollView(iconRes: Int) {
+    private fun delImageScrollView(iconRes: Int, iconName: String) {
         indexForDelete.remove(iconRes)
+        itemName.remove(iconName)
         itemBox!!.remove(iconRes)
         Log.d("test", itemBox!!.toString())
-        rv3Data!!.remove(CheckedItems(iconRes))
+        rv3Data!!.remove(CheckedItems(iconRes,iconName))
         Log.d("test", rv3Data.toString())
         adapterRVChecked.notifyDataSetChanged()
     }
@@ -334,6 +354,7 @@ class addItem : AppCompatActivity(){
         //이제 필요 없을듯.,.
         itemBox!!.clear()
         indexForDelete.clear()
+        itemName.clear()
         // additem 액티비티 나갈때 파괴해야함
     }
 

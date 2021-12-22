@@ -20,7 +20,6 @@ import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 class social_signup : AppCompatActivity() {
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.social_signup)
@@ -58,7 +57,7 @@ class social_signup : AppCompatActivity() {
 
                             } else if (user != null) {
                                 userId = user.id.toString()
-                                nickName = user.kakaoAccount?.profile?.nickname
+                                nickName = user.kakaoAccount?.profile?.nickname.toString()
                             }
                         }
                         platformFlag = "ka"
@@ -66,7 +65,7 @@ class social_signup : AppCompatActivity() {
                     val firebaseAuth = FirebaseAuth.getInstance()
                     if (firebaseAuth.currentUser?.uid != null) {
                         userId = firebaseAuth.currentUser!!.uid
-                        nickName = firebaseAuth.currentUser!!.displayName
+                        nickName = firebaseAuth.currentUser!!.displayName.toString()
                         platformFlag = "go"
                     }
 
@@ -121,7 +120,13 @@ class social_signup : AppCompatActivity() {
             .child(platform)
             .child("$userId")
             .child("name")
-            .setValue("$nickName")
+            .setValue(nickName) //본명
+        database.getReference("User")
+            .child("platform")
+            .child(platform)
+            .child("$userId")
+            .child("nickname")
+            .setValue("$social_name") // 별명
         database.getReference("User")
             .child("platform")
             .child(platform)

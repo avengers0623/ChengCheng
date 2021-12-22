@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.rv_dlg.view.*
 class AdditemRVAdapterDialog(
 ) : RecyclerView.Adapter<AdditemRVAdapterDialog.Rv2Holder>() {
     var data = mutableListOf<DialogItems>()
+    var dataName = mutableListOf<DialogItems>()
     private lateinit var itemClickListener: ItemClickListener
 
 
@@ -33,6 +34,7 @@ class AdditemRVAdapterDialog(
 
         fun setData(data: DialogItems) {
             itemView.img_cover_dlg.setImageResource(data.img)
+            itemView.itemName_dlg.text= data.digItemName
         }
     }
 

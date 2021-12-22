@@ -20,15 +20,19 @@ import com.google.firebase.database.ValueEventListener
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
+import kr.ac.ansan.chengcheng.Dialog.Companion.itemList
+import kr.ac.ansan.chengcheng.Dialog.Companion.itemListName
 import java.math.RoundingMode.valueOf
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var dlg_view: View
     private var ProfileImg: String? = null
     private var dlgItems: ArrayList<Int> = arrayListOf()
+    private var dlgItemsName : ArrayList<String> = arrayListOf()
 
     companion object {
         val Items: ArrayList<Data_items> = ArrayList()
@@ -44,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         var social_platform : String? = null
         var itemBox: MutableSet<Int>? = null //이거 필요없을듯
         var dlgItemsMap: HashMap<Int, ArrayList<Int>> = hashMapOf()
+        var dlgItemNameMap : HashMap<Int, ArrayList<String>> = hashMapOf()
+
     }
 
     //날짜 포맷: SimpleDateFormat("yyyy-mm-dd hh:mm:ss")
@@ -165,6 +171,8 @@ class MainActivity : AppCompatActivity() {
                         Items.add(Data_items(info!!))
                         dlgItems = snapshot.child("item").value as ArrayList<Int>
                         dlgItemsMap[cnt] = dlgItems
+                        dlgItemsName = snapshot.child("itemName").value as ArrayList<String>
+                        dlgItemNameMap[cnt] = dlgItemsName
                         cnt++
                         Log.d("DialogTitle", info)
                         Log.d("DialogTitle", dlgItemsMap.toString())
@@ -216,7 +224,7 @@ class MainActivity : AppCompatActivity() {
             listOfNickname1.text = user_nickname
         } else {
             //데이터베이스 값 가져오기
-            val nickname = snapshot.child("platform").child("$social_platform").child("$userId").child("name").value
+            val nickname = snapshot.child("platform").child("$social_platform").child("$userId").child("nickname").value
             Log.d("nickName", nickname as String)
             listOfNickname1.text = nickname
         }
@@ -235,6 +243,12 @@ class MainActivity : AppCompatActivity() {
 //        Items.add(Data_items(R.drawable.iron_man, "가평여행1"))
 //    }
 
+    override fun onResume() {
+        super.onResume()
+            itemList.clear()
+            itemListName.clear()
+        Log.d("Listtest4", "${itemList.size} + ${itemListName.size}")
+    }
 
 }
 

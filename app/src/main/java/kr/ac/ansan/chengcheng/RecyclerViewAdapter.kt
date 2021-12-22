@@ -1,6 +1,7 @@
 package kr.ac.ansan.chengcheng
 
 import android.content.Context
+import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_list_item.view.linearlayout_add
 import kotlinx.android.synthetic.main.recycler_list_item.view.*
+import kr.ac.ansan.chengcheng.Dialog.Companion.itemList
+import kr.ac.ansan.chengcheng.Dialog.Companion.itemListName
 
 
 class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
@@ -86,7 +89,9 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
             linearlayout!!.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
                     dlgPosition = position
-
+                    itemList.clear()
+                  itemListName.clear()
+                    Log.d("Listtest4", "${itemList.size} + ${itemListName.size}")
                     dig.start("${two!!.text}")
 
                     onViewHolderItemClickListener!!.onViewHolderItemClick()

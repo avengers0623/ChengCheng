@@ -56,14 +56,13 @@
             android:background="@drawable/style_edittext"
             android:drawableLeft="@drawable/ic_person"
             android:hint="별명"
+            android:lines="1"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
+            android:singleLine="true"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="65dp"
-            tools:layout_editor_absoluteY="236dp"
-            android:singleLine="true"
-            android:lines="1"
-            />
+            tools:layout_editor_absoluteY="236dp" />
 
         <EditText
             android:id="@+id/social_age_text"
