@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="kr.ac.ansan.chengcheng">
-
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 갤러리 권한 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -17,10 +16,12 @@
         android:roundIcon="@mipmap/cheng_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -47,8 +48,8 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
-            android:launchMode="singleTop"> <!-- 키보드 올릴때 EditText같이 올라감, 회전시 리사이클러뷰 유지 -->
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"> <!-- 키보드 올릴때 EditText같이 올라감, 회전시 리사이클러뷰 유지 -->
 
         </activity>
         <activity
@@ -69,7 +70,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Privacy_Policy" />
-        <activity android:name=".login_signup"></activity>
+        <activity android:name=".login_signup" />
     </application>
 
 </manifest>

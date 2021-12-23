@@ -3,7 +3,6 @@ package kr.ac.ansan.chengcheng
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,10 +19,9 @@ import com.google.firebase.database.ValueEventListener
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
-import kr.ac.ansan.chengcheng.Dialog.Companion.itemList
-import kr.ac.ansan.chengcheng.Dialog.Companion.itemListName
+import kr.ac.ansan.chengcheng.Main_Dialog.Companion.itemList
+import kr.ac.ansan.chengcheng.Main_Dialog.Companion.itemListName
 import java.math.RoundingMode.valueOf
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 

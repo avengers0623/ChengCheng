@@ -35,6 +35,7 @@ class addItem : AppCompatActivity(){
     private lateinit var adapterRV: AdditemRVAdapter
     private lateinit var adapterRVChecked: AdditemRVAdapterChecked
     private lateinit var binding : AdditemBinding
+    private lateinit var addItemDlg : ImageView
     private var key: String? = null
 
 
@@ -161,6 +162,15 @@ class addItem : AppCompatActivity(){
 
 
         val mainActivity = Intent(this, MainActivity::class.java)
+
+
+        // 검색 다이얼로그 시작
+        addItemDlg = findViewById(R.id.search_im)
+        val dlg = AddItemDig(this)
+        addItemDlg.setOnClickListener {
+            dlg.start("테스트")
+        }
+
 
 
         //저장

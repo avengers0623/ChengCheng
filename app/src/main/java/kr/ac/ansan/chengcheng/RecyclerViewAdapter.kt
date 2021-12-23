@@ -13,8 +13,8 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_list_item.view.linearlayout_add
 import kotlinx.android.synthetic.main.recycler_list_item.view.*
-import kr.ac.ansan.chengcheng.Dialog.Companion.itemList
-import kr.ac.ansan.chengcheng.Dialog.Companion.itemListName
+import kr.ac.ansan.chengcheng.Main_Dialog.Companion.itemList
+import kr.ac.ansan.chengcheng.Main_Dialog.Companion.itemListName
 
 
 class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
@@ -75,7 +75,7 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
         var two: TextView? = null
         var linearlayout: LinearLayout? = null
         var onViewHolderItemClickListener: OnViewHolderItemClickListener? = null
-        val dig = Dialog(itemView.context)
+        val dig = Main_Dialog(itemView.context)
 
         companion object{
             var dlgPosition: Int? = null

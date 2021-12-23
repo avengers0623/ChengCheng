@@ -27,18 +27,14 @@
     <string name="category9">기타</string>
 
 
-
-<!--
+    <!--
     <item>생활관련</item>
     <item>세안관련</item>
     <item>의약관련</item>
 -->
 
 
-
-
-
-<!-- String Array 부분 -->
+    <!-- String Array 부분 -->
     <string-array name="categoryListName">
         <item>챙챙추천템</item>
         <item>의류</item>
@@ -247,7 +243,6 @@
     </string-array>
 
 
-
     <string-array name="etcIcon">
         <item>@drawable/ic_etc_1</item>
         <item>@drawable/ic_etc_2</item>
@@ -268,7 +263,6 @@
         <item>@drawable/ic_etc_19</item>
         <item>@drawable/ic_etc_20</item>
         <item>@drawable/ic_etc_21</item>
-
 
 
     </string-array>

@@ -28,7 +28,7 @@ import kr.ac.ansan.chengcheng.databinding.AdditemBinding
 import kr.ac.ansan.chengcheng.databinding.DialogBinding
 import java.math.RoundingMode
 
-class Dialog(context: Context) : AppCompatActivity() {
+class Main_Dialog(context: Context) : AppCompatActivity() {
     private val dlg = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var lblDesc: TextView
     private lateinit var btnOK: Button
