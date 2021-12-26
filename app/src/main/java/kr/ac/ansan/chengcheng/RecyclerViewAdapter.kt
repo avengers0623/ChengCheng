@@ -1,6 +1,8 @@
 package kr.ac.ansan.chengcheng
 
 import android.content.Context
+import android.graphics.Color
+import android.os.Build
 import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
@@ -10,6 +12,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
+import androidx.core.graphics.toColor
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recycler_list_item.view.linearlayout_add
 import kotlinx.android.synthetic.main.recycler_list_item.view.*
@@ -70,6 +74,7 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
 //        listData!!.add(data)
 //    }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var one: ImageView? = null
         var two: TextView? = null
@@ -85,7 +90,6 @@ class RecyclerViewAdapter(context: Context, persons: ArrayList<Data_items>) :
             //one = itemView.one
             two = itemView.two
             linearlayout = itemView.linearlayout_add
-
             linearlayout!!.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(v: View?) {
                     dlgPosition = position

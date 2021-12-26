@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import kr.ac.ansan.chengcheng.MainActivity.Companion.Items
 import kr.ac.ansan.chengcheng.MainActivity.Companion.adapter
-import kr.ac.ansan.chengcheng.MainActivity.Companion.context_main
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
 import kr.ac.ansan.chengcheng.MainActivity.Companion.dlgItemNameMap
 import kr.ac.ansan.chengcheng.MainActivity.Companion.dlgItemsMap
@@ -24,9 +23,7 @@ import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
 import kr.ac.ansan.chengcheng.MainActivity.Companion.social_platform
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 import kr.ac.ansan.chengcheng.RecyclerViewAdapter.MyViewHolder.Companion.dlgPosition
-import kr.ac.ansan.chengcheng.databinding.AdditemBinding
 import kr.ac.ansan.chengcheng.databinding.DialogBinding
-import java.math.RoundingMode
 
 class Main_Dialog(context: Context) : AppCompatActivity() {
     private val dlg = Dialog(context)   //부모 액티비티의 context 가 들어감
@@ -113,9 +110,11 @@ class Main_Dialog(context: Context) : AppCompatActivity() {
         }
 
 
-        //알람
+  /*      //알람
       alarmIm.setOnClickListener {
+
           var dialog = CustomDialog()
+
 
 
           Log.d("dialog","알람 버튼 눌림")
@@ -123,6 +122,7 @@ class Main_Dialog(context: Context) : AppCompatActivity() {
               override fun onButtonClicked1() {
                   Log.d("DialogFragment", "DialogFragment111")
                   //resultBts.text = "BTS"
+
               }
               override fun onButtonClicked2() {
                   Log.d("DialogFragment", "DialogFragment222")
@@ -130,13 +130,13 @@ class Main_Dialog(context: Context) : AppCompatActivity() {
 
           })
 
-
-         dialog.show(supportFragmentManager,"CustomDialog")
-
+          dialog.show(supportFragmentManager,"CustomDialog")
 
 
 
-      }
+
+
+      }*/
 
 
         btnDelete = dlg.findViewById(R.id.delete)

@@ -194,5 +194,7 @@ class CustomDialog : DialogFragment() {
         //            alarm.start("알람") //${SimpleDateFormat("HH:mm").format(cal.time)}
 
     }
+
+
 }
 

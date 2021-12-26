@@ -89,6 +89,7 @@ class addItem : AppCompatActivity(){
         val etcList: Array<String> = resources.getStringArray(R.array.etcList)
 
 
+
         spinner = findViewById(R.id.spinner)
         adapterRV = AdditemRVAdapter()
 

@@ -236,6 +236,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+
 //    private fun initDataset() {
 //        Items.clear()
 //        Items.add(Data_items(R.drawable.iron_man, "가평여행1"))
