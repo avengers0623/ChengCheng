@@ -44,12 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="text" />
 
-            <ImageView
-                android:id="@+id/alarm_im"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -30,7 +30,6 @@ class Main_Dialog(context: Context) : AppCompatActivity() {
     private lateinit var lblDesc: TextView
     private lateinit var btnOK: Button
     private lateinit var btnDelete: Button
-    private lateinit var alarmIm : ImageView
     private lateinit var adapterRV: AdditemRVAdapterDialog
     private lateinit var rvData: MutableList<DialogItems>
     private lateinit var binding : DialogBinding
@@ -46,7 +45,6 @@ class Main_Dialog(context: Context) : AppCompatActivity() {
         dlg.setCancelable(true)    //다이얼로그의 바깥 화면을 눌렀을 때 다이얼로그가 닫히지 않도록 함
         dlg.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         lblDesc = dlg.findViewById(R.id.main_dlg_content)
-        alarmIm = dlg.findViewById(R.id.alarm_im)
         lblDesc.text = content
 
 
@@ -108,36 +106,6 @@ class Main_Dialog(context: Context) : AppCompatActivity() {
 
             dlg.dismiss()
         }
-
-
-  /*      //알람
-      alarmIm.setOnClickListener {
-
-          var dialog = CustomDialog()
-
-
-
-          Log.d("dialog","알람 버튼 눌림")
-          dialog.setButtonClickListener(object : CustomDialog.OnButtonClickListener{
-              override fun onButtonClicked1() {
-                  Log.d("DialogFragment", "DialogFragment111")
-                  //resultBts.text = "BTS"
-
-              }
-              override fun onButtonClicked2() {
-                  Log.d("DialogFragment", "DialogFragment222")
-              }
-
-          })
-
-          dialog.show(supportFragmentManager,"CustomDialog")
-
-
-
-
-
-      }*/
-
 
         btnDelete = dlg.findViewById(R.id.delete)
         database = FirebaseDatabase.getInstance()

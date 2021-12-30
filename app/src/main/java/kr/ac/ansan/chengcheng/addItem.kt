@@ -1,6 +1,8 @@
 package kr.ac.ansan.chengcheng
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.res.TypedArray
@@ -17,6 +19,13 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.additem.*
+import kr.ac.ansan.chengcheng.CustomDialog.Companion.alarmManager
+import kr.ac.ansan.chengcheng.CustomDialog.Companion.dayOfMonth
+import kr.ac.ansan.chengcheng.CustomDialog.Companion.hourOfDay
+import kr.ac.ansan.chengcheng.CustomDialog.Companion.minute
+import kr.ac.ansan.chengcheng.CustomDialog.Companion.monthOfYear
+import kr.ac.ansan.chengcheng.CustomDialog.Companion.pendingIntent
+import kr.ac.ansan.chengcheng.CustomDialog.Companion.year
 import kr.ac.ansan.chengcheng.MainActivity.Companion.Items
 import kr.ac.ansan.chengcheng.MainActivity.Companion.adapter
 import kr.ac.ansan.chengcheng.MainActivity.Companion.database
@@ -26,6 +35,8 @@ import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
 import kr.ac.ansan.chengcheng.MainActivity.Companion.social_platform
 import kr.ac.ansan.chengcheng.MainActivity.Companion.userId
 import kr.ac.ansan.chengcheng.databinding.AdditemBinding
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -36,7 +47,11 @@ class addItem : AppCompatActivity(){
     private lateinit var adapterRVChecked: AdditemRVAdapterChecked
     private lateinit var binding : AdditemBinding
     private lateinit var addItemDlg : ImageView
+    private lateinit var alarmIm : ImageView
     private var key: String? = null
+    private var backpressedTime: Long = 0
+    private lateinit var mainActivity : Intent
+
 
 
     var rv2Data: MutableList<Data_addItem_2>? = null
@@ -162,7 +177,7 @@ class addItem : AppCompatActivity(){
 
 
 
-        val mainActivity = Intent(this, MainActivity::class.java)
+        mainActivity = Intent(this, MainActivity::class.java)
 
 
         // 검색 다이얼로그 시작
@@ -172,6 +187,31 @@ class addItem : AppCompatActivity(){
             dlg.start("테스트")
         }
 
+
+        alarmIm = findViewById(R.id.alarm_im)
+      //알람
+      alarmIm.setOnClickListener {
+
+          var dialog = CustomDialog()
+
+
+
+          Log.d("dialog","알람 버튼 눌림")
+          dialog.setButtonClickListener(object : CustomDialog.OnButtonClickListener{
+              override fun onButtonClicked1() {
+                  Log.d("DialogFragment", "DialogFragment111")
+                  //resultBts.text = "BTS"
+
+              }
+              override fun onButtonClicked2() {
+                  Log.d("DialogFragment", "DialogFragment222")
+              }
+
+          })
+
+          dialog.show(supportFragmentManager,"CustomDialog")
+
+      }
 
 
         //저장
@@ -214,6 +254,7 @@ class addItem : AppCompatActivity(){
 
             database.getReference("User")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
+                    @RequiresApi(Build.VERSION_CODES.O)
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (snapshot: DataSnapshot in snapshot.child("platform").child(social_platform!!).child("$userId")
                             .child("titleList").children) {
@@ -230,6 +271,18 @@ class addItem : AppCompatActivity(){
                                 return
                             }
                         }
+                        if(!CustomDialog.check)
+                        {
+                            Toast.makeText(context_additem, "알람 날짜/시간을 설정해 주세요", Toast.LENGTH_SHORT).show()
+                            return
+                        }
+                        setAlarm( year!!,
+                            monthOfYear!!,
+                            dayOfMonth!!,
+                            hourOfDay!!,
+                            minute!!,
+                            alarmManager!!,
+                            pendingIntent!!)
                         setData(listName)
                         indexForDelete.clear()
                         itemName.clear()
@@ -375,6 +428,67 @@ class addItem : AppCompatActivity(){
         return key
     }
 
+
+     @RequiresApi(Build.VERSION_CODES.O)
+    fun setAlarm(
+         year: Int,
+         monthOfYear: Int,
+         dayOfMonth: Int,
+         hourOfDay: Int,
+         minute: Int,
+         alarmManager: AlarmManager,
+         pendingIntent: PendingIntent
+    ) {
+        //alarm.start("알람")
+
+        val from = "$year-$monthOfYear-$dayOfMonth $hourOfDay:$minute:00"
+        Log.d("datetest",from)
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        var datetime: Date? = null
+
+        try {
+            datetime = dateFormat.parse(from)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
+        val calendar = Calendar.getInstance()
+        calendar.time = datetime
+
+
+        alarmManager[AlarmManager.RTC, calendar.timeInMillis] = pendingIntent
+        Log.d("datetest2",calendar.timeInMillis.toString())
+
+       // val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
+             //   + 2000) // ms 이기 때문에 초단위로 변환 (*1000)
+
+         /*  alarmManager.set(
+               AlarmManager.ELAPSED_REALTIME_WAKEUP,
+               triggerTime,
+               pendingIntent
+           ) // set : 일회성 알림*/
+        Toast.makeText(this, "${hourOfDay}시 : ${minute}분에 알람 설정 완료!", Toast.LENGTH_SHORT).show()
+
+
+       /*       1. ELAPSED_REALTIME : ELAPSED_REALTIME 사용. 절전모드에 있을 때는 알람을 발생시키지 않고 해제되면 발생시킴.
+              2. ELAPSED_REALTIME_WAKEUP : ELAPSED_REALTIME 사용. 절전모드일 때도 알람을 발생시킴.
+              3. RTC : Real Time Clock 사용. 절전모드일 때는 알람을 발생시키지 않음.
+              4. RTC_WAKEUP : Real Time Clock 사용. 절전모드 일 때도 알람을 발생시킴.*/
+
+        //            alarm.start("알람") //${SimpleDateFormat("HH:mm").format(cal.time)}
+
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        if (System.currentTimeMillis() > backpressedTime + 2000) {
+            backpressedTime = System.currentTimeMillis()
+            Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 메인으로 이동합니다.", Toast.LENGTH_SHORT).show()
+        } else if (System.currentTimeMillis() <= backpressedTime + 2000) {
+            startActivity(mainActivity)
+            finish()
+        }
+    }
 }
 
 

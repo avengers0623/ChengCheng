@@ -206,6 +206,7 @@ class MainActivity : AppCompatActivity() {
 
         add_button.setOnClickListener {
             startActivity(addItem)
+            finish()
         }
 
         my_page.setOnClickListener {

@@ -7,26 +7,6 @@
     android:orientation="vertical"
     android:radius="50dp">
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="top|center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/testBtn1"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="date" />
-
-        <Button
-            android:id="@+id/testBtn2"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="time" />
-    </LinearLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/pickerContent"
         android:layout_width="wrap_content"
@@ -35,7 +15,7 @@
 
         <DatePicker
             android:id="@+id/dateDlg"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,8 +25,8 @@
 
         <TimePicker
             android:id="@+id/timeDlg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +66,7 @@
             android:id="@+id/resultDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="adasd"
+            android:hint="날짜"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -95,20 +75,43 @@
             android:id="@+id/resultTimeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="adasd"
+            android:hint="시간"
             android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/resultDateText"/>
-
         <Button
-            android:id="@+id/saveBtn"
-            android:layout_width="70dp"
+            android:id="@+id/nextBtn"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
-            android:text="완료"
+            android:text="시간설정"
+            android:layout_marginRight="10dp"
             android:background="@drawable/style_btn_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+        <Button
+            android:id="@+id/saveBtn"
+            android:visibility="invisible"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="저장"
+            android:background="@drawable/style_btn_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/style_btn_login"
+            android:text="이전"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/nextBtn"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
