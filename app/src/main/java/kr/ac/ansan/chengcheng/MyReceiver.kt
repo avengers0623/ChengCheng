@@ -9,12 +9,17 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kr.ac.ansan.chengcheng.Constant.Companion.CHANNEL_ID
 import kr.ac.ansan.chengcheng.Constant.Companion.NOTIFICATION_ID
 
 class MyReceiver : BroadcastReceiver() {
 
     lateinit var notificationManager: NotificationManager
+    private var database = FirebaseDatabase.getInstance()
 
     override fun onReceive(context: Context, intent: Intent) {
         // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
@@ -91,6 +96,20 @@ class MyReceiver : BroadcastReceiver() {
                 notificationChannel)
         }
     }
+
+    /*fun iconAdd(){
+       val myRef =  database.getReference("User")
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for ()
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }*/
 }
 
 class Constant{

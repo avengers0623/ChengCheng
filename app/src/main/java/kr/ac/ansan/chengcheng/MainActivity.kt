@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                     // 이미지뷰에 프로필사진 띄우기
                     Glide.with(this)
                         .load(ProfileImg)
-                        .into(my_page)
+                        .into(main_img)
 
                 }
             }
@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("이미지테스트", "$profileImage")
             Glide.with(this)
                 .load(profileImage)
-                .into(my_page)
+                .into(main_img)
         }
 
 
@@ -209,7 +209,7 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        my_page.setOnClickListener {
+        main_img.setOnClickListener {
             startActivity(mypage)
         }
 
