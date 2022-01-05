@@ -15,6 +15,7 @@ import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.my_page.*
+import kr.ac.ansan.chengcheng.MainActivity.Companion.context_main
 import kr.ac.ansan.chengcheng.MainActivity.Companion.nickName
 import kr.ac.ansan.chengcheng.MainActivity.Companion.platformFlag
 import kr.ac.ansan.chengcheng.MainActivity.Companion.social_name
@@ -87,8 +88,10 @@ class My_page : AppCompatActivity(){
         google_logout.setOnClickListener {
             if(FirebaseAuth.getInstance().currentUser?.uid != null){
                 signOut()
+                val mainActivity : MainActivity = context_main as MainActivity
                 Toast.makeText(this,"구글 탈퇴 성공",Toast.LENGTH_LONG).show()
                 startActivity(loginSignup)
+                mainActivity.finish()
                 finish()
             } else {
                 Toast.makeText(this, "카카오 로그인중", Toast.LENGTH_SHORT).show()
@@ -104,8 +107,10 @@ class My_page : AppCompatActivity(){
                         Log.e(ContentValues.TAG, "연결 끊기 실패", error)
                     }
                     else {
+                        val mainActivity : MainActivity = context_main as MainActivity
                         Log.i(ContentValues.TAG, "연결 끊기 성공. SDK에서 토큰 삭제 됨")
                         startActivity(loginSignup)
+                        mainActivity.finish()
                         finish()
                     }
                 }

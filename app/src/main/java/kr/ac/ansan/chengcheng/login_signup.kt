@@ -42,7 +42,7 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
     private val RC_SIGN_IN = 99
     var kakao = 0
     var google = 0
-
+    private var backpressedTime: Long = 0
     companion object {
         var loginSignup: Context? = null
     }
@@ -237,6 +237,15 @@ class login_signup : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
 
     }
+// 로그아웃하고 뒤로가기하면 메인으로 넘어가지는거 해결해야함 **************************************
+   /* override fun onBackPressed() {
+        if (System.currentTimeMillis() > backpressedTime + 2000) {
+            backpressedTime = System.currentTimeMillis()
+            Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료 됩니다.", Toast.LENGTH_SHORT).show()
+        } else if (System.currentTimeMillis() <= backpressedTime + 2000) {
+            finish()
+        }
+    }*/
 
 
 }
